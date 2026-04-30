@@ -2,12 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Naomi Country Rose</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Naomi Country Rose 🌹</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="root"></div>
-  <script type="module" src="index.js"></script>
+
+<div id="home" class="home-screen">
+  <div class="overlay">
+    <h1>Naomi Country Rose 🌹</h1>
+    <p>Hey you… ready to play something beautiful?</p>
+
+    <button onclick="showSong()" class="primary-btn">
+      Start Playing 🎸
+    </button>
+
+    <button class="note-btn">
+      A little note for you… ❤️
+    </button>
+
+    <p class="footer">Built just for you</p>
+  </div>
+</div>
+
+<div id="song" class="song-screen" style="display:none;">
+  <button onclick="showHome()">← Back</button>
+
+  <h2>Tonight’s Song</h2>
+  <p>Feels like a “Cover Me Up” kind of night</p>
+
+  <pre>
+G           D
+Sun goes down on the dusty road
+
+Em          C
+Got my guitar and a lightened load
+
+G           D
+Singing sweet for the ones I love
+
+C           D
+Underneath the stars above
+  </pre>
+</div>
+
+<script>
+function showSong() {
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('song').style.display = 'block';
+}
+
+function showHome() {
+  document.getElementById('song').style.display = 'none';
+  document.getElementById('home').style.display = 'flex';
+}
+</script>
+
 </body>
 </html>
