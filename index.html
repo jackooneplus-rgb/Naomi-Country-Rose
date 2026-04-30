@@ -4,55 +4,197 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Naomi Country Rose 🌹</title>
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=20" />
 </head>
 
 <body>
 
   <!-- HOME PAGE -->
-  <section id="homePage" class="page">
-    <div class="card">
+  <section id="homePage" class="page home-page">
+    <div class="card home-card">
       <h1>Naomi Country Rose 🌹</h1>
       <p>Hey you... ready to play something beautiful?</p>
 
-      <button class="primary-btn" onclick="goToSong()">Start Playing 🎵</button>
+      <button class="primary-btn" onclick="showPage('songPage')">Start Playing 🎸</button>
       <button class="secondary-btn" onclick="openNote()">A little note for you 💌</button>
+
+      <a
+        class="spotify-home-btn"
+        href="https://open.spotify.com/playlist/37i9dQZF1FwJj9o7TD0o4T?si=NEOiy5SZRhuxRPpGckyY_A&pi=apWxBma-RQqyk"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Play the playlist 🎧
+      </a>
 
       <small>Built just for you</small>
     </div>
   </section>
 
-  <!-- SONG PAGE -->
-  <section id="songPage" class="page hidden">
-    <div class="song-card">
+  <!-- SONGBOOK PAGE -->
+  <section id="songPage" class="page app-page song-bg hidden">
+    <div class="app-card">
 
-      <button class="back-btn" onclick="goHome()">← Back</button>
+      <button class="back-btn" onclick="showPage('homePage')">← Back</button>
 
-      <h2>Tonight’s Song</h2>
-      <p class="subtitle">Feels like a “Cover Me Up” kind of night</p>
+      <h2>Naomi’s Songbook 🌹</h2>
+      <p class="subtitle">Write a little country song, learn a favourite, or just play something soft.</p>
 
-      <pre>
-G        D
-Sun goes down on the dusty road
+      <div class="quick-nav">
+        <button onclick="showPage('learnPage')">Real songs 🎧</button>
+        <button onclick="showPage('notesPage')">Love notes 💌</button>
+      </div>
 
-Em       C
-Got my guitar and a lightened load
+      <div class="panel">
+        <h3>Write me a country song ✨</h3>
+        <p class="panel-text">Type a feeling, memory, or idea and it’ll turn into a simple guitar song with chords.</p>
 
-G        D
-Singing sweet for the ones I love
+        <div class="input-row">
+          <input
+            id="songIdea"
+            placeholder="e.g. feeling safe, missing you, coffee and guitar..."
+          />
+          <button class="primary-btn create-btn" onclick="generateSong()">Create Song ✨</button>
+        </div>
 
-C        D
-Underneath the stars above
-      </pre>
+        <div class="mood-row">
+          <button onclick="setMood('soft love song about feeling safe')">Feeling Safe</button>
+          <button onclick="setMood('romantic country song about missing someone')">Missing You</button>
+          <button onclick="setMood('cute country song about coffee and guitar')">Coffee & Guitar</button>
+          <button onclick="setMood('emotional country song about always being there')">I’ve Got You</button>
+          <button onclick="setMood('sweet country song about Naomi Country Rose')">Country Rose</button>
+        </div>
+      </div>
 
-      <a
-        class="primary-btn full playlist-btn"
-        href="https://open.spotify.com/playlist/37i9dQZF1FwJj9o7TD0o4T?si=NEOiy5SZRhuxRPpGckyY_A&pi=apWxBma-RQqyk"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Play Naomi’s Country Rose Playlist 🎧
-      </a>
+      <div class="panel generated-song">
+        <div class="song-header">
+          <div>
+            <h3 id="songTitle">Safe With You</h3>
+            <p id="songMeta">Capo: 2 • Chords: G - D - Em - C • Strumming: D D U U D U</p>
+          </div>
+          <button class="small-btn" onclick="saveFavourite()">Save ❤️</button>
+        </div>
+
+        <pre id="songOutput">G              D
+You don’t have to carry the night alone
+
+Em             C
+I’ll be the voice at the end of the phone
+
+G              D
+If the world feels heavy and hard to get through
+
+C              D
+I’ll be right there, choosing you</pre>
+
+        <button class="soft-btn" onclick="playThereMode()">Play it like I’m there with you 🎸</button>
+
+        <p id="thereMessage" class="there-message hidden">
+          Imagine I’m sat next to you right now. No pressure. Just breathe, smile, and play one chord at a time.
+        </p>
+      </div>
+
+      <div class="panel">
+        <div class="section-title-row">
+          <h3>Saved favourites ❤️</h3>
+          <button class="small-btn" onclick="clearFavourites()">Clear</button>
+        </div>
+        <div id="favouritesList" class="favourites-list">
+          No favourites saved yet.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REAL SONGS PAGE -->
+  <section id="learnPage" class="page app-page learn-bg hidden">
+    <div class="app-card">
+
+      <button class="back-btn" onclick="showPage('songPage')">← Back to Songbook</button>
+
+      <h2>Real songs she can learn 🎧</h2>
+      <p class="subtitle">Use the proper platforms for real songs, covers, chords, and tutorials.</p>
+
+      <div class="panel">
+        <h3>Naomi’s playlist 🌹</h3>
+        <p class="panel-text">Real country songs, soft love songs, and the vibe we actually wanted.</p>
+
+        <a
+          class="primary-btn full playlist-btn"
+          href="https://open.spotify.com/playlist/37i9dQZF1FwJj9o7TD0o4T?si=NEOiy5SZRhuxRPpGckyY_A&pi=apWxBma-RQqyk"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open Naomi’s Country Rose Playlist 🎧
+        </a>
+      </div>
+
+      <div class="panel">
+        <h3>Learn her favourites 🎸</h3>
+
+        <div class="link-grid">
+          <a href="https://www.youtube.com/results?search_query=Cover+Me+Up+guitar+tutorial+Morgan+Wallen" target="_blank" rel="noopener noreferrer">
+            Cover Me Up tutorials 🎸
+          </a>
+
+          <a href="https://www.youtube.com/results?search_query=Jordan+Davis+guitar+tutorial+country+song" target="_blank" rel="noopener noreferrer">
+            Jordan Davis tutorials 🤠
+          </a>
+
+          <a href="https://www.ultimate-guitar.com/search.php?search_type=title&value=Cover%20Me%20Up" target="_blank" rel="noopener noreferrer">
+            Cover Me Up chords 🎼
+          </a>
+
+          <a href="https://www.youtube.com/results?search_query=soft+romantic+country+covers+acoustic+guitar" target="_blank" rel="noopener noreferrer">
+            Romantic country covers 🌹
+          </a>
+
+          <a href="https://www.youtube.com/results?search_query=easy+country+guitar+songs+for+beginners" target="_blank" rel="noopener noreferrer">
+            Easy country guitar songs ✨
+          </a>
+
+          <a href="https://www.youtube.com/results?search_query=country+guitar+strumming+patterns+beginner" target="_blank" rel="noopener noreferrer">
+            Strumming patterns 🪕
+          </a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Little practice plan</h3>
+        <ul class="practice-list">
+          <li>1. Pick one song.</li>
+          <li>2. Learn just the first verse.</li>
+          <li>3. Slow it down.</li>
+          <li>4. Play it messy first. Perfect comes later.</li>
+          <li>5. Send Jackson a video, obviously.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NOTES PAGE -->
+  <section id="notesPage" class="page app-page notes-bg hidden">
+    <div class="app-card">
+
+      <button class="back-btn" onclick="showPage('songPage')">← Back to Songbook</button>
+
+      <h2>Little notes for you 💌</h2>
+      <p class="subtitle">For the days where you need a smile, a tiny bit of chaos, or a reminder that I’ve got you.</p>
+
+      <div class="panel note-panel">
+        <h3 id="bigNoteTitle">Today’s note ❤️</h3>
+        <p id="bigNoteText">
+          I pinky promise to annoy you forever. No refunds, no cancellations.
+        </p>
+        <button class="primary-btn" onclick="nextBigNote()">Another one 💌</button>
+      </div>
+
+      <div class="panel">
+        <h3>Emergency smiles</h3>
+        <div id="noteGrid" class="note-grid"></div>
+      </div>
 
     </div>
   </section>
@@ -61,21 +203,13 @@ Underneath the stars above
   <div id="noteModal" class="modal hidden">
     <div class="modal-content">
       <h2>For you ❤️</h2>
-
-      <p>
-        I pinky promise to annoy you forever.
-        No refunds, no cancellations.
+      <p id="dailyNote">
+        I pinky promise to annoy you forever. No refunds, no cancellations.
       </p>
-
-      <p>
-        And if you ever need me, I don’t care what time it is.
-        Call me. I’ve got you.
-      </p>
-
       <button class="primary-btn" onclick="closeNote()">Close</button>
     </div>
   </div>
 
-  <script src="index.js?v=6"></script>
+  <script src="index.js?v=21"></script>
 </body>
 </html>
