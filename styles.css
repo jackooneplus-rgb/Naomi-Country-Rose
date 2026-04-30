@@ -1,8 +1,16 @@
-body {
+/* RESET */
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body, html {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* PAGE LAYOUT */
 .page {
   min-height: 100vh;
   display: flex;
@@ -10,69 +18,132 @@ body {
   justify-content: center;
 }
 
+/* HOME */
 .home-page {
-  background: url("https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4") center/cover;
+  background-image: url("https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
 }
 
 .home-card {
-  background: rgba(0,0,0,0.6);
-  color: white;
-  padding: 30px;
-  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 40px;
+  border-radius: 16px;
   text-align: center;
-}
-
-.song-page {
-  background: #eee;
-}
-
-.song-card {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 500px;
-}
-
-.hidden {
-  display: none;
-}
-
-.primary-btn {
-  background: #ff4d6d;
-  border: none;
-  padding: 10px 20px;
   color: white;
-  border-radius: 20px;
-  margin: 5px;
+  backdrop-filter: blur(8px);
+  max-width: 400px;
+}
+
+.home-card h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.home-card p {
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+/* BUTTONS */
+.primary-btn {
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 999px;
   cursor: pointer;
+  margin: 5px;
+  font-size: 1rem;
 }
 
 .secondary-btn {
   background: transparent;
   border: 1px solid white;
-  padding: 10px 20px;
   color: white;
-  border-radius: 20px;
-  margin: 5px;
+  padding: 12px 20px;
+  border-radius: 999px;
   cursor: pointer;
+  margin: 5px;
 }
 
-.back-btn {
+.primary-btn.full {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* SONG PAGE */
+.song-page {
+  background: #f3efe9;
+}
+
+.song-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.song-card h2 {
   margin-bottom: 10px;
 }
 
-.full {
-  width: 100%;
+.song-subtitle {
+  margin-bottom: 20px;
+  color: #666;
 }
 
+/* INPUT */
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.controls input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+}
+
+.controls button {
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 999px;
+}
+
+/* SONG TEXT */
+pre {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 12px;
+  font-family: monospace;
+  line-height: 1.6;
+}
+
+/* BACK BUTTON */
+.back-btn {
+  background: #eee;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+/* MODAL */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,7 +151,13 @@ body {
 
 .modal-content {
   background: white;
-  padding: 20px;
-  border-radius: 12px;
+  padding: 25px;
+  border-radius: 16px;
   text-align: center;
+  max-width: 300px;
+}
+
+/* HIDDEN */
+.hidden {
+  display: none;
 }
