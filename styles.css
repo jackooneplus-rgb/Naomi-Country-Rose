@@ -1,142 +1,75 @@
-/* RESET */
-* {
+body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  background: url("https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4") no-repeat center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
-body, html {
-  height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-/* PAGE LAYOUT */
+/* Pages */
 .page {
-  min-height: 100vh;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* HOME */
-.home-page {
-  background-image: url("https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop");
-  background-size: cover;
-  background-position: center;
+.hidden {
+  display: none;
 }
 
-.home-card {
-  background: rgba(0, 0, 0, 0.65);
-  padding: 40px;
-  border-radius: 16px;
+/* Card */
+.card {
+  background: rgba(0,0,0,0.6);
+  padding: 30px;
+  border-radius: 20px;
   text-align: center;
-  color: white;
-  backdrop-filter: blur(8px);
-  max-width: 400px;
+  backdrop-filter: blur(10px);
 }
 
-.home-card h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+.song-card {
+  background: #f5f2ef;
+  color: #333;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
 }
 
-.home-card p {
-  margin-bottom: 20px;
-  opacity: 0.9;
-}
-
-/* BUTTONS */
-.primary-btn {
-  background: linear-gradient(135deg, #ff4d6d, #ff758f);
-  color: white;
-  border: none;
+/* Buttons */
+button {
+  margin: 10px;
   padding: 12px 20px;
-  border-radius: 999px;
+  border-radius: 30px;
+  border: none;
   cursor: pointer;
-  margin: 5px;
-  font-size: 1rem;
+}
+
+.primary-btn {
+  background: #ff5a6e;
+  color: white;
 }
 
 .secondary-btn {
   background: transparent;
   border: 1px solid white;
   color: white;
-  padding: 12px 20px;
-  border-radius: 999px;
-  cursor: pointer;
-  margin: 5px;
 }
 
-.primary-btn.full {
+.full {
   width: 100%;
-  margin-top: 20px;
 }
 
-/* SONG PAGE */
-.song-page {
-  background: #f3efe9;
-}
-
-.song-card {
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  max-width: 600px;
-  width: 90%;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.song-card h2 {
-  margin-bottom: 10px;
-}
-
-.song-subtitle {
-  margin-bottom: 20px;
-  color: #666;
-}
-
-/* INPUT */
-.controls {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.controls input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 999px;
-  border: 1px solid #ddd;
-}
-
-.controls button {
-  background: #ff4d6d;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 999px;
-}
-
-/* SONG TEXT */
-pre {
-  background: #f4f4f4;
-  padding: 20px;
-  border-radius: 12px;
-  font-family: monospace;
-  line-height: 1.6;
-}
-
-/* BACK BUTTON */
 .back-btn {
-  background: #eee;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 999px;
-  margin-bottom: 15px;
-  cursor: pointer;
+  background: #ccc;
 }
 
-/* MODAL */
+/* Modal */
 .modal {
   position: fixed;
   top: 0;
@@ -151,13 +84,8 @@ pre {
 
 .modal-content {
   background: white;
-  padding: 25px;
-  border-radius: 16px;
+  color: black;
+  padding: 30px;
+  border-radius: 20px;
   text-align: center;
-  max-width: 300px;
-}
-
-/* HIDDEN */
-.hidden {
-  display: none;
 }
