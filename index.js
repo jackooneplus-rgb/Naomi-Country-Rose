@@ -1,55 +1,43 @@
-const home = document.getElementById("homePage");
-const song = document.getElementById("songPage");
-const modal = document.getElementById("noteModal");
-
-let musicPlaying = false;
+const homePage = document.getElementById("homePage");
+const songPage = document.getElementById("songPage");
+const noteModal = document.getElementById("noteModal");
+const music = document.getElementById("bgMusic");
 
 function goToSong() {
-  home.classList.add("hidden");
-  song.classList.remove("hidden");
+  homePage.classList.add("hidden");
+  songPage.classList.remove("hidden");
 }
 
 function goHome() {
-  song.classList.add("hidden");
-  home.classList.remove("hidden");
+  songPage.classList.add("hidden");
+  homePage.classList.remove("hidden");
 }
 
 function openNote() {
-  modal.classList.remove("hidden");
+  noteModal.classList.remove("hidden");
 }
 
 function closeNote() {
-  modal.classList.add("hidden");
+  noteModal.classList.add("hidden");
 }
 
+/* 🎵 SOFT MUSIC WITH FADE */
 function toggleMusic() {
-  const music = document.getElementById("bgMusic");
-
-  if (!musicPlaying) {
+  if (music.paused) {
+    music.volume = 0;
     music.play();
-    musicPlaying = true;
+
+    let vol = 0;
+    const fade = setInterval(() => {
+      if (vol < 0.2) {
+        vol += 0.02;
+        music.volume = vol;
+      } else {
+        clearInterval(fade);
+      }
+    }, 100);
+
   } else {
     music.pause();
-    musicPlaying = false;
   }
-}
-
-function generateSong() {
-  const idea = document.getElementById("songIdea").value;
-
-  if (!idea) return;
-
-  document.getElementById("songOutput").innerText = `
-G        D
-${idea} in the midnight glow
-
-Em       C
-Every word I never show
-
-G        D
-Feels like you in every line
-
-C        D
-Like your heart just found mine
-  `;
 }
