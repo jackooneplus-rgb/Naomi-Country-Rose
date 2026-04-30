@@ -9,44 +9,40 @@
 html,
 body {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
   font-family: Arial, sans-serif;
   color: white;
-  overflow: hidden;
   background: #1b0d08;
 }
 
-/* IMPORTANT */
 .hidden {
   display: none !important;
 }
 
-/* PAGES */
+/* PAGE STRUCTURE */
 .page {
-  position: absolute;
-  inset: 0;
+  min-height: 100vh;
   width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-/* HOME BACKGROUND - FULL IMAGE ON DESKTOP */
-#homePage {
+/* LANDING PAGE */
+.home-page {
   background:
-    linear-gradient(rgba(20, 8, 4, 0.10), rgba(20, 8, 4, 0.48)),
+    linear-gradient(rgba(20, 8, 4, 0.08), rgba(20, 8, 4, 0.48)),
     url("naomi-bg.png.png") no-repeat center center;
   background-size: contain;
   background-color: #1b0d08;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
 }
 
-/* HOME CARD */
 .card {
-  background: rgba(24, 12, 8, 0.66);
+  background: rgba(24, 12, 8, 0.68);
   padding: 34px;
   border-radius: 24px;
   text-align: center;
@@ -56,85 +52,256 @@ body {
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
 }
 
-.card h1 {
+.home-card h1 {
   font-size: 34px;
   margin-bottom: 14px;
 }
 
-.card p {
+.home-card p {
   font-size: 16px;
   margin-bottom: 18px;
 }
 
-.card small {
+.home-card small {
   display: block;
   margin-top: 16px;
   opacity: 0.85;
   letter-spacing: 1px;
 }
 
-/* SONG PAGE */
-#songPage {
-  background: #f3eadf;
+/* APP PAGE */
+.app-page {
   color: #333;
+  padding: 32px 18px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-.song-card {
-  background: #fffaf3;
+.song-bg {
+  background:
+    linear-gradient(rgba(35, 16, 8, 0.54), rgba(35, 16, 8, 0.76)),
+    url("https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop") no-repeat center center / cover;
+}
+
+/* MAIN APP CARD */
+.app-card {
+  background: rgba(255, 250, 243, 0.97);
   color: #333;
   padding: 32px;
-  border-radius: 22px;
-  width: 90%;
-  max-width: 620px;
+  border-radius: 26px;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
 }
 
-.song-card h2 {
-  font-size: 32px;
+.app-card h2 {
+  font-size: 36px;
   color: #6b241f;
-  margin-bottom: 10px;
+  margin: 16px 0 8px;
 }
 
 .subtitle {
   color: #7a5a50;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
+  line-height: 1.45;
 }
 
-/* CHORD AREA */
+/* PANELS */
+.panel {
+  background: #fff;
+  border: 1px solid #f0dfd2;
+  border-radius: 22px;
+  padding: 24px;
+  margin-bottom: 22px;
+}
+
+.panel h3 {
+  color: #6b241f;
+  margin-bottom: 10px;
+}
+
+.panel-text {
+  color: #7a5a50;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+/* DAILY ROSE */
+.daily-panel {
+  background: linear-gradient(135deg, #fffaf3, #f8e4df);
+}
+
+.daily-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.daily-text {
+  color: #4a2018;
+  line-height: 1.5;
+}
+
+/* INPUTS */
+.input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.input-row input {
+  flex: 1;
+  border: 1px solid #d8c3b0;
+  border-radius: 999px;
+  padding: 13px 16px;
+  font-size: 15px;
+  outline: none;
+}
+
+.input-row input:focus {
+  border-color: #d9485f;
+}
+
+/* MOOD BUTTONS */
+.mood-row,
+.quick-song-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mood-row button,
+.quick-song-row button {
+  background: #f7e8e4;
+  color: #6b241f;
+  border: 1px solid #efd0c8;
+  padding: 9px 12px;
+  font-size: 13px;
+}
+
+/* GENERATED SONG */
+.song-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.song-header h3 {
+  color: #6b241f;
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+#songMeta,
+.song-structure {
+  color: #7a5a50;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.song-actions {
+  display: flex;
+  gap: 8px;
+}
+
 pre {
-  background: white;
-  color: #222;
+  background: #fffaf3;
+  color: #20110d;
   padding: 22px;
   border-radius: 16px;
-  line-height: 1.7;
+  line-height: 1.75;
   font-size: 16px;
   white-space: pre-wrap;
   margin: 18px 0;
   overflow-x: auto;
+  border: 1px solid #f0dfd2;
+}
+
+/* LINKS */
+.link-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.link-grid a,
+.playlist-btn,
+.spotify-home-btn,
+.youtube-home-btn {
+  text-decoration: none;
+  text-align: center;
+  font-weight: 800;
+}
+
+.link-grid a {
+  background: #f7e8e4;
+  color: #6b241f;
+  border: 1px solid #efd0c8;
+  padding: 13px;
+  border-radius: 16px;
+}
+
+/* FAVOURITES */
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.favourites-list {
+  color: #6b241f;
+  line-height: 1.5;
+}
+
+.favourite-item {
+  background: #fffaf3;
+  border: 1px solid #f0dfd2;
+  padding: 12px;
+  border-radius: 14px;
+  margin-top: 10px;
 }
 
 /* BUTTONS */
 button,
-.playlist-btn {
+.playlist-btn,
+.spotify-home-btn,
+.youtube-home-btn {
   margin: 8px;
   padding: 12px 20px;
   border-radius: 999px;
   border: none;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 800;
   transition: transform 0.18s ease, opacity 0.18s ease;
   font-size: 14px;
 }
 
 button:hover,
-.playlist-btn:hover {
-  transform: scale(1.04);
+.playlist-btn:hover,
+.spotify-home-btn:hover,
+.youtube-home-btn:hover,
+.link-grid a:hover {
+  transform: scale(1.02);
   opacity: 0.92;
 }
 
-.primary-btn {
+.primary-btn,
+.spotify-home-btn {
   background: linear-gradient(135deg, #ff5a6e, #d9485f);
   color: white;
+}
+
+.youtube-home-btn {
+  display: inline-block;
+  background: rgba(255,255,255,0.12);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.7);
+  text-decoration: none;
 }
 
 .secondary-btn {
@@ -143,22 +310,51 @@ button:hover,
   color: white;
 }
 
-.full {
+.dark-btn {
+  background: #6b241f;
+  color: white;
+}
+
+.soft-btn {
+  background: #6b241f;
+  color: white;
   width: 100%;
   margin-left: 0;
   margin-right: 0;
 }
 
-.playlist-btn {
+.full {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
   display: inline-block;
-  text-align: center;
-  text-decoration: none;
 }
 
 .back-btn {
   background: #6b241f;
   color: white;
   margin-left: 0;
+}
+
+.small-btn {
+  background: #f7e8e4;
+  color: #6b241f;
+  border: 1px solid #efd0c8;
+  padding: 9px 14px;
+  white-space: nowrap;
+}
+
+.create-btn {
+  margin: 0;
+}
+
+.practice-message {
+  background: #f7e8e4;
+  color: #6b241f;
+  border-radius: 16px;
+  padding: 14px;
+  margin-top: 12px;
+  line-height: 1.5;
 }
 
 /* MODAL */
@@ -187,6 +383,7 @@ button:hover,
 .modal-content h2 {
   font-size: 28px;
   margin-bottom: 18px;
+  color: #d9485f;
 }
 
 .modal-content p {
@@ -196,45 +393,65 @@ button:hover,
 }
 
 /* MOBILE */
-@media (max-width: 600px) {
-  body {
-    overflow: auto;
-  }
-
-  .page {
-    min-height: 100vh;
-    padding: 18px;
-  }
-
-  #homePage {
+@media (max-width: 800px) {
+  .home-page {
     background:
       linear-gradient(rgba(20, 8, 4, 0.16), rgba(20, 8, 4, 0.62)),
       url("naomi-bg.png.png") no-repeat center center;
     background-size: cover;
-    background-color: #1b0d08;
   }
 
   .card {
     padding: 28px 20px;
   }
 
-  .card h1 {
+  .home-card h1 {
     font-size: 30px;
+  }
+
+  .app-page {
+    padding: 18px;
+    background-attachment: scroll;
+  }
+
+  .app-card {
+    padding: 22px 16px;
+  }
+
+  .app-card h2 {
+    font-size: 30px;
+  }
+
+  .daily-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .input-row {
+    flex-direction: column;
+  }
+
+  .create-btn {
+    width: 100%;
+  }
+
+  .song-header,
+  .song-actions {
+    flex-direction: column;
   }
 
   .primary-btn,
   .secondary-btn,
-  .playlist-btn {
+  .playlist-btn,
+  .spotify-home-btn,
+  .youtube-home-btn,
+  .soft-btn,
+  .dark-btn {
     width: 100%;
     margin: 8px 0;
   }
 
-  .song-card {
-    padding: 24px 18px;
-  }
-
-  .song-card h2 {
-    font-size: 28px;
+  .link-grid {
+    grid-template-columns: 1fr;
   }
 
   pre {
