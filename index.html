@@ -1,25 +1,37 @@
 <body>
 
-  <div class="hero">
-    <div class="hero-content">
-      <h1>Naomi Country Rose 🌹</h1>
-      <p>Hey you… ready to play something beautiful?</p>
+  <!-- LANDING PAGE -->
+  <div id="homePage" class="page">
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Naomi Country Rose 🌹</h1>
+        <p>Hey you… ready to play something beautiful?</p>
 
-      <button class="primary-btn">Start Playing 🎸</button>
-      <button class="secondary-btn" onclick="openNote()">A little note for you 💌</button>
+        <button class="primary-btn" onclick="goToSong()">Start Playing 🎸</button>
+        <button class="secondary-btn" onclick="openNote()">A little note for you 💌</button>
+      </div>
     </div>
   </div>
 
-  <!-- Modal -->
+  <!-- SONG PAGE -->
+  <div id="songPage" class="page hidden">
+    <div class="song-container">
+      <button onclick="goHome()">← Back</button>
+      <h2>Tonight’s Song</h2>
+
+      <pre>
+[G] Sun goes down on the dusty road  
+[D] Got my guitar and a lightened load  
+[Em] Singing sweet for the ones I love  
+[C] Underneath the stars above  
+      </pre>
+    </div>
+  </div>
+
+  <!-- MODAL -->
   <div id="noteModal" class="modal hidden">
     <div class="modal-content">
-      <p>
-        “Music gives a soul to the universe,
-        wings to the mind, flight to the imagination and life to everything.”
-      </p>
-      <p>
-        Keep strumming those strings and let your beautiful heart shine through every chord.
-      </p>
+      <p>You're genuinely something special… don’t ever forget that.</p>
       <button onclick="closeNote()">Close</button>
     </div>
   </div>
