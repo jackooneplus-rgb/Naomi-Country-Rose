@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Naomi Country Rose 🌹</title>
-  <link rel="stylesheet" href="styles.css?v=50" />
+  <link rel="stylesheet" href="styles.css?v=70" />
 </head>
 
 <body>
@@ -48,7 +48,7 @@
 
       <h2>Naomi’s Country Rose Room 🌹</h2>
       <p class="subtitle">
-        Learn real songs, find guitar tutorials, write your own country song, or just get today’s little smile.
+        Learn real songs, find guitar tutorials, create a country song starter, or just get today’s little smile.
       </p>
 
       <!-- DAILY ROSE -->
@@ -56,23 +56,17 @@
         <div class="daily-grid">
           <div>
             <h3>Today’s Rose 💌</h3>
-            <p id="dailyRoseNote" class="daily-text">
-              Loading today’s note...
-            </p>
+            <p id="dailyRoseNote" class="daily-text">Loading today’s note...</p>
           </div>
 
           <div>
             <h3>Today’s guitar challenge 🎸</h3>
-            <p id="dailyChallenge" class="daily-text">
-              Loading challenge...
-            </p>
+            <p id="dailyChallenge" class="daily-text">Loading challenge...</p>
           </div>
 
           <div>
             <h3>Today’s vibe ✨</h3>
-            <p id="dailyVibe" class="daily-text">
-              Loading vibe...
-            </p>
+            <p id="dailyVibe" class="daily-text">Loading vibe...</p>
           </div>
         </div>
 
@@ -103,29 +97,31 @@
         </div>
       </div>
 
-      <!-- WRITE COUNTRY SONG -->
+      <!-- WRITE COUNTRY SONG STARTER -->
       <div class="panel">
-        <h3>Write a full country song ✨</h3>
+        <h3>Create a country song starter ✨</h3>
         <p class="panel-text">
-          Type any idea — kittens, feeling safe, coffee, missing someone — and it’ll create a full original country-style song starter with real beginner-friendly chords.
+          Type any idea — feeling safe, coffee, missing someone, I love Jackson — and it’ll create an original country-style starter with real beginner-friendly chords.
         </p>
 
         <div class="input-row">
           <input
             id="songIdea"
-            placeholder="e.g. kittens, feeling safe, missing you, coffee and guitar..."
+            placeholder="e.g. I love Jackson, feeling safe, missing you, coffee and guitar..."
           />
           <button class="primary-btn create-btn" onclick="generateSong()">Write song ✨</button>
           <button class="dark-btn create-btn" onclick="surpriseMe()">Surprise me 🎲</button>
         </div>
 
+        <h4 class="mini-heading">Pick tonight’s vibe</h4>
+
         <div class="mood-row">
           <button onclick="setMood('feeling safe')">Feeling Safe</button>
           <button onclick="setMood('missing you')">Missing You</button>
           <button onclick="setMood('coffee and guitar')">Coffee & Guitar</button>
-          <button onclick="setMood('kittens')">Kittens</button>
           <button onclick="setMood('Naomi Country Rose')">Country Rose</button>
           <button onclick="setMood('funny chaotic love song')">Funny Love Song</button>
+          <button onclick="setMood('soft romantic campfire song')">Campfire Love</button>
         </div>
       </div>
 
@@ -141,6 +137,7 @@
           <div class="song-actions">
             <button class="small-btn" onclick="saveFavourite()">Save ❤️</button>
             <button class="small-btn" onclick="copySong()">Copy 📋</button>
+            <button class="small-btn" onclick="sendToJackson()">Send to Jackson 💌</button>
           </div>
         </div>
 
@@ -151,24 +148,33 @@ You don’t have to carry the night alone
 Em             C
 I’ll be the voice at the end of the phone
 
+[Chorus]
 G              D
 If the world feels heavy and hard to get through
 
 C              D
 I’ll be right there, choosing you
 
-[Chorus]
+[Verse 2]
 G              D
-So play one chord and let it ring
+You can let that brave face fall
 
 Em             C
-Even tired hearts can still sing
+I’ll still be standing through it all
 
+[Bridge]
 G              D
-If your sky turns grey or blue
+No storm could scare me away
+
+Em             C
+I meant it yesterday and I mean it today
+
+[Final Chorus]
+G              D
+If the world feels heavy and hard to get through
 
 C              D
-I’ll be the calm that sits with you</pre>
+I’ll be right there, choosing you</pre>
 
         <button class="soft-btn" onclick="togglePracticeMessage()">Play it like I’m there with you 🎸</button>
 
@@ -181,7 +187,7 @@ I’ll be the calm that sits with you</pre>
       <div class="panel">
         <h3>Music and practice corner 🎶</h3>
         <p class="panel-text">
-          Real music lives on Spotify and YouTube. This keeps the app clean and makes sure she can actually learn properly.
+          Real music lives on Spotify and YouTube. This keeps the app clean and makes sure you can actually learn properly.
         </p>
 
         <div class="link-grid">
@@ -230,6 +236,10 @@ I’ll be the calm that sits with you</pre>
         </div>
       </div>
 
+      <footer class="app-footer">
+        Made for Naomi by Jackson. Open whenever you need a song, a smile, or both. 🌹
+      </footer>
+
     </div>
   </section>
 
@@ -244,6 +254,6 @@ I’ll be the calm that sits with you</pre>
     </div>
   </div>
 
-  <script src="index.js?v=50"></script>
+  <script src="index.js?v=70"></script>
 </body>
 </html>
