@@ -141,6 +141,12 @@ body {
   line-height: 1.5;
 }
 
+.mini-heading {
+  color: #6b241f;
+  margin: 16px 0 8px;
+  font-size: 15px;
+}
+
 /* DAILY ROSE */
 .daily-panel {
   background: linear-gradient(135deg, #fffaf3, #f8e4df);
@@ -178,7 +184,7 @@ body {
   border-color: #d9485f;
 }
 
-/* MOOD BUTTONS */
+/* BUTTON ROWS */
 .mood-row,
 .quick-song-row {
   display: flex;
@@ -219,6 +225,7 @@ body {
 
 .song-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
@@ -364,6 +371,16 @@ button:hover,
   border-radius: 16px;
   padding: 14px;
   margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* FOOTER */
+.app-footer {
+  text-align: center;
+  color: #7a5a50;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 8px 0 0;
   line-height: 1.5;
 }
 
