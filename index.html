@@ -9,7 +9,7 @@
 
 <body>
   <section id="homePage" class="page home-page">
-    <div class="home-card">
+    <div class="home-card fade-in">
       <h1>Naomi Country Rose 🌹</h1>
       <p>Hey you… ready to play something beautiful?</p>
 
@@ -21,13 +21,18 @@
   </section>
 
   <section id="songPage" class="page song-page hidden">
-    <div class="song-card">
+    <div class="song-card fade-in">
       <button class="back-btn" onclick="goHome()">← Back</button>
 
       <h2>Tonight’s Song</h2>
-      <p class="song-subtitle">Feels like a “Cover Me Up” kind of night</p>
+      <p class="song-subtitle" id="tonightText">Feels like a “Cover Me Up” kind of night</p>
 
-      <pre>
+      <div class="controls">
+        <input id="songIdea" placeholder="Type a mood... e.g. sad country love song" />
+        <button onclick="generateSong()">Create Song ✨</button>
+      </div>
+
+      <pre id="songOutput">
 G           D
 Sun goes down on the dusty road
 
@@ -40,20 +45,15 @@ Singing sweet for the ones I love
 C           D
 Underneath the stars above
       </pre>
+
+      <button class="primary-btn full" onclick="toggleMusic()">Play soft backing 🎵</button>
     </div>
   </section>
 
   <div id="noteModal" class="modal hidden">
     <div class="modal-content">
       <h2>For you ❤️</h2>
-      <p>
-        I pinky promise to annoy you forever.
-        No refunds, no cancellations, no escape clause.
-      </p>
-      <p>
-        And if you ever need me, I don’t care what time it is.
-        Call me. If I don’t wake up, spam my phone until I do.
-      </p>
+      <p id="dailyNote"></p>
       <button onclick="closeNote()">Close</button>
     </div>
   </div>
