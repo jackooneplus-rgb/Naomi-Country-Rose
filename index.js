@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const pages = ["homePage", "appPage"];
 
+  const introPage = document.getElementById("introPage");
+  const homePage = document.getElementById("homePage");
   const noteModal = document.getElementById("noteModal");
   const realSongInput = document.getElementById("realSongInput");
   const songIdea = document.getElementById("songIdea");
@@ -14,6 +16,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const dailyRoseNote = document.getElementById("dailyRoseNote");
   const dailyChallenge = document.getElementById("dailyChallenge");
   const dailyVibe = document.getElementById("dailyVibe");
+  const bgMusic = document.getElementById("bgMusic");
+
+  const jacksonNumber = "447557683963";
+
+  let noteIndex = 0;
 
   const notes = [
     "I pinky promise to annoy you forever. No refunds, no cancellations.",
@@ -408,6 +415,33 @@ ${t.ch2}`
     });
   }
 
+  function startMusicSoftly() {
+    if (!bgMusic) return;
+
+    bgMusic.volume = 0.18;
+
+    bgMusic.play()
+      .catch(function () {
+        console.log("Music could not start yet.");
+      });
+  }
+
+  window.enterSite = function () {
+    introPage.classList.add("hidden");
+    homePage.classList.remove("hidden");
+    startMusicSoftly();
+  };
+
+  window.toggleBackgroundMusic = function () {
+    if (!bgMusic) return;
+
+    if (bgMusic.paused) {
+      startMusicSoftly();
+    } else {
+      bgMusic.pause();
+    }
+  };
+
   window.showPage = function (pageId) {
     hideAllPages();
     document.getElementById(pageId).classList.remove("hidden");
@@ -488,19 +522,8 @@ ${t.ch2}`
 
   window.sendToJackson = function () {
     const text = getSongShareText();
-
-    if (navigator.share) {
-      navigator.share({
-        title: songTitle.innerText,
-        text: text
-      }).catch(function () {
-        navigator.clipboard.writeText(text);
-      });
-    } else {
-      navigator.clipboard.writeText(text).then(function () {
-        alert("Song copied — paste it to Jackson 💌");
-      });
-    }
+    const whatsappUrl = `https://wa.me/${jacksonNumber}?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, "_blank");
   };
 
   window.saveFavourite = function () {
@@ -546,7 +569,7 @@ ${t.ch2}`
   }
 
   hideAllPages();
-  document.getElementById("homePage").classList.remove("hidden");
+  homePage.classList.add("hidden");
   noteModal.classList.add("hidden");
   setDailyContent();
   renderFavourites();
