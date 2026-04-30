@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Naomi Country Rose 🌹</title>
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="styles.css?v=5" />
 </head>
 
 <body>
@@ -22,7 +22,7 @@
     </div>
   </section>
 
-  <!-- SONG -->
+  <!-- SONG PAGE -->
   <section id="songPage" class="page hidden">
     <div class="song-card">
 
@@ -45,9 +45,14 @@ C        D
 Underneath the stars above
       </pre>
 
-      <button class="primary-btn full" onclick="toggleMusic()">
-        Play soft backing 🎵
-      </button>
+      <a
+        class="primary-btn full playlist-btn"
+        href="https://open.spotify.com/playlist/37i9dQZF1FwJj9o7TD0o4T?si=NEOiy5SZRhuxRPpGckyY_A&pi=apWxBma-RQqyk"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Play Naomi’s Country Rose Playlist 🎧
+      </a>
 
     </div>
   </section>
@@ -60,15 +65,14 @@ Underneath the stars above
         I pinky promise to annoy you forever.  
         No refunds, no cancellations.
       </p>
+      <p>
+        And if you ever need me, I don’t care what time it is.
+        Call me. I’ve got you.
+      </p>
       <button class="primary-btn" onclick="closeNote()">Close</button>
     </div>
   </div>
 
-  <!-- MUSIC -->
-  <audio id="bgMusic" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=acoustic-guitar-ambient-110997.mp3" type="audio/mpeg">
-  </audio>
-
-  <script src="index.js?v=4"></script>
+  <script src="index.js?v=5"></script>
 </body>
 </html>
