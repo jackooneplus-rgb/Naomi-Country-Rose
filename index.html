@@ -8,24 +8,28 @@
 </head>
 
 <body>
+
+  <!-- HOME -->
   <section id="homePage" class="page home-page">
     <div class="home-card fade-in">
       <h1>Naomi Country Rose 🌹</h1>
-      <p>Hey you… ready to play something beautiful?</p>
+      <p>Hey you... ready to play something beautiful?</p>
 
-      <button class="primary-btn" onclick="goToSong()">Start Playing 🎸</button>
+      <button class="primary-btn" onclick="goToSong()">Start Playing 🎵</button>
       <button class="secondary-btn" onclick="openNote()">A little note for you 💌</button>
 
       <small>Built just for you</small>
     </div>
   </section>
 
+  <!-- SONG -->
   <section id="songPage" class="page song-page hidden">
     <div class="song-card fade-in">
+
       <button class="back-btn" onclick="goHome()">← Back</button>
 
       <h2>Tonight’s Song</h2>
-      <p class="song-subtitle" id="tonightText">Feels like a “Cover Me Up” kind of night</p>
+      <p class="song-subtitle">Feels like a “Cover Me Up” kind of night</p>
 
       <div class="controls">
         <input id="songIdea" placeholder="Type a mood... e.g. sad country love song" />
@@ -33,30 +37,41 @@
       </div>
 
       <pre id="songOutput">
-G           D
+G        D
 Sun goes down on the dusty road
 
-Em          C
+Em       C
 Got my guitar and a lightened load
 
-G           D
+G        D
 Singing sweet for the ones I love
 
-C           D
+C        D
 Underneath the stars above
       </pre>
 
-      <button class="primary-btn full" onclick="toggleMusic()">Play soft backing 🎵</button>
+      <button class="primary-btn full" onclick="toggleMusic()">
+        Play soft backing 🎵
+      </button>
+
     </div>
   </section>
 
+  <!-- NOTE MODAL -->
   <div id="noteModal" class="modal hidden">
     <div class="modal-content">
       <h2>For you ❤️</h2>
-      <p id="dailyNote"></p>
+      <p id="dailyNote">
+        I pinky promise to annoy you forever. No refunds, no cancellations.
+      </p>
       <button onclick="closeNote()">Close</button>
     </div>
   </div>
+
+  <!-- 🎵 REAL MUSIC -->
+  <audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
 
   <script src="./index.js"></script>
 </body>
