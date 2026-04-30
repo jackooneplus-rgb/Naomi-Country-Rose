@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Naomi Country Rose 🌹</title>
-  <link rel="stylesheet" href="styles.css?v=300" />
+  <link rel="stylesheet" href="styles.css?v=301" />
 </head>
 
 <body>
@@ -14,8 +14,8 @@
     <div class="intro-box">
       <h1>Naomi Country Rose 🌹</h1>
       <p>A little corner made just for you.</p>
-      <button onclick="enterSite()">Tap to enter 🎶</button>
-      <small>Music starts after you tap</small>
+      <button id="enterButton" type="button">Tap to enter 🎶</button>
+      <small id="musicStatus">Music starts after you tap</small>
     </div>
   </section>
 
@@ -63,7 +63,6 @@
         Learn real songs, find guitar tutorials, create a country song starter, or just get today’s little smile.
       </p>
 
-      <!-- DAILY ROSE -->
       <div class="panel daily-panel">
         <div class="daily-grid">
           <div>
@@ -85,7 +84,6 @@
         <button class="small-btn" onclick="refreshDailyRose()">Give me another little smile 💌</button>
       </div>
 
-      <!-- LEARN REAL SONG -->
       <div class="panel">
         <h3>Learn a real song 🎧</h3>
         <p class="panel-text">
@@ -109,7 +107,6 @@
         </div>
       </div>
 
-      <!-- CREATE COUNTRY SONG -->
       <div class="panel">
         <h3>Create a country song starter ✨</h3>
         <p class="panel-text">
@@ -137,7 +134,6 @@
         </div>
       </div>
 
-      <!-- GENERATED SONG -->
       <div class="panel generated-song">
         <div class="song-header">
           <div>
@@ -195,7 +191,6 @@ I’ll be right there, choosing you</pre>
         </p>
       </div>
 
-      <!-- PLAYLIST AND PRACTICE -->
       <div class="panel">
         <h3>Music and practice corner 🎶</h3>
         <p class="panel-text">
@@ -203,41 +198,13 @@ I’ll be right there, choosing you</pre>
         </p>
 
         <div class="link-grid">
-          <a
-            href="https://open.spotify.com/playlist/37i9dQZF1FwJj9o7TD0o4T?si=NEOiy5SZRhuxRPpGckyY_A&pi=apWxBma-RQqyk"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Naomi’s playlist 🎧
-          </a>
-
-          <a
-            href="https://www.youtube.com/results?search_query=soft+romantic+country+guitar+instrumental"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Soft guitar background 🎶
-          </a>
-
-          <a
-            href="https://www.youtube.com/results?search_query=beginner+country+guitar+strumming+patterns"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Strumming patterns 🪕
-          </a>
-
-          <a
-            href="https://www.youtube.com/results?search_query=easy+romantic+country+guitar+songs+for+beginners"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Easy romantic songs 🌹
-          </a>
+          <a href="https://open.spotify.com/playlist/37i9dQZF1FwJj9o7TD0o4T?si=NEOiy5SZRhuxRPpGckyY_A&pi=apWxBma-RQqyk" target="_blank" rel="noopener noreferrer">Naomi’s playlist 🎧</a>
+          <a href="https://www.youtube.com/results?search_query=soft+romantic+country+guitar+instrumental" target="_blank" rel="noopener noreferrer">Soft guitar background 🎶</a>
+          <a href="https://www.youtube.com/results?search_query=beginner+country+guitar+strumming+patterns" target="_blank" rel="noopener noreferrer">Strumming patterns 🪕</a>
+          <a href="https://www.youtube.com/results?search_query=easy+romantic+country+guitar+songs+for+beginners" target="_blank" rel="noopener noreferrer">Easy romantic songs 🌹</a>
         </div>
       </div>
 
-      <!-- SAVED FAVOURITES -->
       <div class="panel">
         <div class="section-title-row">
           <h3>Saved favourites ❤️</h3>
@@ -255,7 +222,6 @@ I’ll be right there, choosing you</pre>
     </div>
   </section>
 
-  <!-- DAILY NOTE MODAL -->
   <div id="noteModal" class="modal hidden">
     <div class="modal-content">
       <h2>For you ❤️</h2>
@@ -267,10 +233,8 @@ I’ll be right there, choosing you</pre>
   </div>
 
   <!-- BACKGROUND MUSIC -->
-  <audio id="bgMusic" loop preload="auto">
-    <source src="soft-country.mp3" type="audio/mpeg">
-  </audio>
+  <audio id="bgMusic" src="soft-country.mp3.mp3" loop preload="auto"></audio>
 
-  <script src="index.js?v=300"></script>
+  <script src="index.js?v=301"></script>
 </body>
 </html>
