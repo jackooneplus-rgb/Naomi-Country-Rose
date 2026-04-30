@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Naomi Country Rose 🌹</title>
-  <link rel="stylesheet" href="styles.css?v=20" />
+  <link rel="stylesheet" href="styles.css?v=50" />
 </head>
 
 <body>
 
-  <!-- HOME PAGE -->
+  <!-- LANDING PAGE -->
   <section id="homePage" class="page home-page">
     <div class="card home-card">
       <h1>Naomi Country Rose 🌹</h1>
       <p>Hey you... ready to play something beautiful?</p>
 
-      <button class="primary-btn" onclick="showPage('songPage')">Start Playing 🎸</button>
+      <button class="primary-btn" onclick="showPage('appPage')">Start Playing 🎸</button>
       <button class="secondary-btn" onclick="openNote()">A little note for you 💌</button>
 
       <a
@@ -27,55 +27,125 @@
         Play the playlist 🎧
       </a>
 
+      <a
+        class="youtube-home-btn"
+        href="https://www.youtube.com/results?search_query=soft+romantic+country+guitar+instrumental"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Soft guitar on YouTube 🎶
+      </a>
+
       <small>Built just for you</small>
     </div>
   </section>
 
-  <!-- SONGBOOK PAGE -->
-  <section id="songPage" class="page app-page song-bg hidden">
+  <!-- MAIN APP PAGE -->
+  <section id="appPage" class="page app-page song-bg hidden">
     <div class="app-card">
 
       <button class="back-btn" onclick="showPage('homePage')">← Back</button>
 
-      <h2>Naomi’s Songbook 🌹</h2>
-      <p class="subtitle">Write a little country song, learn a favourite, or just play something soft.</p>
+      <h2>Naomi’s Country Rose Room 🌹</h2>
+      <p class="subtitle">
+        Learn real songs, find guitar tutorials, write your own country song, or just get today’s little smile.
+      </p>
 
-      <div class="quick-nav">
-        <button onclick="showPage('learnPage')">Real songs 🎧</button>
-        <button onclick="showPage('notesPage')">Love notes 💌</button>
+      <!-- DAILY ROSE -->
+      <div class="panel daily-panel">
+        <div class="daily-grid">
+          <div>
+            <h3>Today’s Rose 💌</h3>
+            <p id="dailyRoseNote" class="daily-text">
+              Loading today’s note...
+            </p>
+          </div>
+
+          <div>
+            <h3>Today’s guitar challenge 🎸</h3>
+            <p id="dailyChallenge" class="daily-text">
+              Loading challenge...
+            </p>
+          </div>
+
+          <div>
+            <h3>Today’s vibe ✨</h3>
+            <p id="dailyVibe" class="daily-text">
+              Loading vibe...
+            </p>
+          </div>
+        </div>
+
+        <button class="small-btn" onclick="refreshDailyRose()">Give me another little smile 💌</button>
       </div>
 
+      <!-- LEARN REAL SONG -->
       <div class="panel">
-        <h3>Write me a country song ✨</h3>
-        <p class="panel-text">Type a feeling, memory, or idea and it’ll turn into a simple guitar song with chords.</p>
+        <h3>Learn a real song 🎧</h3>
+        <p class="panel-text">
+          Type a song name and open the chord page or a YouTube tutorial. This is for real songs from real artists.
+        </p>
+
+        <div class="input-row">
+          <input
+            id="realSongInput"
+            placeholder="e.g. Cover Me Up Morgan Wallen, Jordan Davis, Luke Combs..."
+          />
+          <button class="primary-btn create-btn" onclick="findChords()">Find chords 🎼</button>
+          <button class="dark-btn create-btn" onclick="findTutorial()">Find tutorial 📺</button>
+        </div>
+
+        <div class="quick-song-row">
+          <button onclick="quickSong('Cover Me Up Morgan Wallen')">Cover Me Up</button>
+          <button onclick="quickSong('Jordan Davis Buy Dirt')">Jordan Davis</button>
+          <button onclick="quickSong('Luke Combs Beautiful Crazy')">Luke Combs</button>
+          <button onclick="quickSong('Chris Stapleton Tennessee Whiskey')">Stapleton</button>
+        </div>
+      </div>
+
+      <!-- WRITE COUNTRY SONG -->
+      <div class="panel">
+        <h3>Write a full country song ✨</h3>
+        <p class="panel-text">
+          Type any idea — kittens, feeling safe, coffee, missing someone — and it’ll create a full original country-style song starter with real beginner-friendly chords.
+        </p>
 
         <div class="input-row">
           <input
             id="songIdea"
-            placeholder="e.g. feeling safe, missing you, coffee and guitar..."
+            placeholder="e.g. kittens, feeling safe, missing you, coffee and guitar..."
           />
-          <button class="primary-btn create-btn" onclick="generateSong()">Create Song ✨</button>
+          <button class="primary-btn create-btn" onclick="generateSong()">Write song ✨</button>
+          <button class="dark-btn create-btn" onclick="surpriseMe()">Surprise me 🎲</button>
         </div>
 
         <div class="mood-row">
-          <button onclick="setMood('soft love song about feeling safe')">Feeling Safe</button>
-          <button onclick="setMood('romantic country song about missing someone')">Missing You</button>
-          <button onclick="setMood('cute country song about coffee and guitar')">Coffee & Guitar</button>
-          <button onclick="setMood('emotional country song about always being there')">I’ve Got You</button>
-          <button onclick="setMood('sweet country song about Naomi Country Rose')">Country Rose</button>
+          <button onclick="setMood('feeling safe')">Feeling Safe</button>
+          <button onclick="setMood('missing you')">Missing You</button>
+          <button onclick="setMood('coffee and guitar')">Coffee & Guitar</button>
+          <button onclick="setMood('kittens')">Kittens</button>
+          <button onclick="setMood('Naomi Country Rose')">Country Rose</button>
+          <button onclick="setMood('funny chaotic love song')">Funny Love Song</button>
         </div>
       </div>
 
+      <!-- GENERATED SONG -->
       <div class="panel generated-song">
         <div class="song-header">
           <div>
             <h3 id="songTitle">Safe With You</h3>
             <p id="songMeta">Capo: 2 • Chords: G - D - Em - C • Strumming: D D U U D U</p>
+            <p id="songStructure" class="song-structure">Structure: Verse 1 • Chorus • Verse 2 • Chorus • Bridge • Final Chorus</p>
           </div>
-          <button class="small-btn" onclick="saveFavourite()">Save ❤️</button>
+
+          <div class="song-actions">
+            <button class="small-btn" onclick="saveFavourite()">Save ❤️</button>
+            <button class="small-btn" onclick="copySong()">Copy 📋</button>
+          </div>
         </div>
 
-        <pre id="songOutput">G              D
+        <pre id="songOutput">[Verse 1]
+G              D
 You don’t have to carry the night alone
 
 Em             C
@@ -85,15 +155,71 @@ G              D
 If the world feels heavy and hard to get through
 
 C              D
-I’ll be right there, choosing you</pre>
+I’ll be right there, choosing you
 
-        <button class="soft-btn" onclick="playThereMode()">Play it like I’m there with you 🎸</button>
+[Chorus]
+G              D
+So play one chord and let it ring
 
-        <p id="thereMessage" class="there-message hidden">
-          Imagine I’m sat next to you right now. No pressure. Just breathe, smile, and play one chord at a time.
+Em             C
+Even tired hearts can still sing
+
+G              D
+If your sky turns grey or blue
+
+C              D
+I’ll be the calm that sits with you</pre>
+
+        <button class="soft-btn" onclick="togglePracticeMessage()">Play it like I’m there with you 🎸</button>
+
+        <p id="practiceMessage" class="practice-message hidden">
+          Slow it down. One chord at a time. If it sounds messy, good — that means you’re actually playing. I’d still clap like an idiot.
         </p>
       </div>
 
+      <!-- PLAYLIST AND PRACTICE -->
+      <div class="panel">
+        <h3>Music and practice corner 🎶</h3>
+        <p class="panel-text">
+          Real music lives on Spotify and YouTube. This keeps the app clean and makes sure she can actually learn properly.
+        </p>
+
+        <div class="link-grid">
+          <a
+            href="https://open.spotify.com/playlist/37i9dQZF1FwJj9o7TD0o4T?si=NEOiy5SZRhuxRPpGckyY_A&pi=apWxBma-RQqyk"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Naomi’s playlist 🎧
+          </a>
+
+          <a
+            href="https://www.youtube.com/results?search_query=soft+romantic+country+guitar+instrumental"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Soft guitar background 🎶
+          </a>
+
+          <a
+            href="https://www.youtube.com/results?search_query=beginner+country+guitar+strumming+patterns"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Strumming patterns 🪕
+          </a>
+
+          <a
+            href="https://www.youtube.com/results?search_query=easy+romantic+country+guitar+songs+for+beginners"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Easy romantic songs 🌹
+          </a>
+        </div>
+      </div>
+
+      <!-- SAVED FAVOURITES -->
       <div class="panel">
         <div class="section-title-row">
           <h3>Saved favourites ❤️</h3>
@@ -107,99 +233,7 @@ I’ll be right there, choosing you</pre>
     </div>
   </section>
 
-  <!-- REAL SONGS PAGE -->
-  <section id="learnPage" class="page app-page learn-bg hidden">
-    <div class="app-card">
-
-      <button class="back-btn" onclick="showPage('songPage')">← Back to Songbook</button>
-
-      <h2>Real songs she can learn 🎧</h2>
-      <p class="subtitle">Use the proper platforms for real songs, covers, chords, and tutorials.</p>
-
-      <div class="panel">
-        <h3>Naomi’s playlist 🌹</h3>
-        <p class="panel-text">Real country songs, soft love songs, and the vibe we actually wanted.</p>
-
-        <a
-          class="primary-btn full playlist-btn"
-          href="https://open.spotify.com/playlist/37i9dQZF1FwJj9o7TD0o4T?si=NEOiy5SZRhuxRPpGckyY_A&pi=apWxBma-RQqyk"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Open Naomi’s Country Rose Playlist 🎧
-        </a>
-      </div>
-
-      <div class="panel">
-        <h3>Learn her favourites 🎸</h3>
-
-        <div class="link-grid">
-          <a href="https://www.youtube.com/results?search_query=Cover+Me+Up+guitar+tutorial+Morgan+Wallen" target="_blank" rel="noopener noreferrer">
-            Cover Me Up tutorials 🎸
-          </a>
-
-          <a href="https://www.youtube.com/results?search_query=Jordan+Davis+guitar+tutorial+country+song" target="_blank" rel="noopener noreferrer">
-            Jordan Davis tutorials 🤠
-          </a>
-
-          <a href="https://www.ultimate-guitar.com/search.php?search_type=title&value=Cover%20Me%20Up" target="_blank" rel="noopener noreferrer">
-            Cover Me Up chords 🎼
-          </a>
-
-          <a href="https://www.youtube.com/results?search_query=soft+romantic+country+covers+acoustic+guitar" target="_blank" rel="noopener noreferrer">
-            Romantic country covers 🌹
-          </a>
-
-          <a href="https://www.youtube.com/results?search_query=easy+country+guitar+songs+for+beginners" target="_blank" rel="noopener noreferrer">
-            Easy country guitar songs ✨
-          </a>
-
-          <a href="https://www.youtube.com/results?search_query=country+guitar+strumming+patterns+beginner" target="_blank" rel="noopener noreferrer">
-            Strumming patterns 🪕
-          </a>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h3>Little practice plan</h3>
-        <ul class="practice-list">
-          <li>1. Pick one song.</li>
-          <li>2. Learn just the first verse.</li>
-          <li>3. Slow it down.</li>
-          <li>4. Play it messy first. Perfect comes later.</li>
-          <li>5. Send Jackson a video, obviously.</li>
-        </ul>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- NOTES PAGE -->
-  <section id="notesPage" class="page app-page notes-bg hidden">
-    <div class="app-card">
-
-      <button class="back-btn" onclick="showPage('songPage')">← Back to Songbook</button>
-
-      <h2>Little notes for you 💌</h2>
-      <p class="subtitle">For the days where you need a smile, a tiny bit of chaos, or a reminder that I’ve got you.</p>
-
-      <div class="panel note-panel">
-        <h3 id="bigNoteTitle">Today’s note ❤️</h3>
-        <p id="bigNoteText">
-          I pinky promise to annoy you forever. No refunds, no cancellations.
-        </p>
-        <button class="primary-btn" onclick="nextBigNote()">Another one 💌</button>
-      </div>
-
-      <div class="panel">
-        <h3>Emergency smiles</h3>
-        <div id="noteGrid" class="note-grid"></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- NOTE MODAL -->
+  <!-- DAILY NOTE MODAL -->
   <div id="noteModal" class="modal hidden">
     <div class="modal-content">
       <h2>For you ❤️</h2>
@@ -210,6 +244,6 @@ I’ll be right there, choosing you</pre>
     </div>
   </div>
 
-  <script src="index.js?v=21"></script>
+  <script src="index.js?v=50"></script>
 </body>
 </html>
