@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html, #root {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* HOME */
+.home-screen {
+  height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  background: rgba(0,0,0,0.6);
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  color: white;
+}
+
+.subtitle {
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #d96c6c, #b85c5c);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.note-btn {
+  margin-top: 15px;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* SONG SCREEN */
+.song-screen {
+  padding: 20px;
+  background: #f8f5f2;
+  height: 100%;
+}
+
+.nav-bar {
+  margin-bottom: 20px;
+}
+
+.content {
+  max-width: 500px;
+  margin: auto;
+}
+
+.song-sub {
+  margin-bottom: 20px;
+  color: #888;
+}
+
+.chords {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: monospace;
+  line-height: 1.8;
+}
