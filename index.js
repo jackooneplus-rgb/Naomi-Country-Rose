@@ -1,101 +1,55 @@
-const notes = [
-  "I pinky promise to annoy you forever. No refunds, no cancellations, no escape clause.",
-  "If you ever need me, I don’t care what time it is. Call me. If I don’t wake up, spam my phone until I do.",
-  "You don’t have to be strong every second. I’ve got you when it feels heavy.",
-  "You are genuinely one of my favourite people. Even when you’re being a tiny menace.",
-  "No pressure today. Just breathe, play one chord, and remember I’m proud of you.",
-  "I hope this makes you smile, even just a little. That’s the whole bloody point."
-];
+const home = document.getElementById("homePage");
+const song = document.getElementById("songPage");
+const modal = document.getElementById("noteModal");
 
-function setDailyNote() {
-  const note = notes[new Date().getDate() % notes.length];
-  document.getElementById("dailyNote").innerText = note;
-}
+let musicPlaying = false;
 
 function goToSong() {
-  document.getElementById("homePage").classList.add("hidden");
-  document.getElementById("songPage").classList.remove("hidden");
-  location.hash = "songbook";
+  home.classList.add("hidden");
+  song.classList.remove("hidden");
 }
 
 function goHome() {
-  document.getElementById("songPage").classList.add("hidden");
-  document.getElementById("homePage").classList.remove("hidden");
-  location.hash = "home";
+  song.classList.add("hidden");
+  home.classList.remove("hidden");
 }
 
 function openNote() {
-  setDailyNote();
-  document.getElementById("noteModal").classList.remove("hidden");
+  modal.classList.remove("hidden");
 }
 
 function closeNote() {
-  document.getElementById("noteModal").classList.add("hidden");
+  modal.classList.add("hidden");
+}
+
+function toggleMusic() {
+  const music = document.getElementById("bgMusic");
+
+  if (!musicPlaying) {
+    music.play();
+    musicPlaying = true;
+  } else {
+    music.pause();
+    musicPlaying = false;
+  }
 }
 
 function generateSong() {
-  const idea = document.getElementById("songIdea").value.trim();
-  const mood = idea || "country love song";
+  const idea = document.getElementById("songIdea").value;
 
-  document.getElementById("tonightText").innerText = `Tonight feels like a “${mood}” kind of night`;
+  if (!idea) return;
 
-  document.getElementById("songOutput").innerText =
-`G           D
-You picked up your guitar tonight
+  document.getElementById("songOutput").innerText = `
+G        D
+${idea} in the midnight glow
 
-Em          C
-Chasing little sparks of light
+Em       C
+Every word I never show
 
-G           D
-Every chord sounds soft and true
+G        D
+Feels like you in every line
 
-C           D
-Like the world slows down for you`;
+C        D
+Like your heart just found mine
+  `;
 }
-
-let audioCtx;
-let playing = false;
-let interval;
-
-function toggleMusic() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-
-  if (playing) {
-    clearInterval(interval);
-    playing = false;
-    return;
-  }
-
-  playing = true;
-  playTone();
-  interval = setInterval(playTone, 800);
-}
-
-function playTone() {
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-
-  osc.type = "sine";
-  osc.frequency.value = 196;
-
-  gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.45);
-
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-
-  osc.start();
-  osc.stop(audioCtx.currentTime + 0.45);
-}
-
-window.onload = function () {
-  setDailyNote();
-
-  if (location.hash === "#songbook") {
-    goToSong();
-  } else {
-    goHome();
-  }
-};
