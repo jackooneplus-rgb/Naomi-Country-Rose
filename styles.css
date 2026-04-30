@@ -41,32 +41,45 @@ body {
   padding: 24px;
 }
 
+/* LANDING CARD */
 .card {
-  background: rgba(24, 12, 8, 0.68);
+  background: rgba(24, 12, 8, 0.72);
   padding: 34px;
-  border-radius: 24px;
+  border-radius: 26px;
   text-align: center;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(9px);
   max-width: 430px;
-  width: 90%;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  width: 92%;
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.48);
 }
 
 .home-card h1 {
   font-size: 34px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
+  line-height: 1.15;
 }
 
 .home-card p {
   font-size: 16px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+  line-height: 1.45;
 }
 
 .home-card small {
   display: block;
-  margin-top: 16px;
+  margin-top: 18px;
   opacity: 0.85;
   letter-spacing: 1px;
+}
+
+/* MAKE HOME BUTTONS STACK CLEANLY */
+.home-card button,
+.home-card a {
+  display: block;
+  width: 100%;
+  max-width: 290px;
+  margin: 10px auto;
+  text-align: center;
 }
 
 /* APP PAGE */
@@ -271,7 +284,6 @@ button,
 .playlist-btn,
 .spotify-home-btn,
 .youtube-home-btn {
-  margin: 8px;
   padding: 12px 20px;
   border-radius: 999px;
   border: none;
@@ -297,11 +309,9 @@ button:hover,
 }
 
 .youtube-home-btn {
-  display: inline-block;
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   color: white;
-  border: 1px solid rgba(255,255,255,0.7);
-  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.72);
 }
 
 .secondary-btn {
@@ -407,6 +417,11 @@ button:hover,
 
   .home-card h1 {
     font-size: 30px;
+  }
+
+  .home-card button,
+  .home-card a {
+    max-width: 100%;
   }
 
   .app-page {
