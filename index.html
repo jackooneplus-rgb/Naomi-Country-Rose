@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Naomi Country Rose 🌹</title>
- <link rel="stylesheet" href="styles.css?v=2" />
+  <link rel="stylesheet" href="styles.css?v=3" />
 </head>
 
 <body>
 
   <!-- HOME -->
-  <section id="homePage" class="page home-page">
-    <div class="home-card fade-in">
+  <section id="homePage" class="page">
+    <div class="card">
       <h1>Naomi Country Rose 🌹</h1>
       <p>Hey you... ready to play something beautiful?</p>
 
@@ -23,20 +23,15 @@
   </section>
 
   <!-- SONG -->
-  <section id="songPage" class="page song-page hidden">
-    <div class="song-card fade-in">
+  <section id="songPage" class="page hidden">
+    <div class="song-card">
 
       <button class="back-btn" onclick="goHome()">← Back</button>
 
       <h2>Tonight’s Song</h2>
-      <p class="song-subtitle">Feels like a “Cover Me Up” kind of night</p>
+      <p class="subtitle">Feels like a “Cover Me Up” kind of night</p>
 
-      <div class="controls">
-        <input id="songIdea" placeholder="Type a mood... e.g. sad country love song" />
-        <button onclick="generateSong()">Create Song ✨</button>
-      </div>
-
-      <pre id="songOutput">
+      <pre>
 G        D
 Sun goes down on the dusty road
 
@@ -57,22 +52,23 @@ Underneath the stars above
     </div>
   </section>
 
-  <!-- NOTE MODAL -->
+  <!-- NOTE -->
   <div id="noteModal" class="modal hidden">
     <div class="modal-content">
       <h2>For you ❤️</h2>
-      <p id="dailyNote">
-        I pinky promise to annoy you forever. No refunds, no cancellations.
+      <p>
+        I pinky promise to annoy you forever.  
+        No refunds, no cancellations.
       </p>
-      <button onclick="closeNote()">Close</button>
+      <button class="primary-btn" onclick="closeNote()">Close</button>
     </div>
   </div>
 
-  <!-- 🎵 REAL MUSIC -->
+  <!-- 🎵 SOFT COUNTRY MUSIC -->
   <audio id="bgMusic" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=acoustic-guitar-ambient-110997.mp3" type="audio/mpeg">
   </audio>
 
-  <script src="./index.js"></script>
+  <script src="index.js?v=3"></script>
 </body>
 </html>
