@@ -14,7 +14,6 @@ body {
 
 body {
   font-family: Arial, sans-serif;
-  background: url("https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4") no-repeat center center / cover;
   color: white;
   overflow: hidden;
 }
@@ -35,16 +34,23 @@ body {
   justify-content: center;
 }
 
+/* HOME BACKGROUND */
+#homePage {
+  background:
+    linear-gradient(rgba(20, 8, 4, 0.18), rgba(20, 8, 4, 0.62)),
+    url("naomi-bg.png") no-repeat center center / cover;
+}
+
 /* HOME CARD */
 .card {
-  background: rgba(0, 0, 0, 0.62);
+  background: rgba(24, 12, 8, 0.62);
   padding: 34px;
-  border-radius: 22px;
+  border-radius: 24px;
   text-align: center;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   max-width: 430px;
   width: 90%;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
 }
 
 .card h1 {
@@ -60,13 +66,18 @@ body {
 .card small {
   display: block;
   margin-top: 16px;
-  opacity: 0.8;
+  opacity: 0.85;
   letter-spacing: 1px;
 }
 
-/* SONG CARD */
+/* SONG PAGE */
+#songPage {
+  background: #f3eadf;
+  color: #333;
+}
+
 .song-card {
-  background: #f5f2ef;
+  background: #fffaf3;
   color: #333;
   padding: 32px;
   border-radius: 22px;
@@ -190,6 +201,10 @@ button:hover,
   .page {
     min-height: 100vh;
     padding: 18px;
+  }
+
+  #homePage {
+    background-position: center center;
   }
 
   .card {
