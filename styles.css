@@ -19,7 +19,7 @@ body {
   overflow: hidden;
 }
 
-/* IMPORTANT: only one hidden rule */
+/* IMPORTANT */
 .hidden {
   display: none !important;
 }
@@ -100,7 +100,8 @@ pre {
 }
 
 /* BUTTONS */
-button {
+button,
+.playlist-btn {
   margin: 8px;
   padding: 12px 20px;
   border-radius: 999px;
@@ -108,9 +109,11 @@ button {
   cursor: pointer;
   font-weight: 700;
   transition: transform 0.18s ease, opacity 0.18s ease;
+  font-size: 14px;
 }
 
-button:hover {
+button:hover,
+.playlist-btn:hover {
   transform: scale(1.04);
   opacity: 0.92;
 }
@@ -130,6 +133,12 @@ button:hover {
   width: 100%;
   margin-left: 0;
   margin-right: 0;
+}
+
+.playlist-btn {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
 }
 
 .back-btn {
@@ -169,6 +178,7 @@ button:hover {
 .modal-content p {
   font-size: 16px;
   line-height: 1.5;
+  margin-bottom: 14px;
 }
 
 /* MOBILE */
@@ -191,7 +201,8 @@ button:hover {
   }
 
   .primary-btn,
-  .secondary-btn {
+  .secondary-btn,
+  .playlist-btn {
     width: 100%;
     margin: 8px 0;
   }
