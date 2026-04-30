@@ -157,3 +157,9 @@ pre {
   display: none !important;
   opacity: 0;
 }
+.primary-btn:hover,
+.secondary-btn:hover,
+.back-btn:hover {
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
