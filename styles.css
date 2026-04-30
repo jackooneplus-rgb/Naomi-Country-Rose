@@ -1,11 +1,9 @@
-/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* GLOBAL */
 html,
 body {
   width: 100%;
@@ -22,10 +20,78 @@ body {
   display: none !important;
 }
 
-/* PAGE STRUCTURE */
 .page {
   min-height: 100vh;
   width: 100%;
+}
+
+/* INTRO */
+.intro-page {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(10, 4, 2, 0.68), rgba(10, 4, 2, 0.88)),
+    url("naomi-bg.png.png") no-repeat center center;
+  background-size: contain;
+  background-color: #1b0d08;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 9999;
+}
+
+.intro-box {
+  background: rgba(24, 12, 8, 0.72);
+  padding: 36px;
+  border-radius: 28px;
+  text-align: center;
+  max-width: 430px;
+  width: 92%;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.55);
+  animation: fadeUp 0.8s ease both;
+}
+
+.intro-box h1 {
+  font-size: 36px;
+  margin-bottom: 14px;
+}
+
+.intro-box p {
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+
+.intro-box button {
+  width: 100%;
+  max-width: 290px;
+  margin: 12px auto;
+  background: linear-gradient(135deg, #ff5a6e, #d9485f);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 900;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.intro-box small {
+  display: block;
+  margin-top: 12px;
+  opacity: 0.8;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* LANDING PAGE */
@@ -41,7 +107,6 @@ body {
   padding: 24px;
 }
 
-/* LANDING CARD */
 .card {
   background: rgba(24, 12, 8, 0.72);
   padding: 34px;
@@ -72,7 +137,6 @@ body {
   letter-spacing: 1px;
 }
 
-/* MAKE HOME BUTTONS STACK CLEANLY */
 .home-card button,
 .home-card a {
   display: block;
@@ -97,7 +161,6 @@ body {
     url("https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop") no-repeat center center / cover;
 }
 
-/* MAIN APP CARD */
 .app-card {
   background: rgba(255, 250, 243, 0.97);
   color: #333;
@@ -121,7 +184,6 @@ body {
   line-height: 1.45;
 }
 
-/* PANELS */
 .panel {
   background: #fff;
   border: 1px solid #f0dfd2;
@@ -147,7 +209,6 @@ body {
   font-size: 15px;
 }
 
-/* DAILY ROSE */
 .daily-panel {
   background: linear-gradient(135deg, #fffaf3, #f8e4df);
 }
@@ -164,7 +225,6 @@ body {
   line-height: 1.5;
 }
 
-/* INPUTS */
 .input-row {
   display: flex;
   gap: 10px;
@@ -184,7 +244,6 @@ body {
   border-color: #d9485f;
 }
 
-/* BUTTON ROWS */
 .mood-row,
 .quick-song-row {
   display: flex;
@@ -201,7 +260,6 @@ body {
   font-size: 13px;
 }
 
-/* GENERATED SONG */
 .song-header {
   display: flex;
   align-items: flex-start;
@@ -242,7 +300,6 @@ pre {
   border: 1px solid #f0dfd2;
 }
 
-/* LINKS */
 .link-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -266,7 +323,6 @@ pre {
   border-radius: 16px;
 }
 
-/* FAVOURITES */
 .section-title-row {
   display: flex;
   align-items: center;
@@ -286,7 +342,6 @@ pre {
   margin-top: 10px;
 }
 
-/* BUTTONS */
 button,
 .playlist-btn,
 .spotify-home-btn,
@@ -315,7 +370,8 @@ button:hover,
   color: white;
 }
 
-.youtube-home-btn {
+.youtube-home-btn,
+.music-toggle {
   background: rgba(255, 255, 255, 0.12);
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.72);
@@ -374,7 +430,6 @@ button:hover,
   line-height: 1.5;
 }
 
-/* FOOTER */
 .app-footer {
   text-align: center;
   color: #7a5a50;
@@ -384,7 +439,6 @@ button:hover,
   line-height: 1.5;
 }
 
-/* MODAL */
 .modal {
   position: fixed;
   inset: 0;
@@ -421,24 +475,67 @@ button:hover,
 
 /* MOBILE */
 @media (max-width: 800px) {
-  .home-page {
+  .intro-page {
     background:
-      linear-gradient(rgba(20, 8, 4, 0.16), rgba(20, 8, 4, 0.62)),
-      url("naomi-bg.png.png") no-repeat center center;
-    background-size: cover;
+      linear-gradient(rgba(20, 8, 4, 0.28), rgba(20, 8, 4, 0.78)),
+      url("naomi-bg.png.png") no-repeat center top;
+    background-size: 100% auto;
+    background-color: #1b0d08;
+    align-items: flex-start;
+    padding: 170px 16px 28px;
   }
 
-  .card {
+  .intro-box {
     padding: 28px 20px;
   }
 
+  .intro-box h1 {
+    font-size: 32px;
+  }
+
+  .home-page {
+    min-height: 100vh;
+    background:
+      linear-gradient(rgba(20, 8, 4, 0.08), rgba(20, 8, 4, 0.48)),
+      url("naomi-bg.png.png") no-repeat center top;
+    background-size: 100% auto;
+    background-color: #1b0d08;
+    align-items: flex-start;
+    padding: 170px 16px 28px;
+  }
+
+  .card {
+    padding: 24px 18px;
+    border-radius: 24px;
+  }
+
+  .home-card {
+    max-width: 92%;
+  }
+
   .home-card h1 {
-    font-size: 30px;
+    font-size: 34px;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+
+  .home-card p {
+    font-size: 18px;
+    line-height: 1.35;
+    margin-bottom: 18px;
   }
 
   .home-card button,
   .home-card a {
     max-width: 100%;
+    padding: 15px 18px;
+    font-size: 16px;
+    margin: 10px auto;
+  }
+
+  .home-card small {
+    font-size: 16px;
+    margin-top: 18px;
   }
 
   .app-page {
@@ -477,7 +574,8 @@ button:hover,
   .spotify-home-btn,
   .youtube-home-btn,
   .soft-btn,
-  .dark-btn {
+  .dark-btn,
+  .music-toggle {
     width: 100%;
     margin: 8px 0;
   }
