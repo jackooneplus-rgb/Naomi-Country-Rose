@@ -81,42 +81,127 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   const surpriseIdeas = [
-    "kittens causing chaos",
-    "feeling safe",
+    "feeling safe with someone",
+    "missing someone at night",
     "coffee and guitar",
-    "missing someone",
     "Naomi Country Rose",
-    "a funny love song about being annoying forever",
-    "a soft song about calling me when you need me",
+    "funny chaotic love song",
+    "calling me when you need me",
     "a campfire song about choosing someone every day",
     "a cosy country song about Sunday mornings",
-    "a romantic song about not giving up"
+    "a romantic song about not giving up",
+    "a soft song about being looked after",
+    "a country song about feeling wanted",
+    "a love song about annoying each other forever",
+    "a song about falling asleep on the phone",
+    "a song about a girl with a guitar",
+    "a song about driving nowhere under the stars",
+    "a song about coffee at sunrise",
+    "a song about dancing in the kitchen",
+    "a song about a safe place",
+    "a song about holding hands in the car",
+    "a song about getting through hard days",
+    "a song about being chosen",
+    "a song about country music and messy hearts",
+    "a song about laughing when life is heavy",
+    "a song about a rose by the fire",
+    "a song about missing someone’s voice",
+    "a song about soft guitar and warm lights",
+    "a song about sending one more message",
+    "a song about not running away",
+    "a song about being someone’s calm",
+    "a song about a late night phone call",
+    "a song about a girl who shines without knowing",
+    "a song about second chances",
+    "a song about tiny wins",
+    "a song about learning guitar slowly",
+    "a song about a front porch dream",
+    "a song about a truck, a sunset, and a smile",
+    "a song about building a little world together",
+    "a song about being proud of someone",
+    "a song about no brave face needed",
+    "a song about staying when things get messy",
+    "a song about a country rose with green eyes",
+    "a song about a guitar by the bed",
+    "a song about a sleepy Sunday morning",
+    "a song about a promise made quietly",
+    "a song about choosing love over fear",
+    "a song about two people against the noise",
+    "a song about being worth the effort",
+    "a song about a beautiful stubborn heart",
+    "a song about making someone smile",
+    "a song about being someone’s favourite notification",
+    "a song about blanket weather and country songs",
+    "a song about a bonfire and a soft laugh",
+    "a song about never being too much",
+    "a song about playing one chord at a time",
+    "a song about a road leading home",
+    "a song about holding someone through a storm",
+    "a song about being loved on bad days",
+    "a song about a girl who deserves softness",
+    "a song about a coffee cup and cowboy boots",
+    "a song about a voice that feels like home",
+    "a song about singing badly but meaning it",
+    "a song about dancing badly in the kitchen",
+    "a song about a pinky promise",
+    "a song about spam calling until I wake up",
+    "a song about being someone’s peace",
+    "a song about a little app made with love",
+    "a song about country songs making sense now",
+    "a song about being scared but staying",
+    "a song about a love that feels warm",
+    "a song about a girl who makes silence comfortable",
+    "a song about carrying less alone",
+    "a song about a soft heart and strong soul",
+    "a song about a firelight promise",
+    "a song about a song only two people understand",
+    "a song about opening the app when she needs a smile",
+    "a song about not needing perfect chords",
+    "a song about being proud of messy progress",
+    "a song about finding calm in chaos",
+    "a song about a rose that keeps blooming",
+    "a song about a laugh I’d listen to forever",
+    "a song about wanting to be better",
+    "a song about loyalty",
+    "a song about comfort",
+    "a song about missing someone’s face",
+    "a song about texting too much and not caring",
+    "a song about not giving up on someone",
+    "a song about a safe little corner",
+    "a song about being wanted",
+    "a song about Jackson and Naomi forever",
+    "a song about country music, coffee, and love",
+    "a song about a warm night and an acoustic guitar",
+    "a song about being there every time",
+    "a song about a girl who deserves the world",
+    "a song about a man who is clearly obsessed",
+    "a song about smiling at the phone",
+    "a song about learning a love song slowly",
+    "a song about a beautiful kind of chaos",
+    "a song about forever, but not in a scary way",
+    "a song about this only being the beginning"
   ];
 
   const progressions = [
     {
-      name: "Warm country favourite",
       capo: "2",
       chords: "G - D - Em - C",
       strum: "D D U U D U",
       lines: ["G              D", "Em             C", "G              D", "C              D"]
     },
     {
-      name: "Soft acoustic love",
       capo: "3",
       chords: "C - G - Am - F",
       strum: "D D U D U",
       lines: ["C              G", "Am             F", "C              G", "Am             F"]
     },
     {
-      name: "Big country chorus",
       capo: "1",
       chords: "D - A - Bm - G",
       strum: "D U D U D U",
       lines: ["D              A", "Bm             G", "D              A", "Bm             G"]
     },
     {
-      name: "Moody campfire",
       capo: "0",
       chords: "Am - F - C - G",
       strum: "D D U U D",
@@ -161,17 +246,17 @@ document.addEventListener("DOMContentLoaded", function () {
   function getThemeLines(idea) {
     const lower = idea.toLowerCase();
 
-    if (lower.includes("kitten") || lower.includes("cat")) {
+    if (lower.includes("jackson")) {
       return {
-        title: "Kittens on a Country Road",
-        v1a: "Little paws running wild across the floor",
-        v1b: "Tiny soft trouble always wanting more",
-        ch1: "They’re chasing moonlight, stealing the show",
-        ch2: "Like a small sweet song only love would know",
-        v2a: "Curled up close when the rain comes down",
-        v2b: "Turning this old house into a softer town",
-        br1: "And if the world feels loud outside",
-        br2: "There’s a little bit of peace in those sleepy eyes"
+        title: "Jackson Song",
+        v1a: "Jackson’s got a way of making hard days light",
+        v1b: "Turning quiet moments into something that feels right",
+        ch1: "There’s a little kind of love I can’t explain",
+        ch2: "But somehow Jackson is always in the refrain",
+        v2a: "He says the wrong thing then makes me laugh again",
+        v2b: "A little bit chaos, a little bit best friend",
+        br1: "If the road gets rough, if the night feels long",
+        br2: "Somehow he still feels like coming home"
       };
     }
 
@@ -217,7 +302,7 @@ document.addEventListener("DOMContentLoaded", function () {
       };
     }
 
-    if (lower.includes("naomi") || lower.includes("rose") || lower.includes("love")) {
+    if (lower.includes("naomi") || lower.includes("rose") || lower.includes("country rose")) {
       return {
         title: "Country Rose",
         v1a: "There’s a rose in the evening light",
@@ -248,13 +333,13 @@ document.addEventListener("DOMContentLoaded", function () {
     return {
       title: `${titleCase(idea)} Song`,
       v1a: `This one’s about ${idea}, soft and true`,
-      v1b: "A little country song made just for you",
-      ch1: "If the day feels heavy, let it move slow",
-      ch2: "One chord at a time, let the feeling show",
-      v2a: "There’s a quiet road and a sky turned gold",
-      v2b: "And a story in your hands waiting to be told",
-      br1: "You don’t need perfect, you just need start",
-      br2: "The best songs come straight from the heart"
+      v1b: `A little country song wrapped around ${idea}`,
+      ch1: `${idea} in the headlights, warm and slow`,
+      ch2: `One chord at a time, let the feeling show`,
+      v2a: `There’s a quiet road and a sky turned gold`,
+      v2b: `${idea} is the story waiting to be told`,
+      br1: `You don’t need perfect, you just need start`,
+      br2: `${idea} sounds better when it comes from the heart`
     };
   }
 
@@ -311,6 +396,10 @@ ${t.ch2}`
 
   function encoded(value) {
     return encodeURIComponent(value.trim());
+  }
+
+  function getSongShareText() {
+    return `${songTitle.innerText}\n${songMeta.innerText}\n\n${songOutput.innerText}`;
   }
 
   function hideAllPages() {
@@ -392,11 +481,26 @@ ${t.ch2}`
   };
 
   window.copySong = function () {
-    const text = `${songTitle.innerText}\n${songMeta.innerText}\n\n${songOutput.innerText}`;
-
-    navigator.clipboard.writeText(text).then(function () {
+    navigator.clipboard.writeText(getSongShareText()).then(function () {
       alert("Song copied ❤️");
     });
+  };
+
+  window.sendToJackson = function () {
+    const text = getSongShareText();
+
+    if (navigator.share) {
+      navigator.share({
+        title: songTitle.innerText,
+        text: text
+      }).catch(function () {
+        navigator.clipboard.writeText(text);
+      });
+    } else {
+      navigator.clipboard.writeText(text).then(function () {
+        alert("Song copied — paste it to Jackson 💌");
+      });
+    }
   };
 
   window.saveFavourite = function () {
