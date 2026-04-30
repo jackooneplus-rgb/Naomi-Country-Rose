@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const dailyChallenge = document.getElementById("dailyChallenge");
   const dailyVibe = document.getElementById("dailyVibe");
   const bgMusic = document.getElementById("bgMusic");
+  const musicStatus = document.getElementById("musicStatus");
 
   const jacksonNumber = "447557683963";
 
@@ -190,31 +191,45 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   const progressions = [
-    {
-      capo: "2",
-      chords: "G - D - Em - C",
-      strum: "D D U U D U",
-      lines: ["G              D", "Em             C", "G              D", "C              D"]
-    },
-    {
-      capo: "3",
-      chords: "C - G - Am - F",
-      strum: "D D U D U",
-      lines: ["C              G", "Am             F", "C              G", "Am             F"]
-    },
-    {
-      capo: "1",
-      chords: "D - A - Bm - G",
-      strum: "D U D U D U",
-      lines: ["D              A", "Bm             G", "D              A", "Bm             G"]
-    },
-    {
-      capo: "0",
-      chords: "Am - F - C - G",
-      strum: "D D U U D",
-      lines: ["Am             F", "C              G", "Am             F", "C              G"]
-    }
+    { capo: "2", chords: "G - D - Em - C", strum: "D D U U D U", lines: ["G              D", "Em             C", "G              D", "C              D"] },
+    { capo: "3", chords: "C - G - Am - F", strum: "D D U D U", lines: ["C              G", "Am             F", "C              G", "Am             F"] },
+    { capo: "1", chords: "D - A - Bm - G", strum: "D U D U D U", lines: ["D              A", "Bm             G", "D              A", "Bm             G"] },
+    { capo: "0", chords: "Am - F - C - G", strum: "D D U U D", lines: ["Am             F", "C              G", "Am             F", "C              G"] }
   ];
+
+  window.enterSite = function () {
+    introPage.classList.add("hidden");
+    homePage.classList.remove("hidden");
+
+    if (bgMusic) {
+      bgMusic.muted = false;
+      bgMusic.volume = 0.8;
+      bgMusic.currentTime = 0;
+
+      bgMusic.play()
+        .then(function () {
+          if (musicStatus) musicStatus.innerText = "You are beautiful to me";
+        })
+        .catch(function (error) {
+          console.log("Music play failed:", error);
+          if (musicStatus) musicStatus.innerText = "You are beautiful to me";
+        });
+    }
+  };
+
+  window.toggleBackgroundMusic = function () {
+    if (!bgMusic) return;
+
+    if (bgMusic.paused) {
+      bgMusic.muted = false;
+      bgMusic.volume = 0.8;
+      bgMusic.play().catch(function (error) {
+        console.log("Music toggle failed:", error);
+      });
+    } else {
+      bgMusic.pause();
+    }
+  };
 
   function cleanIdea(value) {
     const trimmed = value.trim();
@@ -234,19 +249,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function chooseProgression(idea) {
     const lower = idea.toLowerCase();
-
-    if (lower.includes("coffee") || lower.includes("guitar") || lower.includes("morning")) {
-      return progressions[1];
-    }
-
-    if (lower.includes("miss") || lower.includes("need") || lower.includes("call") || lower.includes("distance")) {
-      return progressions[2];
-    }
-
-    if (lower.includes("sad") || lower.includes("storm") || lower.includes("night") || lower.includes("cry")) {
-      return progressions[3];
-    }
-
+    if (lower.includes("coffee") || lower.includes("guitar") || lower.includes("morning")) return progressions[1];
+    if (lower.includes("miss") || lower.includes("need") || lower.includes("call") || lower.includes("distance")) return progressions[2];
+    if (lower.includes("sad") || lower.includes("storm") || lower.includes("night") || lower.includes("cry")) return progressions[3];
     return progressions[0];
   }
 
@@ -415,33 +420,6 @@ ${t.ch2}`
     });
   }
 
-  function startMusicSoftly() {
-    if (!bgMusic) return;
-
-    bgMusic.volume = 0.18;
-
-    bgMusic.play()
-      .catch(function () {
-        console.log("Music could not start yet.");
-      });
-  }
-
-  window.enterSite = function () {
-    introPage.classList.add("hidden");
-    homePage.classList.remove("hidden");
-    startMusicSoftly();
-  };
-
-  window.toggleBackgroundMusic = function () {
-    if (!bgMusic) return;
-
-    if (bgMusic.paused) {
-      startMusicSoftly();
-    } else {
-      bgMusic.pause();
-    }
-  };
-
   window.showPage = function (pageId) {
     hideAllPages();
     document.getElementById(pageId).classList.remove("hidden");
@@ -459,12 +437,9 @@ ${t.ch2}`
 
   window.refreshDailyRose = function () {
     noteIndex = (noteIndex + 1) % notes.length;
-    const challengeIndex = (noteIndex + 2) % challenges.length;
-    const vibeIndex = (noteIndex + 4) % vibes.length;
-
     dailyRoseNote.innerText = notes[noteIndex];
-    dailyChallenge.innerText = challenges[challengeIndex];
-    dailyVibe.innerText = vibes[vibeIndex];
+    dailyChallenge.innerText = challenges[(noteIndex + 2) % challenges.length];
+    dailyVibe.innerText = vibes[(noteIndex + 4) % vibes.length];
   };
 
   window.quickSong = function (song) {
@@ -473,18 +448,12 @@ ${t.ch2}`
 
   window.findChords = function () {
     const query = cleanIdea(realSongInput.value || "Cover Me Up Morgan Wallen");
-    window.open(
-      `https://www.ultimate-guitar.com/search.php?search_type=title&value=${encoded(query)}`,
-      "_blank"
-    );
+    window.open(`https://www.ultimate-guitar.com/search.php?search_type=title&value=${encoded(query)}`, "_blank");
   };
 
   window.findTutorial = function () {
     const query = cleanIdea(realSongInput.value || "Cover Me Up Morgan Wallen");
-    window.open(
-      `https://www.youtube.com/results?search_query=${encoded(query + " guitar tutorial")}`,
-      "_blank"
-    );
+    window.open(`https://www.youtube.com/results?search_query=${encoded(query + " guitar tutorial")}`, "_blank");
   };
 
   window.setMood = function (mood) {
