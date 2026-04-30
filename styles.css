@@ -1,6 +1,4 @@
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html, body {
   margin: 0;
@@ -8,17 +6,22 @@ html, body {
   font-family: Georgia, serif;
 }
 
-.page {
-  min-height: 100vh;
+.page { min-height: 100vh; }
+
+.hidden { display: none !important; }
+
+.fade-in {
+  animation: fadeIn 0.55s ease both;
 }
 
-.hidden {
-  display: none !important;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .home-page {
   background:
-    linear-gradient(rgba(20, 8, 4, 0.35), rgba(20, 8, 4, 0.8)),
+    linear-gradient(rgba(20, 8, 4, 0.35), rgba(20, 8, 4, 0.82)),
     url("https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=2070&auto=format&fit=crop");
   background-size: cover;
   background-position: center;
@@ -29,8 +32,8 @@ html, body {
 }
 
 .home-card {
-  width: min(420px, 92vw);
-  background: rgba(35, 18, 12, 0.72);
+  width: min(430px, 92vw);
+  background: rgba(35, 18, 12, 0.76);
   color: white;
   padding: 34px 26px;
   border-radius: 24px;
@@ -41,7 +44,7 @@ html, body {
 
 .home-card h1 {
   margin: 0 0 12px;
-  font-size: 34px;
+  font-size: clamp(30px, 8vw, 42px);
 }
 
 .home-card p {
@@ -49,10 +52,19 @@ html, body {
   line-height: 1.45;
 }
 
+button {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.04);
+}
+
 .primary-btn,
 .secondary-btn,
 .back-btn,
-.modal-content button {
+.modal-content button,
+.controls button {
   cursor: pointer;
   border: none;
   border-radius: 999px;
@@ -86,7 +98,7 @@ html, body {
 }
 
 .song-card {
-  max-width: 680px;
+  max-width: 720px;
   margin: 0 auto;
   background: #fffaf3;
   padding: 26px;
@@ -96,10 +108,35 @@ html, body {
 
 .song-card h2 {
   color: #61251f;
+  font-size: 34px;
 }
 
 .song-subtitle {
   color: #8a6256;
+}
+
+.back-btn {
+  background: #61251f;
+  color: white;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.controls input {
+  flex: 1;
+  padding: 14px 16px;
+  border-radius: 999px;
+  border: 1px solid #d8c3b0;
+  font-size: 15px;
+}
+
+.controls button {
+  background: #b94455;
+  color: white;
 }
 
 pre {
@@ -110,11 +147,12 @@ pre {
   padding: 20px;
   border-radius: 16px;
   color: #2e1712;
+  overflow-x: auto;
 }
 
-.back-btn {
-  background: #61251f;
-  color: white;
+.full {
+  width: 100%;
+  margin-top: 12px;
 }
 
 .modal {
@@ -134,6 +172,7 @@ pre {
   border-radius: 24px;
   text-align: center;
   box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  animation: fadeIn 0.35s ease both;
 }
 
 .modal-content h2 {
@@ -148,18 +187,32 @@ pre {
   background: #b94455;
   color: white;
   margin-top: 12px;
-}.page {
-  min-height: 100vh;
-  transition: opacity 0.4s ease;
 }
 
-.hidden {
-  display: none !important;
-  opacity: 0;
-}
-.primary-btn:hover,
-.secondary-btn:hover,
-.back-btn:hover {
-  transform: scale(1.05);
-  transition: all 0.2s ease;
+@media (max-width: 600px) {
+  .home-card {
+    padding: 28px 20px;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .song-page {
+    padding: 14px;
+  }
+
+  .song-card {
+    padding: 20px;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  pre {
+    font-size: 14px;
+  }
 }
