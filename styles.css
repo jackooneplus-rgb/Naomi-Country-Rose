@@ -76,3 +76,15 @@ body, html {
   text-align: center;
   font-style: italic;
 }
+.page {
+  height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+.song-container {
+  padding: 40px;
+  font-family: monospace;
+}
