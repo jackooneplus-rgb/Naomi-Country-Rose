@@ -4,13 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Naomi Country Rose 🌹</title>
-  <link rel="stylesheet" href="styles.css?v=70" />
+  <link rel="stylesheet" href="styles.css?v=300" />
 </head>
 
 <body>
 
+  <!-- TAP TO ENTER INTRO -->
+  <section id="introPage" class="intro-page">
+    <div class="intro-box">
+      <h1>Naomi Country Rose 🌹</h1>
+      <p>A little corner made just for you.</p>
+      <button onclick="enterSite()">Tap to enter 🎶</button>
+      <small>Music starts after you tap</small>
+    </div>
+  </section>
+
   <!-- LANDING PAGE -->
-  <section id="homePage" class="page home-page">
+  <section id="homePage" class="page home-page hidden">
     <div class="card home-card">
       <h1>Naomi Country Rose 🌹</h1>
       <p>Hey you... ready to play something beautiful?</p>
@@ -35,6 +45,8 @@
       >
         Soft guitar on YouTube 🎶
       </a>
+
+      <button class="music-toggle" onclick="toggleBackgroundMusic()">Music on/off 🔊</button>
 
       <small>Built just for you</small>
     </div>
@@ -97,7 +109,7 @@
         </div>
       </div>
 
-      <!-- WRITE COUNTRY SONG STARTER -->
+      <!-- CREATE COUNTRY SONG -->
       <div class="panel">
         <h3>Create a country song starter ✨</h3>
         <p class="panel-text">
@@ -254,6 +266,12 @@ I’ll be right there, choosing you</pre>
     </div>
   </div>
 
-  <script src="index.js?v=70"></script>
+  <!-- BACKGROUND MUSIC -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="soft-country.mp3" type="audio/mpeg">
+    <source src="soft-country.mp4" type="audio/mp4">
+  </audio>
+
+  <script src="index.js?v=300"></script>
 </body>
 </html>
