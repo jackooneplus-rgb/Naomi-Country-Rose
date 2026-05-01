@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const songStructure = document.getElementById("songStructure");
   const songOutput = document.getElementById("songOutput");
   const practiceMessage = document.getElementById("practiceMessage");
-  const favouritesList = document.getElementById("favouritesList");
   const dailyNote = document.getElementById("dailyNote");
   const dailyRoseNote = document.getElementById("dailyRoseNote");
   const dailyChallenge = document.getElementById("dailyChallenge");
@@ -21,8 +20,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const moodResult = document.getElementById("moodResult");
   const openWhenResult = document.getElementById("openWhenResult");
   const randomNoteText = document.getElementById("randomNoteText");
+  const creativeResult = document.getElementById("creativeResult");
+  const memoryInput = document.getElementById("memoryInput");
+  const memoryList = document.getElementById("memoryList");
 
   const jacksonNumber = "447557683963";
+
+  const songOfTheDayUrl = "https://open.spotify.com/playlist/7vxmBleyVTOaW8CHRHCxox";
 
   let noteIndex = 0;
 
@@ -111,37 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "Little vibe check ✨ Play something honest, even if it’s messy.",
     "Little vibe check ✨ Warm drink, soft song, and breathing properly for once.",
     "Little vibe check ✨ Country music, comfy clothes, and absolutely no stress.",
-    "Little vibe check ✨ One peaceful minute that belongs only to you.",
-    "Little vibe check ✨ Quiet guitar and letting yourself be looked after.",
-    "Little vibe check ✨ Soft reset, softer song, softest little smile.",
-    "Little vibe check ✨ Pick a chord you love and let it do the talking.",
-    "Little vibe check ✨ No brave face, just gentle music.",
-    "Little vibe check ✨ A song that feels like a hug.",
-    "Little vibe check ✨ Warm lights, safe feelings, and a tiny bit of country magic.",
-    "Little vibe check ✨ Slow strumming and not needing to be perfect.",
-    "Little vibe check ✨ Cosy little corner, big feelings, soft landing.",
-    "Little vibe check ✨ Calm country girl energy with a guitar nearby.",
-    "Little vibe check ✨ Something sweet, something slow, something just for you.",
-    "Little vibe check ✨ Gentle chords and a reminder that you’re enough.",
-    "Little vibe check ✨ A quiet room and a song that doesn’t ask too much.",
-    "Little vibe check ✨ Little rose, little song, little bit of peace.",
-    "Little vibe check ✨ Play what your heart can manage right now.",
-    "Little vibe check ✨ Warm acoustic strings and zero expectations.",
-    "Little vibe check ✨ Being soft is allowed.",
-    "Little vibe check ✨ No rushing, no proving, just playing.",
-    "Little vibe check ✨ One beautiful chord and a calm little breath.",
-    "Little vibe check ✨ Something tender, something simple, something true.",
-    "Little vibe check ✨ Country rose comfort mode.",
-    "Little vibe check ✨ Let the guitar carry what words can’t.",
-    "Little vibe check ✨ Slow song, soft heart, safe place.",
-    "Little vibe check ✨ Let today be done and let the music be gentle.",
-    "Little vibe check ✨ A little melody for a tired heart.",
-    "Little vibe check ✨ Soft strings and being proud of tiny wins.",
-    "Little vibe check ✨ Peaceful, pretty, and a little bit soppy.",
-    "Little vibe check ✨ Find one song that makes your shoulders drop.",
-    "Little vibe check ✨ No chaos for five minutes. Just you and the guitar.",
-    "Little vibe check ✨ Sweet country calm with a tiny smile attached.",
-    "Little vibe check ✨ Play something that feels like home."
+    "Little vibe check ✨ One peaceful minute that belongs only to you."
   ];
 
   const moodData = {
@@ -179,15 +153,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const openWhenMessages = {
     miss: "I’m still here. Even when we’re not together, you’re not forgotten. You’re in my thoughts more than you probably realise, and I hope this feels like a little reminder that you matter to me.",
-
     overwhelmed: "You don’t need to be brave right now. Just breathe, unclench your jaw, and let one thing be enough. You don’t have to carry everything at once. I’ve got you.",
-
-    laugh: "You are allowed to laugh today, even if everything feels a bit messy. Tiny smile. Tiny breath. Tiny reset. Also, yes, I probably would still clap if you played one wrong chord with confidence.",
-
+    laugh: "You are allowed to smile today, even if everything feels a bit messy. Tiny smile. Tiny breath. Tiny reset. You deserve gentle moments too.",
     guitar: "Don’t chase perfect. Play what feels honest. One chord, one line, one tiny idea. The song doesn’t need to be finished tonight — it just needs to start somewhere.",
-
     loved: "You are loved exactly as you are. Not when you’re calmer, not when you’re stronger, not when you’ve got everything figured out. Right now. This version of you is enough.",
-
     sleepy: "You don’t have to carry tomorrow tonight. Let your mind slow down, let your body rest, and remember that you’re safe. I hope you sleep softly."
   };
 
@@ -197,10 +166,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "Slow it down. The song doesn’t need to run away from you.",
     "If you forget the next chord, laugh. That counts as musical expression.",
     "Pretend I’m there saying, ‘go on, one more time,’ because I definitely would.",
-    "Play the chord like it owes you money. Softly, obviously.",
     "You don’t need perfect. I’d rather hear your version.",
     "Take a breath before the chorus. That’s where the feeling lives.",
-    "If your fingers mess it up, blame the guitar. Very professional.",
     "Play it like nobody is judging you. Because I’m not.",
     "One chord at a time, country rose.",
     "Make it softer than you think it needs to be.",
@@ -211,36 +178,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "Don’t perform it. Feel it.",
     "Let it sound like tonight.",
     "You and a guitar is already enough.",
-    "Play it like it’s a secret.",
     "Tiny mistakes make it human.",
     "You don’t have to impress anyone here.",
-    "Try the chorus slower.",
-    "Try it like a campfire song.",
-    "Try it like you’re singing it to one person.",
-    "If it makes you smile, keep it.",
-    "If it makes you feel something, keep it.",
-    "Don’t overthink the bridge. Bridges are drama queens anyway.",
-    "Your hands know more than your head thinks they do.",
-    "Make the last chorus warmer.",
-    "Play it like Sunday morning.",
-    "Play it like a voice note you never sent.",
-    "Play it like a promise.",
-    "Start quiet. Build gently.",
-    "Let the silence between chords do some work.",
-    "You’re doing better than you think.",
-    "That chord change? Try it again. It might be the one.",
-    "Sing it badly first. That’s the law.",
-    "If I was there, I’d ask for one more song.",
-    "This bit doesn’t need to be perfect. It needs to be yours.",
-    "You can always come back to the song tomorrow.",
-    "The song is allowed to be unfinished.",
-    "A chorus can be tiny and still hit hard.",
-    "Give the song somewhere to breathe.",
-    "Let the guitar answer the feeling.",
-    "Some songs arrive sideways. Let it.",
-    "Play it like your heart is telling the truth.",
-    "Try changing just one word.",
-    "Try changing just one chord.",
     "I’m proud of the attempt, not just the result."
   ];
 
@@ -256,94 +195,35 @@ document.addEventListener("DOMContentLoaded", function () {
     "a romantic song about not giving up",
     "a soft song about being looked after",
     "a country song about feeling wanted",
-    "a love song about annoying each other forever",
     "a song about falling asleep on the phone",
     "a song about a girl with a guitar",
     "a song about driving nowhere under the stars",
-    "a song about coffee at sunrise",
-    "a song about dancing in the kitchen",
     "a song about a safe place",
     "a song about holding hands in the car",
     "a song about getting through hard days",
     "a song about being chosen",
-    "a song about country music and messy hearts",
-    "a song about laughing when life is heavy",
     "a song about a rose by the fire",
     "a song about missing someone’s voice",
     "a song about soft guitar and warm lights",
-    "a song about sending one more message",
     "a song about not running away",
     "a song about being someone’s calm",
-    "a song about a late night phone call",
     "a song about a girl who shines without knowing",
     "a song about second chances",
     "a song about tiny wins",
-    "a song about learning guitar slowly",
-    "a song about a front porch dream",
-    "a song about a truck, a sunset, and a smile",
-    "a song about building a little world together",
     "a song about being proud of someone",
     "a song about no brave face needed",
     "a song about staying when things get messy",
-    "a song about a country rose with green eyes",
-    "a song about a guitar by the bed",
-    "a song about a sleepy Sunday morning",
-    "a song about a promise made quietly",
     "a song about choosing love over fear",
-    "a song about two people against the noise",
     "a song about being worth the effort",
-    "a song about a beautiful stubborn heart",
     "a song about making someone smile",
     "a song about being someone’s favourite notification",
-    "a song about blanket weather and country songs",
-    "a song about a bonfire and a soft laugh",
     "a song about never being too much",
-    "a song about playing one chord at a time",
     "a song about a road leading home",
     "a song about holding someone through a storm",
     "a song about being loved on bad days",
-    "a song about a girl who deserves softness",
-    "a song about a coffee cup and cowboy boots",
-    "a song about a voice that feels like home",
-    "a song about singing badly but meaning it",
-    "a song about dancing badly in the kitchen",
-    "a song about a pinky promise",
-    "a song about spam calling until I wake up",
-    "a song about being someone’s peace",
-    "a song about a little app made with love",
-    "a song about country songs making sense now",
-    "a song about being scared but staying",
-    "a song about a love that feels warm",
-    "a song about a girl who makes silence comfortable",
-    "a song about carrying less alone",
-    "a song about a soft heart and strong soul",
-    "a song about a firelight promise",
-    "a song about a song only two people understand",
-    "a song about opening the app when she needs a smile",
-    "a song about not needing perfect chords",
-    "a song about being proud of messy progress",
-    "a song about finding calm in chaos",
-    "a song about a rose that keeps blooming",
-    "a song about a laugh I’d listen to forever",
-    "a song about wanting to be better",
-    "a song about loyalty",
-    "a song about comfort",
-    "a song about missing someone’s face",
-    "a song about texting too much and not caring",
-    "a song about not giving up on someone",
-    "a song about a safe little corner",
     "a song about being wanted",
     "a song about Jackson and Naomi forever",
-    "a song about country music, coffee, and love",
-    "a song about a warm night and an acoustic guitar",
-    "a song about being there every time",
-    "a song about a girl who deserves the world",
-    "a song about a man who is clearly obsessed",
-    "a song about smiling at the phone",
-    "a song about learning a love song slowly",
-    "a song about a beautiful kind of chaos",
-    "a song about forever, but not in a scary way",
-    "a song about this only being the beginning"
+    "a song about country music, coffee, and love"
   ];
 
   const progressions = [
@@ -372,6 +252,41 @@ document.addEventListener("DOMContentLoaded", function () {
       lines: ["Am             F", "C              G", "Am             F", "C              G"]
     }
   ];
+
+  const creativeRoutes = {
+    soft: {
+      message: "Soft mode. Something gentle, pretty, and easy to settle into.",
+      query: "soft acoustic country guitar tutorial easy"
+    },
+    happy: {
+      message: "Happy mode. Something warm, bright, and fun to play.",
+      query: "happy country songs guitar tutorial acoustic"
+    },
+    sad: {
+      message: "Sad but okay mode. A softer song for when feelings are big but manageable.",
+      query: "easy sad country songs guitar tutorial acoustic"
+    },
+    miss: {
+      message: "Missing-you mode. Songs that say the thing without needing to over-explain it.",
+      query: "country songs about missing someone guitar tutorial"
+    },
+    romantic: {
+      message: "Romantic mode. Soft country love songs with proper heart in them.",
+      query: "romantic country love songs guitar tutorial easy"
+    },
+    session: {
+      message: "Proper guitar session mode. Chords, strumming, technique, and getting better.",
+      query: "country guitar lesson intermediate strumming chords"
+    },
+    write: {
+      message: "Songwriter mode. Build something of your own from a feeling and a few chords.",
+      query: "how to write a country song on guitar chords lyrics"
+    },
+    calm: {
+      message: "Calm mode. Gentle guitar, softer thoughts, no pressure.",
+      query: "calming acoustic country guitar lesson"
+    }
+  };
 
   function cleanIdea(value) {
     const trimmed = value.trim();
@@ -608,6 +523,10 @@ ${t.ch2}`
     window.scrollTo(0, 0);
   };
 
+  window.openSongOfTheDay = function () {
+    window.open(songOfTheDayUrl, "_blank");
+  };
+
   window.openNote = function () {
     dailyNote.innerText = notes[noteIndex];
     noteModal.classList.remove("hidden");
@@ -663,6 +582,16 @@ ${t.ch2}`
     window.open(`https://www.youtube.com/results?search_query=${encoded(query + " guitar tutorial")}`, "_blank");
   };
 
+  window.openCreativeRoute = function (routeName) {
+    const route = creativeRoutes[routeName];
+    if (!route) return;
+
+    creativeResult.classList.remove("hidden");
+    creativeResult.innerText = route.message;
+
+    window.open(`https://www.youtube.com/results?search_query=${encoded(route.query)}`, "_blank");
+  };
+
   window.setMood = function (mood) {
     songIdea.value = mood;
     generateSong();
@@ -703,33 +632,67 @@ ${t.ch2}`
   };
 
   window.saveFavourite = function () {
-    const favourites = JSON.parse(localStorage.getItem("naomiFavourites") || "[]");
+    const memories = JSON.parse(localStorage.getItem("naomiMemoryJar") || "[]");
 
-    favourites.unshift({
-      title: songTitle.innerText,
-      meta: songMeta.innerText
+    memories.unshift({
+      type: "Song starter",
+      text: `${songTitle.innerText}\n${songMeta.innerText}\n\n${songOutput.innerText}`,
+      date: new Date().toLocaleDateString()
     });
 
-    localStorage.setItem("naomiFavourites", JSON.stringify(favourites.slice(0, 5)));
-    renderFavourites();
+    localStorage.setItem("naomiMemoryJar", JSON.stringify(memories.slice(0, 20)));
+    renderMemoryJar();
   };
 
-  window.clearFavourites = function () {
-    localStorage.removeItem("naomiFavourites");
-    renderFavourites();
-  };
+  window.saveMemoryNote = function () {
+    const note = memoryInput.value.trim();
 
-  function renderFavourites() {
-    const favourites = JSON.parse(localStorage.getItem("naomiFavourites") || "[]");
-
-    if (favourites.length === 0) {
-      favouritesList.innerHTML = "No favourites saved yet.";
+    if (!note) {
+      alert("Write something first ❤️");
       return;
     }
 
-    favouritesList.innerHTML = favourites
-      .map(function (fav) {
-        return `<div class="favourite-item"><strong>${fav.title}</strong><br>${fav.meta}</div>`;
+    const memories = JSON.parse(localStorage.getItem("naomiMemoryJar") || "[]");
+
+    memories.unshift({
+      type: "Memory note",
+      text: note,
+      date: new Date().toLocaleDateString()
+    });
+
+    localStorage.setItem("naomiMemoryJar", JSON.stringify(memories.slice(0, 20)));
+    memoryInput.value = "";
+    renderMemoryJar();
+  };
+
+  window.sendMemoryToJackson = function () {
+    const note = memoryInput.value.trim();
+
+    if (!note) {
+      alert("Write something first ❤️");
+      return;
+    }
+
+    const whatsappUrl = `https://wa.me/${jacksonNumber}?text=${encodeURIComponent(note)}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
+  window.clearMemoryJar = function () {
+    localStorage.removeItem("naomiMemoryJar");
+    renderMemoryJar();
+  };
+
+  function renderMemoryJar() {
+    const memories = JSON.parse(localStorage.getItem("naomiMemoryJar") || "[]");
+
+    if (memories.length === 0) {
+      memoryList.innerHTML = "No notes saved yet.";
+      return;
+    }
+
+    memoryList.innerHTML = memories
+      .map(function (memory) {
+        return `<div class="memory-item"><strong>${memory.type}</strong><br><small>${memory.date}</small><p>${memory.text.replace(/\n/g, "<br>")}</p></div>`;
       })
       .join("");
   }
@@ -749,5 +712,5 @@ ${t.ch2}`
   homePage.classList.add("hidden");
   noteModal.classList.add("hidden");
   setDailyContent();
-  renderFavourites();
+  renderMemoryJar();
 });
