@@ -32,7 +32,7 @@ body {
   background:
     linear-gradient(rgba(10, 4, 2, 0.36), rgba(10, 4, 2, 0.72)),
     url("naomi-bg.png.png") no-repeat center center;
-  background-size: cover;
+  background-size: auto 88vh;
   background-color: #1b0d08;
   display: flex;
   align-items: center;
@@ -54,7 +54,6 @@ body {
 }
 
 .intro-box h1 {
-  font-family: Arial, sans-serif;
   font-size: 38px;
   font-weight: 900;
   line-height: 1.12;
@@ -63,7 +62,6 @@ body {
 }
 
 .intro-box p {
-  font-family: Arial, sans-serif;
   font-size: 18px;
   line-height: 1.45;
   margin-bottom: 22px;
@@ -80,7 +78,6 @@ body {
   padding: 17px 22px;
   border-radius: 999px;
   border: none;
-  font-family: Arial, sans-serif;
   font-weight: 900;
   font-size: 19px;
   cursor: pointer;
@@ -90,7 +87,6 @@ body {
 .intro-box small {
   display: block;
   margin-top: 18px;
-  font-family: Arial, sans-serif;
   font-size: 16px;
   color: white;
   opacity: 0.92;
@@ -112,7 +108,7 @@ body {
   background:
     linear-gradient(rgba(20, 8, 4, 0.22), rgba(20, 8, 4, 0.62)),
     url("naomi-bg.png.png") no-repeat center center;
-  background-size: cover;
+  background-size: auto 88vh;
   background-color: #1b0d08;
   display: flex;
   align-items: center;
@@ -132,7 +128,6 @@ body {
 }
 
 .home-card h1 {
-  font-family: Arial, sans-serif;
   font-size: 36px;
   font-weight: 900;
   margin-bottom: 12px;
@@ -141,7 +136,6 @@ body {
 }
 
 .home-card p {
-  font-family: Arial, sans-serif;
   font-size: 17px;
   margin-bottom: 20px;
   line-height: 1.45;
@@ -192,7 +186,6 @@ body {
 }
 
 .app-card h2 {
-  font-family: Arial, sans-serif;
   font-size: 36px;
   color: #6b241f;
   margin: 16px 0 8px;
@@ -245,6 +238,16 @@ body {
   line-height: 1.5;
 }
 
+.daily-vibe {
+  background: rgba(255, 255, 255, 0.55);
+  color: #6b241f;
+  border-radius: 16px;
+  padding: 12px;
+  line-height: 1.5;
+  margin: 12px 0;
+  font-weight: 700;
+}
+
 .input-row {
   display: flex;
   gap: 10px;
@@ -279,6 +282,49 @@ body {
   border: 1px solid #efd0c8;
   padding: 9px 12px;
   font-size: 13px;
+}
+
+.result-box {
+  background: #fffaf3;
+  color: #4a2018;
+  border: 1px solid #f0dfd2;
+  border-radius: 18px;
+  padding: 16px;
+  margin-top: 14px;
+  line-height: 1.6;
+}
+
+.result-box strong {
+  color: #6b241f;
+}
+
+.open-when-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.open-when-grid button {
+  background: #f7e8e4;
+  color: #6b241f;
+  border: 1px solid #efd0c8;
+  padding: 12px;
+  border-radius: 16px;
+}
+
+.note-panel {
+  text-align: center;
+}
+
+.big-note {
+  background: #fffaf3;
+  color: #4a2018;
+  border: 1px solid #f0dfd2;
+  border-radius: 18px;
+  padding: 18px;
+  line-height: 1.6;
+  margin: 16px 0;
+  font-size: 17px;
 }
 
 .song-header {
@@ -321,7 +367,6 @@ pre {
   border: 1px solid #f0dfd2;
 }
 
-/* LINKS */
 .link-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -345,6 +390,10 @@ pre {
   border-radius: 16px;
 }
 
+.memory-panel {
+  background: linear-gradient(135deg, #fffaf3, #fff);
+}
+
 .section-title-row {
   display: flex;
   align-items: center;
@@ -364,7 +413,6 @@ pre {
   margin-top: 10px;
 }
 
-/* BUTTONS */
 button,
 .playlist-btn,
 .spotify-home-btn,
@@ -420,13 +468,6 @@ button:hover,
   margin-right: 0;
 }
 
-.full {
-  width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-  display: inline-block;
-}
-
 .back-btn {
   background: #6b241f;
   color: white;
@@ -463,7 +504,6 @@ button:hover,
   line-height: 1.5;
 }
 
-/* MODAL */
 .modal {
   position: fixed;
   inset: 0;
@@ -623,6 +663,10 @@ button:hover,
   .song-header,
   .song-actions {
     flex-direction: column;
+  }
+
+  .open-when-grid {
+    grid-template-columns: 1fr;
   }
 
   .primary-btn,
