@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "Write a chorus using chords you already love.",
     "Play something sad, then make the last chord hopeful.",
     "Pick a real song and change the strumming pattern until it feels like yours.",
-    "Create a 20-second intro that sounds like sunset.",
+    "Create a 20-second intro that feels warm, soft, and honest.",
     "Play one progression softly, then louder, then softer again.",
     "Write one lyric line and find chords that match it.",
     "Turn a voice note idea into a melody.",
@@ -92,14 +92,56 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   const vibes = [
-    "Tonight’s vibe: soft acoustic country by a fire.",
-    "Tonight’s vibe: coffee, guitar, and sunset.",
-    "Tonight’s vibe: slow country love song energy.",
-    "Tonight’s vibe: front porch guitar practice.",
-    "Tonight’s vibe: warm blanket and soft strings.",
-    "Tonight’s vibe: country rose campfire night.",
-    "Tonight’s vibe: quiet song, loud feelings.",
-    "Tonight’s vibe: one chord at a time."
+    "Little vibe check ✨ Soft acoustic guitar and a quiet little smile.",
+    "Little vibe check ✨ Cosy country music, warm lights, and no pressure.",
+    "Little vibe check ✨ Slow chords, soft feelings, and one song at a time.",
+    "Little vibe check ✨ Blanket, guitar, and something gentle in the background.",
+    "Little vibe check ✨ Calm heart, soft strings, and a little reminder you’re loved.",
+    "Little vibe check ✨ Country rose energy — warm, soft, and a tiny bit magic.",
+    "Little vibe check ✨ Quiet song, safe place, softer thoughts.",
+    "Little vibe check ✨ One chord, one breath, one tiny reset.",
+    "Little vibe check ✨ Slow country love song without needing to rush anything.",
+    "Little vibe check ✨ Gentle guitar and the world can wait five minutes.",
+    "Little vibe check ✨ Soft lamp light, quiet strings, and letting the day fall away.",
+    "Little vibe check ✨ No pressure, no performance, just music that feels kind.",
+    "Little vibe check ✨ Tiny smile, warm heart, one song you actually want to play.",
+    "Little vibe check ✨ Cosy chaos, soft guitar, and being loved through all of it.",
+    "Little vibe check ✨ A little country song and a safer place to land.",
+    "Little vibe check ✨ Slow hands, soft chords, gentle thoughts.",
+    "Little vibe check ✨ Play something honest, even if it’s messy.",
+    "Little vibe check ✨ Warm drink, soft song, and breathing properly for once.",
+    "Little vibe check ✨ Country music, comfy clothes, and absolutely no stress.",
+    "Little vibe check ✨ One peaceful minute that belongs only to you.",
+    "Little vibe check ✨ Quiet guitar and letting yourself be looked after.",
+    "Little vibe check ✨ Soft reset, softer song, softest little smile.",
+    "Little vibe check ✨ Pick a chord you love and let it do the talking.",
+    "Little vibe check ✨ No brave face, just gentle music.",
+    "Little vibe check ✨ A song that feels like a hug.",
+    "Little vibe check ✨ Warm lights, safe feelings, and a tiny bit of country magic.",
+    "Little vibe check ✨ Slow strumming and not needing to be perfect.",
+    "Little vibe check ✨ Cosy little corner, big feelings, soft landing.",
+    "Little vibe check ✨ Calm country girl energy with a guitar nearby.",
+    "Little vibe check ✨ Something sweet, something slow, something just for you.",
+    "Little vibe check ✨ Gentle chords and a reminder that you’re enough.",
+    "Little vibe check ✨ A quiet room and a song that doesn’t ask too much.",
+    "Little vibe check ✨ Little rose, little song, little bit of peace.",
+    "Little vibe check ✨ Play what your heart can manage right now.",
+    "Little vibe check ✨ Warm acoustic strings and zero expectations.",
+    "Little vibe check ✨ Being soft is allowed.",
+    "Little vibe check ✨ No rushing, no proving, just playing.",
+    "Little vibe check ✨ One beautiful chord and a calm little breath.",
+    "Little vibe check ✨ Something tender, something simple, something true.",
+    "Little vibe check ✨ Country rose comfort mode.",
+    "Little vibe check ✨ Let the guitar carry what words can’t.",
+    "Little vibe check ✨ Slow song, soft heart, safe place.",
+    "Little vibe check ✨ Let today be done and let the music be gentle.",
+    "Little vibe check ✨ A little melody for a tired heart.",
+    "Little vibe check ✨ Soft strings and being proud of tiny wins.",
+    "Little vibe check ✨ Peaceful, pretty, and a little bit soppy.",
+    "Little vibe check ✨ Find one song that makes your shoulders drop.",
+    "Little vibe check ✨ No chaos for five minutes. Just you and the guitar.",
+    "Little vibe check ✨ Sweet country calm with a tiny smile attached.",
+    "Little vibe check ✨ Play something that feels like home."
   ];
 
   const moodData = {
@@ -338,9 +380,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function titleCase(text) {
-    return text.split(" ").filter(Boolean).map(function (word) {
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    }).join(" ");
+    return text
+      .split(" ")
+      .filter(Boolean)
+      .map(function (word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      .join(" ");
   }
 
   function chooseProgression(idea) {
@@ -692,8 +738,8 @@ ${t.ch2}`
     const today = new Date().getDate();
     noteIndex = today % notes.length;
 
-    dailyRoseNote.innerText = notes[noteIndex];
-    dailyNote.innerText = notes[noteIndex];
+    dailyRoseNote.innerText = notes[today % notes.length];
+    dailyNote.innerText = notes[today % notes.length];
     dailyChallenge.innerText = guitarPrompts[today % guitarPrompts.length];
     dailyMission.innerText = missions[today % missions.length];
     dailyVibe.innerText = vibes[today % vibes.length];
