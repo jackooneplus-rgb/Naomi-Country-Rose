@@ -28,10 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const songOfTheDayUrl = "https://open.spotify.com/playlist/7vxmBleyVTOaW8CHRHCxox";
 
   const backgroundTracks = [
-    "soft-country-1.mp3",
-    "soft-country-2.mp3",
-    "soft-country-3.mp3",
-    "soft-country-4.mp3"
+    "soft-country-1.mp3.mp3",
+    "soft-country-2.mp3.mp3",
+    "soft-country-3.mp3.mp3",
+    "soft-country-4.mp3.mp3"
   ];
 
   let currentTrackIndex = -1;
@@ -544,15 +544,20 @@ ${t.ch2}`
   function startMusicSoftly() {
     if (!bgMusic) return;
 
-    if (!bgMusic.src) {
+    if (!bgMusic.getAttribute("src")) {
       pickRandomTrack();
     }
 
-    bgMusic.volume = 0.14;
+    bgMusic.volume = 0.18;
+    bgMusic.muted = false;
 
-    bgMusic.play().catch(function () {
-      console.log("Music could not start yet.");
-    });
+    const playPromise = bgMusic.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch(function (error) {
+        console.log("Music could not start:", error);
+      });
+    }
   }
 
   window.enterSite = function () {
@@ -575,9 +580,11 @@ ${t.ch2}`
     if (!bgMusic) return;
 
     pickRandomTrack();
-    bgMusic.volume = 0.14;
-    bgMusic.play().catch(function () {
-      console.log("Music could not change yet.");
+    bgMusic.volume = 0.18;
+    bgMusic.muted = false;
+
+    bgMusic.play().catch(function (error) {
+      console.log("Music could not change:", error);
     });
   };
 
