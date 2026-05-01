@@ -367,50 +367,28 @@ pre {
   border: 1px solid #f0dfd2;
 }
 
-.link-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.link-grid a,
-.playlist-btn,
-.spotify-home-btn,
-.youtube-home-btn {
-  text-decoration: none;
-  text-align: center;
-  font-weight: 800;
-}
-
-.link-grid a {
-  background: #f7e8e4;
-  color: #6b241f;
-  border: 1px solid #efd0c8;
-  padding: 13px;
-  border-radius: 16px;
-}
-
-.creative-panel {
-  background: linear-gradient(135deg, #fffaf3, #fff);
-}
-
-.creative-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.creative-grid button {
-  background: #f7e8e4;
-  color: #6b241f;
-  border: 1px solid #efd0c8;
-  padding: 13px;
-  border-radius: 16px;
-  font-weight: 800;
-}
-
+/* CREATIVE / STRUMMING / MEMORY */
+.creative-panel,
+.strumming-panel,
 .memory-panel {
   background: linear-gradient(135deg, #fffaf3, #fff);
+}
+
+.creative-grid,
+.strumming-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.creative-grid button,
+.strumming-grid button {
+  background: #f7e8e4;
+  color: #6b241f;
+  border: 1px solid #efd0c8;
+  padding: 13px;
+  border-radius: 16px;
+  font-weight: 800;
 }
 
 .section-title-row {
@@ -467,21 +445,8 @@ pre {
   white-space: normal;
 }
 
-.favourites-list {
-  color: #6b241f;
-  line-height: 1.5;
-}
-
-.favourite-item {
-  background: #fffaf3;
-  border: 1px solid #f0dfd2;
-  padding: 12px;
-  border-radius: 14px;
-  margin-top: 10px;
-}
-
+/* BUTTONS */
 button,
-.playlist-btn,
 .spotify-home-btn,
 .youtube-home-btn {
   padding: 12px 20px;
@@ -499,10 +464,8 @@ a {
 }
 
 button:hover,
-.playlist-btn:hover,
 .spotify-home-btn:hover,
-.youtube-home-btn:hover,
-.link-grid a:hover {
+.youtube-home-btn:hover {
   transform: scale(1.02);
   opacity: 0.92;
 }
@@ -511,6 +474,7 @@ button:hover,
 .spotify-home-btn {
   background: linear-gradient(135deg, #ff5a6e, #d9485f);
   color: white;
+  text-decoration: none;
 }
 
 .youtube-home-btn,
@@ -518,6 +482,7 @@ button:hover,
   background: rgba(255, 255, 255, 0.12);
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.72);
+  text-decoration: none;
 }
 
 .secondary-btn {
@@ -575,6 +540,7 @@ button:hover,
   line-height: 1.5;
 }
 
+/* MODAL */
 .modal {
   position: fixed;
   inset: 0;
@@ -716,8 +682,8 @@ button:hover,
 
   .daily-grid,
   .creative-grid,
-  .open-when-grid,
-  .link-grid {
+  .strumming-grid,
+  .open-when-grid {
     grid-template-columns: 1fr;
   }
 
@@ -744,7 +710,6 @@ button:hover,
 
   .primary-btn,
   .secondary-btn,
-  .playlist-btn,
   .spotify-home-btn,
   .youtube-home-btn,
   .soft-btn,
