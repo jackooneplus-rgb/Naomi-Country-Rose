@@ -37,44 +37,333 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentTrackIndex = -1;
   let noteIndex = 0;
 
-  const notes = [
-    "I pinky promise to annoy you forever. No refunds, no cancellations.",
-    "If you ever need me, I don’t care what time it is. Call me. I’ve got you.",
-    "You don’t have to be strong every second. I’ve got you when it feels heavy.",
-    "You are genuinely one of my favourite people. Even when you’re being a tiny menace.",
-    "No pressure today. Just breathe, play one chord, and remember I’m proud of you.",
-    "I hope this makes you smile, even just a little. That’s the whole bloody point.",
-    "You’re stuck with me now. Should’ve read the terms and conditions.",
-    "Even on your worst days, you’re still my favourite person.",
-    "If today feels heavy, borrow a little bit of my strength.",
-    "You don’t need to explain the storm. I’ll sit with you in it.",
-    "If your brain feels loud, play one chord and let the world slow down.",
-    "You are safe with me.",
-    "No brave face required.",
-    "You don’t need to earn care. You already deserve it.",
-    "If I’m asleep, wake me. I mean that.",
-    "If I don’t answer, call again. I probably deserve it.",
-    "You’re my favourite little country rose.",
-    "I hope this feels like a hug with buttons.",
-    "You make country songs make more sense.",
-    "I’m glad you exist. That’s the note.",
-    "If you’re overthinking, breathe. I’m not running.",
-    "If you’re tired, rest. I’m still here.",
-    "If you’re happy, tell me. I want to hear it.",
-    "If you’re sad, tell me. I want to help carry it.",
-    "You deserve softness.",
-    "You deserve consistency.",
-    "You deserve someone who shows up.",
-    "I hope I make you feel safe.",
-    "I hope I make you feel wanted.",
-    "I hope I make you feel chosen.",
-    "You have no idea how lovely you are.",
-    "You are dangerously easy to care about.",
-    "This app is basically me being soppy with better branding.",
-    "You’re stuck with a man who builds apps to flirt. Sorry.",
-    "If you smile at this, I win.",
-    "I pinky promise this is only the beginning."
-  ];
+  function makeCombinations(openings, middles, endings, limit) {
+    const output = [];
+
+    openings.forEach(function (opening) {
+      middles.forEach(function (middle) {
+        endings.forEach(function (ending) {
+          if (output.length < limit) {
+            output.push(`${opening} ${middle} ${ending}`);
+          }
+        });
+      });
+    });
+
+    return output;
+  }
+
+  const notes = makeCombinations(
+    [
+      "You are loved more than you realise.",
+      "You are safe with me.",
+      "You do not have to be perfect to be loved.",
+      "You make ordinary days feel warmer.",
+      "You are not too much.",
+      "You deserve softness today.",
+      "You are my favourite little country rose.",
+      "You are allowed to rest.",
+      "You make me smile without even trying.",
+      "You are worth showing up for.",
+      "You matter to me, properly.",
+      "You are doing better than you think.",
+      "You do not need to earn care.",
+      "You are allowed to have bad days and still be loved.",
+      "You are the kind of person people write songs about.",
+      "You make the world feel softer.",
+      "You have a beautiful heart.",
+      "You are wanted exactly as you are.",
+      "You are allowed to be held through the messy bits.",
+      "You are someone I would choose again."
+    ],
+    [
+      "If today feels heavy, borrow a little bit of my strength.",
+      "If your brain is loud, take one breath and let the world slow down.",
+      "If you feel tired, you do not have to carry everything tonight.",
+      "If you feel overwhelmed, shrink the day down to one tiny step.",
+      "If you feel unsure, remember I am not running.",
+      "If you need me, call me. I mean that.",
+      "If you cannot find the words, you do not have to force them.",
+      "If you need quiet, I will sit in the quiet with you.",
+      "If you need a smile, I hope this gives you one.",
+      "If the day has been a lot, you still made it through.",
+      "If you feel emotional, you are still safe.",
+      "If you feel messy, you are still completely lovable.",
+      "If you need reassurance, take this as your reminder.",
+      "If you need to pause, pause. Nothing bad happens because you rested.",
+      "If you feel far away, you are still close to me.",
+      "If you doubt yourself, let me believe in you for a minute.",
+      "If your heart feels tired, let it rest here for a second.",
+      "If you need softness, this is your little corner of it.",
+      "If you feel like hiding, you do not have to hide from me.",
+      "If you forget how much you matter, open this again."
+    ],
+    [
+      "I’ve got you.",
+      "I am proud of you.",
+      "You are my favourite person.",
+      "You are safe here.",
+      "I’m not going anywhere.",
+      "You’re doing enough.",
+      "You are deeply cared for.",
+      "You deserve gentle love.",
+      "You are easy to love.",
+      "I choose you in the small ways too.",
+      "You make me want to be better.",
+      "I hope this feels like a tiny hug.",
+      "No brave face required.",
+      "You are allowed to be looked after.",
+      "You are loved on the hard days too.",
+      "You are a beautiful little menace, respectfully.",
+      "You are the note, the song, and the reason.",
+      "I hope this makes your heart feel lighter.",
+      "You are never a burden to me.",
+      "Open this whenever you need reminding."
+    ],
+    180
+  );
+
+  const openWhenMessages = {
+    miss: makeCombinations(
+      [
+        "I’m still here.",
+        "Even when we’re not together, you are not forgotten.",
+        "Missing someone just means your heart knows where home is.",
+        "If you miss me, breathe for a second.",
+        "You are not alone just because I’m not next to you.",
+        "I hope this feels like me squeezing your hand from wherever I am.",
+        "Being apart does not make you any less cared for.",
+        "You are still in my day, even when you are not in the room.",
+        "If you miss me, let this be a tiny bridge back to me.",
+        "You are close to my heart, even from miles away."
+      ],
+      [
+        "You matter to me more than distance can touch.",
+        "I’m probably thinking about you too.",
+        "You are still chosen, still wanted, still cared for.",
+        "I hope this reminds you that I am still close.",
+        "Some people stay with you even when they are not beside you.",
+        "You are not out of sight or out of mind.",
+        "I carry little thoughts of you through the day.",
+        "You are one of my favourite places to come back to.",
+        "This is a little note from me to you.",
+        "You are allowed to miss me and still feel safe."
+      ],
+      [
+        "I’ve got you.",
+        "You are not forgotten.",
+        "I’m still here.",
+        "You are loved.",
+        "I hope this makes the distance feel smaller.",
+        "Come back to this whenever you need it.",
+        "You matter to me.",
+        "You are safe with me.",
+        "I’m not going anywhere.",
+        "I hope this feels like a tiny hug."
+      ],
+      120
+    ),
+
+    overwhelmed: makeCombinations(
+      [
+        "You don’t need to solve everything tonight.",
+        "You are allowed to pause.",
+        "You don’t have to be brave every second.",
+        "Shrink the day down.",
+        "You are not failing because you feel overwhelmed.",
+        "You do not need to carry the whole day at once.",
+        "Let the next minute be smaller than the whole problem.",
+        "You are allowed to put the heavy thing down for a bit.",
+        "Nothing about you is too much for me.",
+        "Take one soft breath."
+      ],
+      [
+        "Just breathe, unclench your jaw, and let one tiny thing be enough.",
+        "The world can wait while you put yourself back together gently.",
+        "You are human, and you are still doing your best.",
+        "One breath. One sip of water. One tiny next step.",
+        "You do not have to be okay all at once.",
+        "You do not have to carry every thought to the finish line.",
+        "Your nervous system is allowed to ask for softness.",
+        "You can slow this down without failing.",
+        "This moment does not need to be perfect.",
+        "The big thing can wait while you find your feet."
+      ],
+      [
+        "I’ve got you.",
+        "You are safe here.",
+        "One thing at a time.",
+        "That counts.",
+        "You are doing enough.",
+        "No brave face required.",
+        "You are not too much.",
+        "Let this be smaller.",
+        "I am proud of you.",
+        "You can rest for a minute."
+      ],
+      120
+    ),
+
+    smile: makeCombinations(
+      [
+        "You are allowed to smile today.",
+        "I hope this makes your face do that cute little smile thing.",
+        "You are my favourite notification.",
+        "If this makes you smile, I win.",
+        "You deserve a little happy moment for no reason.",
+        "I hope this gives your heart a tiny bit of sunshine.",
+        "Your smile is one of my favourite things.",
+        "You make soft moments feel special.",
+        "This is your permission slip to smile at your phone.",
+        "I hope the day gets a little lighter after this."
+      ],
+      [
+        "Even if everything feels a bit messy.",
+        "Even if the day has been a lot.",
+        "Even if it is only a tiny smile.",
+        "Even if nobody else sees it.",
+        "Because tiny happy moments still count.",
+        "Because you deserve gentle things.",
+        "Because you are ridiculous amounts of lovely.",
+        "Because you make everything feel warmer.",
+        "Because this app exists to make you feel cared for.",
+        "Because you are my favourite little country rose."
+      ],
+      [
+        "Tiny smile. Tiny reset.",
+        "That still counts.",
+        "I hope you feel it.",
+        "I hope this helps.",
+        "You are loved.",
+        "You deserve this.",
+        "I am smiling too, probably.",
+        "This is me being soppy again.",
+        "You are worth every bit of effort.",
+        "Open this again whenever you need another one."
+      ],
+      120
+    ),
+
+    loved: makeCombinations(
+      [
+        "You are loved exactly as you are.",
+        "You do not need to earn love.",
+        "You are wanted, chosen, and cared for.",
+        "You deserve someone who shows up in the small moments too.",
+        "If your brain tells you you’re hard to love, it is talking rubbish.",
+        "You are loved on the easy days and the complicated days.",
+        "There is no version of you that needs to perform to deserve care.",
+        "You are not a burden.",
+        "You are enough before you do anything else.",
+        "You are loved in the quiet ways too."
+      ],
+      [
+        "Not when you are calmer. Not when you are stronger. Right now.",
+        "Not because you are useful. Not because you are easy. Because you are you.",
+        "Even when you are tired, messy, emotional, or unsure.",
+        "Even when you do not feel easy to be around.",
+        "Even when the day has made you doubt yourself.",
+        "Even when you need reassurance more than once.",
+        "Even when you feel like you should hide the softer bits.",
+        "Even when you are still working things out.",
+        "Even when your heart feels a little bruised.",
+        "Even when you forget it yourself."
+      ],
+      [
+        "I’ve got you.",
+        "You are not too much.",
+        "You are safe with me.",
+        "You are deeply cared for.",
+        "You are worth loving properly.",
+        "You do not have to prove anything.",
+        "You matter to me.",
+        "You are my favourite person.",
+        "I choose you.",
+        "Open this whenever you need reminding."
+      ],
+      120
+    ),
+
+    sleepy: makeCombinations(
+      [
+        "You don’t have to carry tomorrow tonight.",
+        "Close your eyes and let the day be done.",
+        "Sleep softly.",
+        "Let your thoughts slow down.",
+        "I hope you sleep like someone who knows they are loved.",
+        "Rest is not lazy.",
+        "Your mind can stop working now.",
+        "Put the heavy thoughts down.",
+        "Let this be your little goodnight hug.",
+        "You are safe, loved, and allowed to sleep."
+      ],
+      [
+        "Your body is allowed to rest.",
+        "Nothing needs fixing right this second.",
+        "Tomorrow can wait outside the door.",
+        "The day is finished now.",
+        "You have done enough.",
+        "You do not need to rehearse every worry.",
+        "You can let your shoulders drop.",
+        "You can let the room be quiet.",
+        "You can stop trying to be strong for tonight.",
+        "You can come back to everything in the morning."
+      ],
+      [
+        "You are safe.",
+        "Sleep softly.",
+        "I’ve got you.",
+        "You are loved.",
+        "Goodnight, country rose.",
+        "Let your heart rest.",
+        "No brave face needed.",
+        "Tomorrow can wait.",
+        "You did enough today.",
+        "I hope you feel held."
+      ],
+      120
+    ),
+
+    hardday: makeCombinations(
+      [
+        "Today might have been hard, but you are still here.",
+        "Bad days do not make you weak.",
+        "You don’t have to turn the day into a lesson.",
+        "Take the armour off for a minute.",
+        "You are loved on the difficult days too.",
+        "You made it through a day that tried to take too much.",
+        "You do not have to be okay immediately.",
+        "Hard days are allowed to end softly.",
+        "You can start again tomorrow.",
+        "You are still you, even after a rough day."
+      ],
+      [
+        "That matters.",
+        "They make you human.",
+        "Sometimes surviving it is enough.",
+        "You do not need it here.",
+        "Especially then.",
+        "You got through more than people can see.",
+        "You can be tired and still be doing well.",
+        "You can feel bruised and still be beautiful.",
+        "You do not have to explain every feeling.",
+        "The day can be hard without you being wrong."
+      ],
+      [
+        "I am proud of you.",
+        "I’ve got you.",
+        "You are safe here.",
+        "You are loved.",
+        "No brave face required.",
+        "Let tonight be gentle.",
+        "You did enough.",
+        "I hope this gives you a little peace.",
+        "You can rest now.",
+        "Open this again if the day still feels heavy."
+      ],
+      120
+    )
+  };
 
   const guitarPrompts = [
     "Take one feeling from today and turn it into a four-chord loop.",
@@ -156,15 +445,6 @@ document.addEventListener("DOMContentLoaded", function () {
       prompt: "Play the gentlest version of a song you already know.",
       song: "A sleepy country song about being looked after."
     }
-  };
-
-  const openWhenMessages = {
-    miss: "I’m still here. Even when we’re not together, you’re not forgotten. You’re in my thoughts more than you probably realise, and I hope this feels like a little reminder that you matter to me.",
-    overwhelmed: "You don’t need to be brave right now. Just breathe, unclench your jaw, and let one thing be enough. You don’t have to carry everything at once. I’ve got you.",
-    smile: "You are allowed to smile today, even if everything feels a bit messy. Tiny smile. Tiny breath. Tiny reset. You deserve gentle moments too.",
-    guitar: "Don’t chase perfect. Play what feels honest. One chord, one line, one tiny idea. The song doesn’t need to be finished tonight — it just needs to start somewhere.",
-    loved: "You are loved exactly as you are. Not when you’re calmer, not when you’re stronger, not when you’ve got everything figured out. Right now. This version of you is enough.",
-    sleepy: "You don’t have to carry tomorrow tonight. Let your mind slow down, let your body rest, and remember that you’re safe. I hope you sleep softly."
   };
 
   const thereMessages = [
@@ -262,35 +542,123 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const creativeRoutes = {
     soft: {
-      message: "Soft mode. Something gentle, pretty, and easy to settle into.",
+      messages: [
+        "Soft mode. Something gentle, pretty, and easy to settle into.",
+        "This is the soft-guitar route. No pressure, no showing off, just something that feels warm.",
+        "Soft mode unlocked. Let’s find something gentle enough to make the room feel quieter.",
+        "This one is for calm fingers, warm chords, and a song that does not ask too much.",
+        "Soft means beautiful, not boring. Let’s find something that feels like a tiny exhale.",
+        "This route is for soft acoustic energy — gentle, warm, and easy to sit with.",
+        "Go gentle here. Find something that feels like a candle and a quiet room.",
+        "Soft mode is perfect when you want music to feel safe rather than impressive.",
+        "This is for the kind of song that makes your shoulders drop.",
+        "Let’s find something soft enough that the guitar feels like company."
+      ],
       query: "soft acoustic country guitar tutorial easy"
     },
     happy: {
-      message: "Happy mode. Something warm, bright, and fun to play.",
+      messages: [
+        "Happy mode. Something warm, bright, and fun to play.",
+        "This route is for sunny chords and a song that makes you smile while playing.",
+        "Happy mode unlocked. Let’s find something light, cute, and actually fun.",
+        "This is for the good mood version of you — the one that deserves a soundtrack.",
+        "Let’s find something cheerful without being cheesy.",
+        "Happy guitar route. Warm chords, easy rhythm, good little vibe.",
+        "Pick something that makes the room feel brighter.",
+        "This is your little sunshine guitar route.",
+        "Let’s find a song that feels like smiling at your phone.",
+        "Happy mode says: play something that makes your heart feel lighter."
+      ],
       query: "happy country songs guitar tutorial acoustic"
     },
     sad: {
-      message: "Sad but okay mode. A softer song for when feelings are big but manageable.",
+      messages: [
+        "Sad but okay mode. A softer song for when feelings are big but manageable.",
+        "This is not wallowing. This is letting the guitar carry a bit of the feeling.",
+        "Sad but okay means gentle, honest, and not too heavy.",
+        "Let’s find something emotional but still safe to play.",
+        "This route is for big feelings with soft edges.",
+        "A sad song can still be comforting. Let’s find one of those.",
+        "This is for when your heart needs a little acoustic honesty.",
+        "Not dramatic. Just real, soft, and human.",
+        "Let’s find a song that understands the feeling without making it worse.",
+        "Sad but okay mode: soft chords, honest lyrics, no emotional ambush."
+      ],
       query: "easy sad country songs guitar tutorial acoustic"
     },
     miss: {
-      message: "Missing-you mode. Songs that say the thing without needing to over-explain it.",
+      messages: [
+        "Missing-you mode. Songs that say the thing without needing to over-explain it.",
+        "This route is for when distance feels loud and music can say it softer.",
+        "Let’s find something that sounds like missing someone, but warmly.",
+        "This is the ‘wish you were here’ guitar route.",
+        "A missing-you song should feel tender, not miserable.",
+        "This route is for soft ache, warm chords, and a little honesty.",
+        "Let’s find something that feels close even when someone is not nearby.",
+        "Missing-you mode: gentle, romantic, and not too heavy.",
+        "This is for a song that says ‘I miss you’ without shouting it.",
+        "Let’s find a tutorial that feels like a voice note with chords."
+      ],
       query: "country songs about missing someone guitar tutorial"
     },
     romantic: {
-      message: "Romantic mode. Soft country love songs with proper heart in them.",
+      messages: [
+        "Romantic mode. Soft country love songs with proper heart in them.",
+        "This route is for warm love songs, not cringe ones.",
+        "Romantic mode unlocked. Let’s find something that feels personal and soft.",
+        "This is for country love songs that actually land.",
+        "Let’s find a song that feels like a hand squeeze.",
+        "Romantic does not need to be cheesy. It just needs to feel true.",
+        "This route is for soft lyrics, easy chords, and proper feeling.",
+        "Let’s find a love song that sounds like it means it.",
+        "This is for a song that feels like being chosen.",
+        "Romantic mode: warm chords, honest lyrics, country rose energy."
+      ],
       query: "romantic country love songs guitar tutorial easy"
     },
     session: {
-      message: "Proper guitar session mode. Chords, strumming, technique, and getting better.",
+      messages: [
+        "Proper guitar session mode. Chords, strumming, technique, and getting better.",
+        "This is the practice route. Not cute. Not fluffy. Actual progress.",
+        "Proper session mode means we are going after the bit that is annoying you.",
+        "This is for getting cleaner, tighter, and more confident.",
+        "Practice mode unlocked. Slow, focused, and useful.",
+        "This route is for when you want to actually improve, not just noodle around.",
+        "Let’s find something that teaches properly and does not waffle.",
+        "This is the ‘right, let’s nail this’ route.",
+        "Proper guitar session: clear lesson, useful technique, no chaos.",
+        "This is for building the skill, not just surviving the song."
+      ],
       query: "country guitar lesson intermediate strumming chords"
     },
     write: {
-      message: "Songwriter mode. Build something of your own from a feeling and a few chords.",
+      messages: [
+        "Songwriter mode. Build something of your own from a feeling and a few chords.",
+        "This route is for turning a tiny feeling into an actual song idea.",
+        "Songwriter mode unlocked. You do not need perfect lyrics. You need a starting point.",
+        "Let’s find something that helps you write, not overthink.",
+        "This is for making your own little country song from scratch.",
+        "A song can start with one line. That is enough.",
+        "This route is for lyrics, chords, and a tiny bit of bravery.",
+        "Let’s find a lesson that turns feelings into structure.",
+        "Songwriting mode: messy first drafts are the whole point.",
+        "This is for making something that sounds like you."
+      ],
       query: "how to write a country song on guitar chords lyrics"
     },
     calm: {
-      message: "Calm mode. Gentle guitar, softer thoughts, no pressure.",
+      messages: [
+        "Calm mode. Gentle guitar, softer thoughts, no pressure.",
+        "This route is for slowing everything down without needing to explain why.",
+        "Calm mode unlocked. Let’s find something peaceful and easy to sit with.",
+        "This is for when your nervous system needs a little acoustic blanket.",
+        "Let’s find something gentle enough to quiet the room.",
+        "Calm mode means no pressure, just soft strings and breathing room.",
+        "This is for music that helps the day stop shouting.",
+        "Let’s find a guitar route that feels like a reset.",
+        "Calm mode: gentle, slow, warm, and safe.",
+        "This is for when you need the guitar to help you land."
+      ],
       query: "calming acoustic country guitar lesson"
     }
   };
@@ -599,7 +967,7 @@ ${t.ch2}`
   };
 
   window.openNote = function () {
-    dailyNote.innerText = notes[noteIndex];
+    dailyNote.innerText = randomFrom(notes);
     noteModal.classList.remove("hidden");
   };
 
@@ -609,7 +977,7 @@ ${t.ch2}`
 
   window.refreshDailyRose = function () {
     noteIndex = (noteIndex + 1) % notes.length;
-    dailyRoseNote.innerText = notes[noteIndex];
+    dailyRoseNote.innerText = randomFrom(notes);
     dailyChallenge.innerText = randomFrom(guitarPrompts);
     dailyMission.innerText = randomFrom(missions);
     dailyVibe.innerText = randomFrom(vibes);
@@ -631,8 +999,9 @@ ${t.ch2}`
   };
 
   window.openWhen = function (type) {
+    const messages = openWhenMessages[type] || ["I’ve got you."];
     openWhenResult.classList.remove("hidden");
-    openWhenResult.innerText = openWhenMessages[type] || "I’ve got you.";
+    openWhenResult.innerText = randomFrom(messages);
   };
 
   window.randomLoveNote = function () {
@@ -658,7 +1027,18 @@ ${t.ch2}`
     if (!route) return;
 
     creativeResult.classList.remove("hidden");
-    creativeResult.innerText = route.message;
+
+    creativeResult.innerHTML = `
+      <p>${randomFrom(route.messages)}</p>
+      <button class="primary-btn creative-go-btn" onclick="goToCreativeRoute('${routeName}')">
+        Let’s go find something for this 🎸
+      </button>
+    `;
+  };
+
+  window.goToCreativeRoute = function (routeName) {
+    const route = creativeRoutes[routeName];
+    if (!route) return;
 
     window.open(`https://www.youtube.com/results?search_query=${encoded(route.query)}`, "_blank");
   };
