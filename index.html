@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Naomi Country Rose 🌹</title>
-  <link rel="stylesheet" href="styles.css?v=700" />
+  <link rel="stylesheet" href="styles.css?v=900" />
 </head>
 
 <body>
@@ -26,13 +26,15 @@
       <button class="primary-btn" onclick="showPage('appPage')">Start Playing 🎸</button>
       <button class="secondary-btn" onclick="openNote()">A little note for you 💌</button>
 
+      <button class="primary-btn" onclick="openSongOfTheDay()">Song of the day — this made me think of you 🌹</button>
+
       <a
         class="spotify-home-btn"
         href="https://open.spotify.com/playlist/37i9dQZF1FwJj9o7TD0o4T?si=NEOiy5SZRhuxRPpGckyY_A&pi=apWxBma-RQqyk"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Play the playlist 🎧
+        Naomi Country Rose Playlist 🎧
       </a>
 
       <a
@@ -109,7 +111,7 @@
         <div class="open-when-grid">
           <button onclick="openWhen('miss')">You miss me</button>
           <button onclick="openWhen('overwhelmed')">You feel overwhelmed</button>
-          <button onclick="openWhen('laugh')">You need a laugh</button>
+          <button onclick="openWhen('laugh')">You need a smile</button>
           <button onclick="openWhen('guitar')">You want to play guitar</button>
           <button onclick="openWhen('loved')">You need reminding you’re loved</button>
           <button onclick="openWhen('sleepy')">You can’t sleep</button>
@@ -233,30 +235,49 @@ I’ll be right there, choosing you</pre>
         </p>
       </div>
 
-      <div class="panel">
-        <h3>Music and practice corner 🎶</h3>
+      <div class="panel creative-panel">
+        <h3>Creative Spark Corner 🎸✨</h3>
         <p class="panel-text">
-          Real music lives on Spotify and YouTube. This keeps the app clean and makes sure you can actually learn properly.
+          Pick how you feel and I’ll send you somewhere useful — tutorials, songs, strumming help, or songwriting ideas.
         </p>
 
-        <div class="link-grid">
-          <a href="https://open.spotify.com/playlist/37i9dQZF1FwJj9o7TD0o4T?si=NEOiy5SZRhuxRPpGckyY_A&pi=apWxBma-RQqyk" target="_blank" rel="noopener noreferrer">Naomi’s playlist 🎧</a>
-          <a href="https://www.youtube.com/results?search_query=soft+romantic+country+guitar+instrumental" target="_blank" rel="noopener noreferrer">Soft guitar background 🎶</a>
-          <a href="https://www.youtube.com/results?search_query=country+guitar+strumming+patterns" target="_blank" rel="noopener noreferrer">Strumming patterns 🪕</a>
-          <a href="https://www.youtube.com/results?search_query=easy+romantic+country+guitar+songs" target="_blank" rel="noopener noreferrer">Easy romantic songs 🌹</a>
+        <div class="creative-grid">
+          <button onclick="openCreativeRoute('soft')">I feel soft 🌙</button>
+          <button onclick="openCreativeRoute('happy')">I feel happy ☀️</button>
+          <button onclick="openCreativeRoute('sad')">I feel sad but okay 💙</button>
+          <button onclick="openCreativeRoute('miss')">I miss you 💌</button>
+          <button onclick="openCreativeRoute('romantic')">I feel romantic 🌹</button>
+          <button onclick="openCreativeRoute('session')">I want a proper guitar session 🎸</button>
+          <button onclick="openCreativeRoute('write')">I want to write my own song ✨</button>
+          <button onclick="openCreativeRoute('calm')">I need calm 🕯️</button>
         </div>
+
+        <div id="creativeResult" class="result-box hidden"></div>
       </div>
 
       <div class="panel memory-panel">
         <div class="section-title-row">
           <h3>Naomi’s little memory jar ❤️</h3>
-          <button class="small-btn" onclick="clearFavourites()">Clear</button>
+          <button class="small-btn" onclick="clearMemoryJar()">Clear</button>
         </div>
+
         <p class="panel-text">
-          Saved song starters and little ideas live here.
+          Write down a lyric, feeling, song idea, or tiny thought you don’t want to lose.
         </p>
-        <div id="favouritesList" class="favourites-list">
-          No favourites saved yet.
+
+        <textarea
+          id="memoryInput"
+          class="memory-input"
+          placeholder="Write something here..."
+        ></textarea>
+
+        <div class="memory-actions">
+          <button class="primary-btn" onclick="saveMemoryNote()">Save to jar ❤️</button>
+          <button class="dark-btn" onclick="sendMemoryToJackson()">Send to Jackson 💌</button>
+        </div>
+
+        <div id="memoryList" class="memory-list">
+          No notes saved yet.
         </div>
       </div>
 
@@ -283,6 +304,6 @@ I’ll be right there, choosing you</pre>
     <source src="soft-country.mp4" type="audio/mp4">
   </audio>
 
-  <script src="index.js?v=700"></script>
+  <script src="index.js?v=900"></script>
 </body>
 </html>
