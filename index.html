@@ -2,9 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Naomi Country Rose 🌹</title>
-  <link rel="stylesheet" href="styles.css?v=1400" />
+
+  <link rel="stylesheet" href="./styles.css?v=1600" />
+
+  <!-- PHONE APP / PWA SETTINGS -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#1b0d08">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Naomi Country Rose">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="./naomi-bg.png.png">
 </head>
 
 <body>
@@ -103,9 +112,9 @@
           <button onclick="openWhen('miss')">You miss me</button>
           <button onclick="openWhen('overwhelmed')">You feel overwhelmed</button>
           <button onclick="openWhen('smile')">You need a smile</button>
-          <button onclick="openWhen('guitar')">You want to play guitar</button>
           <button onclick="openWhen('loved')">You need reminding you’re loved</button>
           <button onclick="openWhen('sleepy')">You can’t sleep</button>
+          <button onclick="openWhen('hardday')">You’ve had a hard day</button>
         </div>
 
         <div id="openWhenResult" class="result-box hidden"></div>
@@ -229,7 +238,7 @@ I’ll be right there, choosing you</pre>
       <div class="panel creative-panel">
         <h3>Creative Spark Corner 🎸✨</h3>
         <p class="panel-text">
-          Pick how you feel and I’ll send you somewhere useful — tutorials, songs, strumming help, or songwriting ideas.
+          Pick how you feel and I’ll suggest the right kind of guitar route first — then you choose whether to open YouTube.
         </p>
 
         <div class="creative-grid">
@@ -305,15 +314,23 @@ I’ll be right there, choosing you</pre>
   <div id="noteModal" class="modal hidden">
     <div class="modal-content">
       <h2>For you ❤️</h2>
-      <p id="dailyNote">
-        I pinky promise to annoy you forever. No refunds, no cancellations.
-      </p>
+      <p id="dailyNote">Loading...</p>
       <button class="primary-btn" onclick="closeNote()">Close</button>
     </div>
   </div>
 
   <audio id="bgMusic" loop preload="auto"></audio>
 
-  <script src="index.js?v=1400"></script>
+  <script src="./index.js?v=1600"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./sw.js").catch(function (error) {
+          console.log("Service worker registration failed:", error);
+        });
+      });
+    }
+  </script>
 </body>
 </html>
