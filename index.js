@@ -21,19 +21,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const openWhenResult = document.getElementById("openWhenResult");
   const randomNoteText = document.getElementById("randomNoteText");
   const creativeResult = document.getElementById("creativeResult");
-  const strummingResult = document.getElementById("strummingResult");
   const memoryInput = document.getElementById("memoryInput");
   const memoryList = document.getElementById("memoryList");
 
   const jacksonNumber = "447557683963";
-
   const songOfTheDayUrl = "https://open.spotify.com/playlist/7vxmBleyVTOaW8CHRHCxox";
 
   const backgroundTracks = [
-    "soft-country-1.mp3.mp3",
-    "soft-country-2.mp3.mp3",
-    "soft-country-3.mp3.mp3",
-    "soft-country-4.mp3.mp3"
+    "soft-country-1.mp3",
+    "soft-country-2.mp3",
+    "soft-country-3.mp3",
+    "soft-country-4.mp3"
   ];
 
   let currentTrackIndex = -1;
@@ -163,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const openWhenMessages = {
     miss: "I’m still here. Even when we’re not together, you’re not forgotten. You’re in my thoughts more than you probably realise, and I hope this feels like a little reminder that you matter to me.",
     overwhelmed: "You don’t need to be brave right now. Just breathe, unclench your jaw, and let one thing be enough. You don’t have to carry everything at once. I’ve got you.",
-    laugh: "You are allowed to smile today, even if everything feels a bit messy. Tiny smile. Tiny breath. Tiny reset. You deserve gentle moments too.",
+    smile: "You are allowed to smile today, even if everything feels a bit messy. Tiny smile. Tiny breath. Tiny reset. You deserve gentle moments too.",
     guitar: "Don’t chase perfect. Play what feels honest. One chord, one line, one tiny idea. The song doesn’t need to be finished tonight — it just needs to start somewhere.",
     loved: "You are loved exactly as you are. Not when you’re calmer, not when you’re stronger, not when you’ve got everything figured out. Right now. This version of you is enough.",
     sleepy: "You don’t have to carry tomorrow tonight. Let your mind slow down, let your body rest, and remember that you’re safe. I hope you sleep softly."
@@ -299,24 +297,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const strummingRoutes = {
     slow: {
-      message: "Slow strumming mode. Take the speed right down until the rhythm feels boring. Boring means it is starting to work.",
+      message: "Slow strumming mode. Take the pattern right down until your hand stops panicking.",
       query: "slow country guitar strumming practice beginner"
     },
-    chord: {
-      message: "Chord change timing mode. This is for that annoying moment where the chord moves and the rhythm falls apart.",
+    timing: {
+      message: "Chord-change timing mode. Practise changing chords without losing the rhythm.",
       query: "how to change chords while strumming guitar lesson"
     },
-    patterns: {
-      message: "Down-up pattern mode. Get the hand moving steadily first, then worry about making it pretty.",
+    downup: {
+      message: "Down-up pattern mode. Get the hand moving steady before worrying about fancy stuff.",
       query: "country guitar down up strumming patterns tutorial"
     },
-    metronome: {
-      message: "Metronome mode. Painful, annoying, brutally useful. Tiny tempo, clean rhythm, no rushing.",
-      query: "slow guitar strumming metronome practice"
+    hammer: {
+      message: "Hammer-ons and pull-offs mode. Tiny country details that make simple chords sound prettier.",
+      query: "easy guitar hammer ons and pull offs country lesson"
     },
-    simplify: {
-      message: "Simplify mode. You do not need the fancy pattern straight away. Strip it back, make it playable, then build it up.",
-      query: "how to simplify strumming pattern guitar song"
+    pentatonic: {
+      message: "Pentatonic mode. This is where little country fills and lead bits start making sense.",
+      query: "beginner country guitar pentatonic scale patterns lesson"
+    },
+    slides: {
+      message: "Slides and country licks mode. Little flavour bits that make it sound less basic.",
+      query: "easy country guitar slides and licks lesson beginner"
     }
   };
 
@@ -574,7 +576,6 @@ ${t.ch2}`
 
     pickRandomTrack();
     bgMusic.volume = 0.14;
-
     bgMusic.play().catch(function () {
       console.log("Music could not change yet.");
     });
@@ -659,10 +660,23 @@ ${t.ch2}`
     const route = strummingRoutes[routeName];
     if (!route) return;
 
-    strummingResult.classList.remove("hidden");
-    strummingResult.innerText = route.message;
+    const strummingResult = document.getElementById("strummingResult");
+
+    if (strummingResult) {
+      strummingResult.classList.remove("hidden");
+      strummingResult.innerText = route.message;
+    }
 
     window.open(`https://www.youtube.com/results?search_query=${encoded(route.query)}`, "_blank");
+  };
+
+  window.simplifySong = function () {
+    const song = prompt("What song do you want to simplify?");
+
+    if (!song || !song.trim()) return;
+
+    const query = `${song.trim()} easiest way to play guitar simplified tutorial`;
+    window.open(`https://www.youtube.com/results?search_query=${encoded(query)}`, "_blank");
   };
 
   window.setMood = function (mood) {
