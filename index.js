@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const openWhenResult = document.getElementById("openWhenResult");
   const randomNoteText = document.getElementById("randomNoteText");
   const creativeResult = document.getElementById("creativeResult");
+  const strummingResult = document.getElementById("strummingResult");
   const memoryInput = document.getElementById("memoryInput");
   const memoryList = document.getElementById("memoryList");
 
@@ -28,6 +29,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const songOfTheDayUrl = "https://open.spotify.com/playlist/7vxmBleyVTOaW8CHRHCxox";
 
+  const backgroundTracks = [
+    "soft-country-1.mp3.mp3",
+    "soft-country-2.mp3.mp3",
+    "soft-country-3.mp3.mp3",
+    "soft-country-4.mp3.mp3"
+  ];
+
+  let currentTrackIndex = -1;
   let noteIndex = 0;
 
   const notes = [
@@ -288,6 +297,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+  const strummingRoutes = {
+    slow: {
+      message: "Slow strumming mode. Take the speed right down until the rhythm feels boring. Boring means it is starting to work.",
+      query: "slow country guitar strumming practice beginner"
+    },
+    chord: {
+      message: "Chord change timing mode. This is for that annoying moment where the chord moves and the rhythm falls apart.",
+      query: "how to change chords while strumming guitar lesson"
+    },
+    patterns: {
+      message: "Down-up pattern mode. Get the hand moving steadily first, then worry about making it pretty.",
+      query: "country guitar down up strumming patterns tutorial"
+    },
+    metronome: {
+      message: "Metronome mode. Painful, annoying, brutally useful. Tiny tempo, clean rhythm, no rushing.",
+      query: "slow guitar strumming metronome practice"
+    },
+    simplify: {
+      message: "Simplify mode. You do not need the fancy pattern straight away. Strip it back, make it playable, then build it up.",
+      query: "how to simplify strumming pattern guitar song"
+    }
+  };
+
   function cleanIdea(value) {
     const trimmed = value.trim();
     if (!trimmed) return "feeling safe";
@@ -491,10 +523,30 @@ ${t.ch2}`
     return array[Math.floor(Math.random() * array.length)];
   }
 
+  function pickRandomTrack() {
+    if (!bgMusic || backgroundTracks.length === 0) return;
+
+    let nextIndex = Math.floor(Math.random() * backgroundTracks.length);
+
+    if (backgroundTracks.length > 1) {
+      while (nextIndex === currentTrackIndex) {
+        nextIndex = Math.floor(Math.random() * backgroundTracks.length);
+      }
+    }
+
+    currentTrackIndex = nextIndex;
+    bgMusic.src = backgroundTracks[currentTrackIndex];
+    bgMusic.load();
+  }
+
   function startMusicSoftly() {
     if (!bgMusic) return;
 
-    bgMusic.volume = 0.18;
+    if (!bgMusic.src) {
+      pickRandomTrack();
+    }
+
+    bgMusic.volume = 0.14;
 
     bgMusic.play().catch(function () {
       console.log("Music could not start yet.");
@@ -515,6 +567,17 @@ ${t.ch2}`
     } else {
       bgMusic.pause();
     }
+  };
+
+  window.changeBackgroundMusic = function () {
+    if (!bgMusic) return;
+
+    pickRandomTrack();
+    bgMusic.volume = 0.14;
+
+    bgMusic.play().catch(function () {
+      console.log("Music could not change yet.");
+    });
   };
 
   window.showPage = function (pageId) {
@@ -588,6 +651,16 @@ ${t.ch2}`
 
     creativeResult.classList.remove("hidden");
     creativeResult.innerText = route.message;
+
+    window.open(`https://www.youtube.com/results?search_query=${encoded(route.query)}`, "_blank");
+  };
+
+  window.openStrummingRoute = function (routeName) {
+    const route = strummingRoutes[routeName];
+    if (!route) return;
+
+    strummingResult.classList.remove("hidden");
+    strummingResult.innerText = route.message;
 
     window.open(`https://www.youtube.com/results?search_query=${encoded(route.query)}`, "_blank");
   };
