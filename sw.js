@@ -1,4 +1,4 @@
-const CACHE_NAME = "naomi-country-rose-v1600";
+const CACHE_NAME = "naomi-country-rose-v1700";
 
 self.addEventListener("install", function () {
   self.skipWaiting();
