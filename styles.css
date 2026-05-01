@@ -702,3 +702,7 @@ button:hover,
     font-size: 14px;
   }
 }
+.creative-go-btn {
+  margin-top: 14px;
+  width: 100%;
+}
