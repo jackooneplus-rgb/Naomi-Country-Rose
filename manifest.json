@@ -1,0 +1,19 @@
+{
+  "name": "Naomi Country Rose",
+  "short_name": "Naomi Rose",
+  "description": "A little country rose corner made for Naomi.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1b0d08",
+  "theme_color": "#1b0d08",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "naomi-bg.png.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
