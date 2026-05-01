@@ -15,9 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const dailyNote = document.getElementById("dailyNote");
   const dailyRoseNote = document.getElementById("dailyRoseNote");
   const dailyChallenge = document.getElementById("dailyChallenge");
+  const dailyMission = document.getElementById("dailyMission");
   const dailyVibe = document.getElementById("dailyVibe");
   const bgMusic = document.getElementById("bgMusic");
-  const musicStatus = document.getElementById("musicStatus");
+  const moodResult = document.getElementById("moodResult");
+  const openWhenResult = document.getElementById("openWhenResult");
+  const randomNoteText = document.getElementById("randomNoteText");
 
   const jacksonNumber = "447557683963";
 
@@ -62,30 +65,136 @@ document.addEventListener("DOMContentLoaded", function () {
     "I pinky promise this is only the beginning."
   ];
 
-  const challenges = [
-    "Play G → D → Em → C slowly three times.",
-    "Pick one song and learn only the first verse.",
-    "Play C → G → Am → F and hum anything over it.",
-    "Try a down-down-up strumming pattern for two minutes.",
-    "Play one chord perfectly, then stop. Tiny wins count.",
-    "Find a song you love and learn just the intro.",
-    "Play along to one soft country song, even if it is messy.",
-    "Record ten seconds of guitar. No perfection allowed.",
-    "Try switching from G to D without looking.",
-    "Play something badly on purpose. That still counts."
+  const guitarPrompts = [
+    "Take one feeling from today and turn it into a four-chord loop.",
+    "Write a chorus using chords you already love.",
+    "Play something sad, then make the last chord hopeful.",
+    "Pick a real song and change the strumming pattern until it feels like yours.",
+    "Create a 20-second intro that sounds like sunset.",
+    "Play one progression softly, then louder, then softer again.",
+    "Write one lyric line and find chords that match it.",
+    "Turn a voice note idea into a melody.",
+    "Play a song you know, but slow it right down.",
+    "Take a happy chord progression and make it sound emotional."
+  ];
+
+  const missions = [
+    "Send Jackson one line from a song idea.",
+    "Pick one song you want to learn next.",
+    "Play for five minutes with zero pressure.",
+    "Write one lyric you’d normally be too shy to say.",
+    "Save one song starter in the memory jar.",
+    "Find a tutorial for a song you love.",
+    "Record ten seconds of a chord idea.",
+    "Open the playlist and pick tonight’s favourite.",
+    "Play something messy and let it count.",
+    "Send Jackson a tiny update, obviously."
   ];
 
   const vibes = [
-    "Soft acoustic country by a fire.",
-    "Coffee, guitar, and sunset.",
-    "Morgan Wallen sadness but make it cosy.",
-    "Slow country love song energy.",
-    "Front porch guitar practice.",
-    "Cute chaos with a capo.",
-    "Warm blanket and soft strings.",
-    "Country rose campfire night.",
-    "Quiet song, loud feelings.",
-    "One chord at a time."
+    "Tonight’s vibe: soft acoustic country by a fire.",
+    "Tonight’s vibe: coffee, guitar, and sunset.",
+    "Tonight’s vibe: slow country love song energy.",
+    "Tonight’s vibe: front porch guitar practice.",
+    "Tonight’s vibe: warm blanket and soft strings.",
+    "Tonight’s vibe: country rose campfire night.",
+    "Tonight’s vibe: quiet song, loud feelings.",
+    "Tonight’s vibe: one chord at a time."
+  ];
+
+  const moodData = {
+    happy: {
+      note: "Good. I hope you let yourself enjoy it without waiting for the other shoe to drop.",
+      prompt: "Write something bright using your favourite open chords.",
+      song: "A happy country chorus about smiling at the phone."
+    },
+    overwhelmed: {
+      note: "You don’t have to solve the whole world tonight. Shrink the day down to one breath.",
+      prompt: "Play one chord slowly until your shoulders drop.",
+      song: "A soft song about finding calm in the noise."
+    },
+    missing: {
+      note: "Missing someone just means your heart knows where home is.",
+      prompt: "Play a slow progression and leave space between the chords.",
+      song: "A country song about missing someone’s voice."
+    },
+    cosy: {
+      note: "This is blanket weather, guitar nearby, no pressure, soft little smile energy.",
+      prompt: "Write a warm chorus that sounds like a Sunday morning.",
+      song: "A cosy country song about coffee and quiet love."
+    },
+    chaotic: {
+      note: "Beautiful chaos is still beautiful. Slightly dangerous, but beautiful.",
+      prompt: "Play something messy on purpose, then find the best bit.",
+      song: "A funny chaotic love song about being a menace."
+    },
+    tired: {
+      note: "Rest counts. Soft days count. Doing less is not failing.",
+      prompt: "Play the gentlest version of a song you already know.",
+      song: "A sleepy country song about being looked after."
+    }
+  };
+
+  const openWhenMessages = {
+    miss: "Open when you miss me: I’m still here. I’m probably thinking about you anyway, because apparently I have no chill.",
+    overwhelmed: "Open when you feel overwhelmed: you don’t need to be brave right now. You just need to breathe, unclench your jaw, and let one thing be enough.",
+    laugh: "Open when you need a laugh: you are stuck with a man who built an entire app to flirt with you. That is either romantic or deeply unwell. Possibly both.",
+    guitar: "Open when you want to play guitar: don’t chase perfect. Play the first chord, then the next. The song will meet you halfway.",
+    loved: "Open when you need reminding you’re loved: you are wanted, chosen, cared for, and absolutely not too much.",
+    sleepy: "Open when you can’t sleep: close your eyes, breathe slowly, and remember you don’t have to carry tomorrow tonight."
+  };
+
+  const thereMessages = [
+    "Imagine I’m sat next to you. No pressure. Just you, the guitar, and one soft chord.",
+    "Play it messy. I’d still be sat there grinning like you’d just sold out Wembley.",
+    "Slow it down. The song doesn’t need to run away from you.",
+    "If you forget the next chord, laugh. That counts as musical expression.",
+    "Pretend I’m there saying, ‘go on, one more time,’ because I definitely would.",
+    "Play the chord like it owes you money. Softly, obviously.",
+    "You don’t need perfect. I’d rather hear your version.",
+    "Take a breath before the chorus. That’s where the feeling lives.",
+    "If your fingers mess it up, blame the guitar. Very professional.",
+    "Play it like nobody is judging you. Because I’m not.",
+    "One chord at a time, country rose.",
+    "Make it softer than you think it needs to be.",
+    "Let the ugly first version exist. That’s how songs are born.",
+    "I’d sit through every restart.",
+    "If you get stuck, hum it first.",
+    "Play the bit you like again. That’s allowed.",
+    "Don’t perform it. Feel it.",
+    "Let it sound like tonight.",
+    "You and a guitar is already enough.",
+    "Play it like it’s a secret.",
+    "Tiny mistakes make it human.",
+    "You don’t have to impress anyone here.",
+    "Try the chorus slower.",
+    "Try it like a campfire song.",
+    "Try it like you’re singing it to one person.",
+    "If it makes you smile, keep it.",
+    "If it makes you feel something, keep it.",
+    "Don’t overthink the bridge. Bridges are drama queens anyway.",
+    "Your hands know more than your head thinks they do.",
+    "Make the last chorus warmer.",
+    "Play it like Sunday morning.",
+    "Play it like a voice note you never sent.",
+    "Play it like a promise.",
+    "Start quiet. Build gently.",
+    "Let the silence between chords do some work.",
+    "You’re doing better than you think.",
+    "That chord change? Try it again. It might be the one.",
+    "Sing it badly first. That’s the law.",
+    "If I was there, I’d ask for one more song.",
+    "This bit doesn’t need to be perfect. It needs to be yours.",
+    "You can always come back to the song tomorrow.",
+    "The song is allowed to be unfinished.",
+    "A chorus can be tiny and still hit hard.",
+    "Give the song somewhere to breathe.",
+    "Let the guitar answer the feeling.",
+    "Some songs arrive sideways. Let it.",
+    "Play it like your heart is telling the truth.",
+    "Try changing just one word.",
+    "Try changing just one chord.",
+    "I’m proud of the attempt, not just the result."
   ];
 
   const surpriseIdeas = [
@@ -191,45 +300,31 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   const progressions = [
-    { capo: "2", chords: "G - D - Em - C", strum: "D D U U D U", lines: ["G              D", "Em             C", "G              D", "C              D"] },
-    { capo: "3", chords: "C - G - Am - F", strum: "D D U D U", lines: ["C              G", "Am             F", "C              G", "Am             F"] },
-    { capo: "1", chords: "D - A - Bm - G", strum: "D U D U D U", lines: ["D              A", "Bm             G", "D              A", "Bm             G"] },
-    { capo: "0", chords: "Am - F - C - G", strum: "D D U U D", lines: ["Am             F", "C              G", "Am             F", "C              G"] }
+    {
+      capo: "2",
+      chords: "G - D - Em - C",
+      strum: "D D U U D U",
+      lines: ["G              D", "Em             C", "G              D", "C              D"]
+    },
+    {
+      capo: "3",
+      chords: "C - G - Am - F",
+      strum: "D D U D U",
+      lines: ["C              G", "Am             F", "C              G", "Am             F"]
+    },
+    {
+      capo: "1",
+      chords: "D - A - Bm - G",
+      strum: "D U D U D U",
+      lines: ["D              A", "Bm             G", "D              A", "Bm             G"]
+    },
+    {
+      capo: "0",
+      chords: "Am - F - C - G",
+      strum: "D D U U D",
+      lines: ["Am             F", "C              G", "Am             F", "C              G"]
+    }
   ];
-
-  window.enterSite = function () {
-    introPage.classList.add("hidden");
-    homePage.classList.remove("hidden");
-
-    if (bgMusic) {
-      bgMusic.muted = false;
-      bgMusic.volume = 0.8;
-      bgMusic.currentTime = 0;
-
-      bgMusic.play()
-        .then(function () {
-          if (musicStatus) musicStatus.innerText = "You are beautiful to me";
-        })
-        .catch(function (error) {
-          console.log("Music play failed:", error);
-          if (musicStatus) musicStatus.innerText = "You are beautiful to me";
-        });
-    }
-  };
-
-  window.toggleBackgroundMusic = function () {
-    if (!bgMusic) return;
-
-    if (bgMusic.paused) {
-      bgMusic.muted = false;
-      bgMusic.volume = 0.8;
-      bgMusic.play().catch(function (error) {
-        console.log("Music toggle failed:", error);
-      });
-    } else {
-      bgMusic.pause();
-    }
-  };
 
   function cleanIdea(value) {
     const trimmed = value.trim();
@@ -238,20 +333,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function titleCase(text) {
-    return text
-      .split(" ")
-      .filter(Boolean)
-      .map(function (word) {
-        return word.charAt(0).toUpperCase() + word.slice(1);
-      })
-      .join(" ");
+    return text.split(" ").filter(Boolean).map(function (word) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }).join(" ");
   }
 
   function chooseProgression(idea) {
     const lower = idea.toLowerCase();
-    if (lower.includes("coffee") || lower.includes("guitar") || lower.includes("morning")) return progressions[1];
-    if (lower.includes("miss") || lower.includes("need") || lower.includes("call") || lower.includes("distance")) return progressions[2];
-    if (lower.includes("sad") || lower.includes("storm") || lower.includes("night") || lower.includes("cry")) return progressions[3];
+
+    if (lower.includes("coffee") || lower.includes("guitar") || lower.includes("morning")) {
+      return progressions[1];
+    }
+
+    if (lower.includes("miss") || lower.includes("need") || lower.includes("call") || lower.includes("distance")) {
+      return progressions[2];
+    }
+
+    if (lower.includes("sad") || lower.includes("storm") || lower.includes("night") || lower.includes("cry")) {
+      return progressions[3];
+    }
+
     return progressions[0];
   }
 
@@ -420,6 +521,36 @@ ${t.ch2}`
     });
   }
 
+  function randomFrom(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  function startMusicSoftly() {
+    if (!bgMusic) return;
+
+    bgMusic.volume = 0.18;
+
+    bgMusic.play().catch(function () {
+      console.log("Music could not start yet.");
+    });
+  }
+
+  window.enterSite = function () {
+    introPage.classList.add("hidden");
+    homePage.classList.remove("hidden");
+    startMusicSoftly();
+  };
+
+  window.toggleBackgroundMusic = function () {
+    if (!bgMusic) return;
+
+    if (bgMusic.paused) {
+      startMusicSoftly();
+    } else {
+      bgMusic.pause();
+    }
+  };
+
   window.showPage = function (pageId) {
     hideAllPages();
     document.getElementById(pageId).classList.remove("hidden");
@@ -438,8 +569,33 @@ ${t.ch2}`
   window.refreshDailyRose = function () {
     noteIndex = (noteIndex + 1) % notes.length;
     dailyRoseNote.innerText = notes[noteIndex];
-    dailyChallenge.innerText = challenges[(noteIndex + 2) % challenges.length];
-    dailyVibe.innerText = vibes[(noteIndex + 4) % vibes.length];
+    dailyChallenge.innerText = randomFrom(guitarPrompts);
+    dailyMission.innerText = randomFrom(missions);
+    dailyVibe.innerText = randomFrom(vibes);
+  };
+
+  window.pickMood = function (mood) {
+    const data = moodData[mood];
+    if (!data) return;
+
+    moodResult.classList.remove("hidden");
+    moodResult.innerHTML = `
+      <strong>For this mood:</strong><br>
+      ${data.note}<br><br>
+      <strong>Guitar spark:</strong> ${data.prompt}<br>
+      <strong>Song idea:</strong> ${data.song}
+    `;
+
+    songIdea.value = data.song;
+  };
+
+  window.openWhen = function (type) {
+    openWhenResult.classList.remove("hidden");
+    openWhenResult.innerText = openWhenMessages[type] || "I’ve got you.";
+  };
+
+  window.randomLoveNote = function () {
+    randomNoteText.innerText = randomFrom(notes);
   };
 
   window.quickSong = function (song) {
@@ -462,8 +618,7 @@ ${t.ch2}`
   };
 
   window.surpriseMe = function () {
-    const randomIdea = surpriseIdeas[Math.floor(Math.random() * surpriseIdeas.length)];
-    songIdea.value = randomIdea;
+    songIdea.value = randomFrom(surpriseIdeas);
     generateSong();
   };
 
@@ -480,6 +635,7 @@ ${t.ch2}`
   };
 
   window.togglePracticeMessage = function () {
+    practiceMessage.innerText = randomFrom(thereMessages);
     practiceMessage.classList.toggle("hidden");
   };
 
@@ -533,7 +689,8 @@ ${t.ch2}`
 
     dailyRoseNote.innerText = notes[noteIndex];
     dailyNote.innerText = notes[noteIndex];
-    dailyChallenge.innerText = challenges[today % challenges.length];
+    dailyChallenge.innerText = guitarPrompts[today % guitarPrompts.length];
+    dailyMission.innerText = missions[today % missions.length];
     dailyVibe.innerText = vibes[today % vibes.length];
   }
 
