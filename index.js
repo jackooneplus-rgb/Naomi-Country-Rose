@@ -136,12 +136,17 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const openWhenMessages = {
-    miss: "Open when you miss me: I’m still here. I’m probably thinking about you anyway, because apparently I have no chill.",
-    overwhelmed: "Open when you feel overwhelmed: you don’t need to be brave right now. You just need to breathe, unclench your jaw, and let one thing be enough.",
-    laugh: "Open when you need a laugh: you are stuck with a man who built an entire app to flirt with you. That is either romantic or deeply unwell. Possibly both.",
-    guitar: "Open when you want to play guitar: don’t chase perfect. Play the first chord, then the next. The song will meet you halfway.",
-    loved: "Open when you need reminding you’re loved: you are wanted, chosen, cared for, and absolutely not too much.",
-    sleepy: "Open when you can’t sleep: close your eyes, breathe slowly, and remember you don’t have to carry tomorrow tonight."
+    miss: "I’m still here. Even when we’re not together, you’re not forgotten. You’re in my thoughts more than you probably realise, and I hope this feels like a little reminder that you matter to me.",
+
+    overwhelmed: "You don’t need to be brave right now. Just breathe, unclench your jaw, and let one thing be enough. You don’t have to carry everything at once. I’ve got you.",
+
+    laugh: "You are allowed to laugh today, even if everything feels a bit messy. Tiny smile. Tiny breath. Tiny reset. Also, yes, I probably would still clap if you played one wrong chord with confidence.",
+
+    guitar: "Don’t chase perfect. Play what feels honest. One chord, one line, one tiny idea. The song doesn’t need to be finished tonight — it just needs to start somewhere.",
+
+    loved: "You are loved exactly as you are. Not when you’re calmer, not when you’re stronger, not when you’ve got everything figured out. Right now. This version of you is enough.",
+
+    sleepy: "You don’t have to carry tomorrow tonight. Let your mind slow down, let your body rest, and remember that you’re safe. I hope you sleep softly."
   };
 
   const thereMessages = [
