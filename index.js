@@ -53,89 +53,112 @@ document.addEventListener("DOMContentLoaded", function () {
     return output;
   }
 
+  function dayOfYear() {
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 0);
+    const diff = now - start;
+    const oneDay = 1000 * 60 * 60 * 24;
+    return Math.floor(diff / oneDay);
+  }
+
   const notes = makeCombinations(
     [
-      "You are loved more than you realise.",
-      "You are safe with me.",
-      "You do not have to be perfect to be loved.",
-      "You make ordinary days feel warmer.",
-      "You are not too much.",
-      "You deserve softness today.",
-      "You are my favourite little country rose.",
-      "You are allowed to rest.",
-      "You make me smile without even trying.",
-      "You are worth showing up for.",
-      "You matter to me, properly.",
-      "You are doing better than you think.",
-      "You do not need to earn care.",
-      "You are allowed to have bad days and still be loved.",
-      "You are the kind of person people write songs about.",
-      "You make the world feel softer.",
-      "You have a beautiful heart.",
-      "You are wanted exactly as you are.",
-      "You are allowed to be held through the messy bits.",
-      "You are someone I would choose again."
+      "Naomi, you are warm in a way people do not forget.",
+      "Naomi, you have this beautiful country rose heart.",
+      "Naomi, you are soft, funny, brave, and a little bit magic.",
+      "Naomi, you make ordinary little moments feel alive.",
+      "Naomi, you are the kind of woman people write songs about.",
+      "Naomi, you are not too much. You are full of life.",
+      "Naomi, you have a heart that still gives even when life has asked a lot from you.",
+      "Naomi, your softness is not weakness. It is one of the loveliest things about you.",
+      "Naomi, you have chaotic sunshine energy in the best possible way.",
+      "Naomi, you are a country rose with a flamethrower heart.",
+      "Naomi, you are brave in ways you probably do not even notice.",
+      "Naomi, you make people feel wanted just by being fully yourself.",
+      "Naomi, you are funny, affectionate, stubborn, soft, and ridiculously easy to care about.",
+      "Naomi, you have the kind of laugh that could make a hard day loosen its grip.",
+      "Naomi, you are not ordinary. You are a whole little world.",
+      "Naomi, your heart is bigger than you give yourself credit for.",
+      "Naomi, you are beautiful in the way you care, joke, love, and keep going.",
+      "Naomi, you have survived hard things and somehow stayed warm.",
+      "Naomi, you are the sort of person who turns coffee, music, and chaos into something lovely.",
+      "Naomi, you are rare as fuck, and yes, I said it.",
+      "Naomi, you do not just give attention. You give feeling.",
+      "Naomi, your weird little playful side is one of my favourite things.",
+      "Naomi, you have old-school love energy in a world full of half-hearted nonsense.",
+      "Naomi, you are stronger than you think and softer than you let on.",
+      "Naomi, you are deeply loved in all your chaos, kindness, and country rose madness."
     ],
     [
-      "If today feels heavy, borrow a little bit of my strength.",
-      "If your brain is loud, take one breath and let the world slow down.",
-      "If you feel tired, you do not have to carry everything tonight.",
-      "If you feel overwhelmed, shrink the day down to one tiny step.",
-      "If you feel unsure, remember I am not running.",
-      "If you need me, call me. I mean that.",
-      "If you cannot find the words, you do not have to force them.",
-      "If you need quiet, I will sit in the quiet with you.",
-      "If you need a smile, I hope this gives you one.",
-      "If the day has been a lot, you still made it through.",
-      "If you feel emotional, you are still safe.",
-      "If you feel messy, you are still completely lovable.",
-      "If you need reassurance, take this as your reminder.",
-      "If you need to pause, pause. Nothing bad happens because you rested.",
-      "If you feel far away, you are still close to me.",
-      "If you doubt yourself, let me believe in you for a minute.",
-      "If your heart feels tired, let it rest here for a second.",
-      "If you need softness, this is your little corner of it.",
-      "If you feel like hiding, you do not have to hide from me.",
-      "If you forget how much you matter, open this again."
+      "You carry so much, but you still find room for humour, affection, and little moments that make people smile.",
+      "You have this way of making someone feel chosen, not just noticed.",
+      "You do not have to hide the fragile parts here. They are safe with me.",
+      "You are not hard to love. You are someone worth learning properly.",
+      "You make boring things feel special, and that is genuinely rare.",
+      "You are allowed to be soft without apologising for it.",
+      "You are allowed to be tired and still be wonderful.",
+      "You are allowed to need reassurance without feeling guilty for it.",
+      "You are allowed to have big feelings. They do not make you too much.",
+      "You have proper mum energy, romantic energy, funny menace energy, and soft guitar girl energy all at once.",
+      "You notice effort, and that says a lot about the kind of heart you have.",
+      "You are not cold or detached. You feel things deeply, and that is part of what makes you beautiful.",
+      "You make people want to show up better, not because you demand it, but because you deserve it.",
+      "You have a playful side that makes everything feel lighter.",
+      "You have a nurturing side that shows how much love lives in you.",
+      "You have a romantic side that still believes in real connection, and that is precious.",
+      "You have a creative brain that turns songs, pictures, little notes, and memories into something meaningful.",
+      "You are not just someone to text. You are someone to build little rituals with.",
+      "You are the kind of woman who makes someone want to protect the softness, not take advantage of it.",
+      "You have been through things, but you still have warmth in you. That is massive.",
+      "You are funny without trying too hard, which is annoyingly charming.",
+      "You are affectionate in a way that feels real, messy, human, and alive.",
+      "You do not need to perform today. You can just be Naomi.",
+      "You are not a burden. You are someone worth carrying things with.",
+      "You are allowed to be looked after, even if you are used to looking after everyone else."
     ],
     [
-      "I’ve got you.",
-      "I am proud of you.",
-      "You are my favourite person.",
-      "You are safe here.",
-      "I’m not going anywhere.",
-      "You’re doing enough.",
-      "You are deeply cared for.",
-      "You deserve gentle love.",
-      "You are easy to love.",
-      "I choose you in the small ways too.",
-      "You make me want to be better.",
-      "I hope this feels like a tiny hug.",
-      "No brave face required.",
-      "You are allowed to be looked after.",
-      "You are loved on the hard days too.",
-      "You are a beautiful little menace, respectfully.",
-      "You are the note, the song, and the reason.",
-      "I hope this makes your heart feel lighter.",
-      "You are never a burden to me.",
-      "Open this whenever you need reminding."
+      "I hope this makes you feel safe.",
+      "I hope this reminds you how special you are.",
+      "I hope you smile at this, even a tiny bit.",
+      "I hope you know I mean every word.",
+      "I hope this feels like a little hug through the screen.",
+      "I hope today is gentle with you.",
+      "I hope you never forget how much you matter.",
+      "I hope this little corner makes your heart feel lighter.",
+      "I hope you feel chosen, because you are.",
+      "I hope this reminds you that you are deeply cared for.",
+      "I hope you know your softness is safe here.",
+      "I hope you know your chaotic sunshine heart is loved here.",
+      "I hope you feel proud of yourself today.",
+      "I hope this gives you a tiny bit of peace.",
+      "I hope you know you do not have to be strong every second.",
+      "I hope you know you are enough before you do anything else.",
+      "I hope you feel seen in the good way, not the scary way.",
+      "I hope this makes the day feel a little less heavy.",
+      "I hope you know I would choose your weird little world again.",
+      "I hope you feel loved on the hard days too.",
+      "I hope this app feels like a soft place to land.",
+      "I hope you know there is nothing boring about you.",
+      "I hope your heart gets the kindness it gives everyone else.",
+      "I hope this makes you feel wanted, not pressured.",
+      "I hope you open this whenever you forget how amazing you are."
     ],
-    180
+    220
   );
 
   const openWhenMessages = {
     miss: makeCombinations(
       [
-        "I’m still here.",
-        "Even when we’re not together, you are not forgotten.",
-        "Missing someone just means your heart knows where home is.",
-        "If you miss me, breathe for a second.",
-        "You are not alone just because I’m not next to you.",
-        "I hope this feels like me squeezing your hand from wherever I am.",
-        "Being apart does not make you any less cared for.",
-        "You are still in my day, even when you are not in the room.",
-        "If you miss me, let this be a tiny bridge back to me.",
-        "You are close to my heart, even from miles away."
+        "Naomi, I’m still here.",
+        "Naomi, even when we’re not together, you are not forgotten.",
+        "Naomi, missing someone just means your heart knows where home is.",
+        "Naomi, if you miss me, breathe for a second.",
+        "Naomi, you are not alone just because I’m not next to you.",
+        "Naomi, I hope this feels like me squeezing your hand from wherever I am.",
+        "Naomi, being apart does not make you any less cared for.",
+        "Naomi, you are still in my day, even when you are not in the room.",
+        "Naomi, if you miss me, let this be a tiny bridge back to me.",
+        "Naomi, you are close to my heart, even from miles away."
       ],
       [
         "You matter to me more than distance can touch.",
@@ -166,16 +189,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     overwhelmed: makeCombinations(
       [
-        "You don’t need to solve everything tonight.",
-        "You are allowed to pause.",
-        "You don’t have to be brave every second.",
-        "Shrink the day down.",
-        "You are not failing because you feel overwhelmed.",
-        "You do not need to carry the whole day at once.",
-        "Let the next minute be smaller than the whole problem.",
-        "You are allowed to put the heavy thing down for a bit.",
-        "Nothing about you is too much for me.",
-        "Take one soft breath."
+        "Naomi, you don’t need to solve everything tonight.",
+        "Naomi, you are allowed to pause.",
+        "Naomi, you don’t have to be brave every second.",
+        "Naomi, shrink the day down.",
+        "Naomi, you are not failing because you feel overwhelmed.",
+        "Naomi, you do not need to carry the whole day at once.",
+        "Naomi, let the next minute be smaller than the whole problem.",
+        "Naomi, you are allowed to put the heavy thing down for a bit.",
+        "Naomi, nothing about you is too much for me.",
+        "Naomi, take one soft breath."
       ],
       [
         "Just breathe, unclench your jaw, and let one tiny thing be enough.",
@@ -206,16 +229,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     smile: makeCombinations(
       [
-        "You are allowed to smile today.",
-        "I hope this makes your face do that cute little smile thing.",
-        "You are my favourite notification.",
-        "If this makes you smile, I win.",
-        "You deserve a little happy moment for no reason.",
-        "I hope this gives your heart a tiny bit of sunshine.",
-        "Your smile is one of my favourite things.",
-        "You make soft moments feel special.",
-        "This is your permission slip to smile at your phone.",
-        "I hope the day gets a little lighter after this."
+        "Naomi, you are allowed to smile today.",
+        "Naomi, I hope this makes your face do that cute little smile thing.",
+        "Naomi, you are my favourite notification.",
+        "Naomi, if this makes you smile, I win.",
+        "Naomi, you deserve a little happy moment for no reason.",
+        "Naomi, I hope this gives your heart a tiny bit of sunshine.",
+        "Naomi, your smile is one of my favourite things.",
+        "Naomi, you make soft moments feel special.",
+        "Naomi, this is your permission slip to smile at your phone.",
+        "Naomi, I hope the day gets a little lighter after this."
       ],
       [
         "Even if everything feels a bit messy.",
@@ -246,16 +269,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     loved: makeCombinations(
       [
-        "You are loved exactly as you are.",
-        "You do not need to earn love.",
-        "You are wanted, chosen, and cared for.",
-        "You deserve someone who shows up in the small moments too.",
-        "If your brain tells you you’re hard to love, it is talking rubbish.",
-        "You are loved on the easy days and the complicated days.",
-        "There is no version of you that needs to perform to deserve care.",
-        "You are not a burden.",
-        "You are enough before you do anything else.",
-        "You are loved in the quiet ways too."
+        "Naomi, you are loved exactly as you are.",
+        "Naomi, you do not need to earn love.",
+        "Naomi, you are wanted, chosen, and cared for.",
+        "Naomi, you deserve someone who shows up in the small moments too.",
+        "Naomi, if your brain tells you you’re hard to love, it is talking rubbish.",
+        "Naomi, you are loved on the easy days and the complicated days.",
+        "Naomi, there is no version of you that needs to perform to deserve care.",
+        "Naomi, you are not a burden.",
+        "Naomi, you are enough before you do anything else.",
+        "Naomi, you are loved in the quiet ways too."
       ],
       [
         "Not when you are calmer. Not when you are stronger. Right now.",
@@ -286,16 +309,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     sleepy: makeCombinations(
       [
-        "You don’t have to carry tomorrow tonight.",
-        "Close your eyes and let the day be done.",
-        "Sleep softly.",
-        "Let your thoughts slow down.",
-        "I hope you sleep like someone who knows they are loved.",
-        "Rest is not lazy.",
-        "Your mind can stop working now.",
-        "Put the heavy thoughts down.",
-        "Let this be your little goodnight hug.",
-        "You are safe, loved, and allowed to sleep."
+        "Naomi, you don’t have to carry tomorrow tonight.",
+        "Naomi, close your eyes and let the day be done.",
+        "Naomi, sleep softly.",
+        "Naomi, let your thoughts slow down.",
+        "Naomi, I hope you sleep like someone who knows they are loved.",
+        "Naomi, rest is not lazy.",
+        "Naomi, your mind can stop working now.",
+        "Naomi, put the heavy thoughts down.",
+        "Naomi, let this be your little goodnight hug.",
+        "Naomi, you are safe, loved, and allowed to sleep."
       ],
       [
         "Your body is allowed to rest.",
@@ -326,16 +349,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     hardday: makeCombinations(
       [
-        "Today might have been hard, but you are still here.",
-        "Bad days do not make you weak.",
-        "You don’t have to turn the day into a lesson.",
-        "Take the armour off for a minute.",
-        "You are loved on the difficult days too.",
-        "You made it through a day that tried to take too much.",
-        "You do not have to be okay immediately.",
-        "Hard days are allowed to end softly.",
-        "You can start again tomorrow.",
-        "You are still you, even after a rough day."
+        "Naomi, today might have been hard, but you are still here.",
+        "Naomi, bad days do not make you weak.",
+        "Naomi, you don’t have to turn the day into a lesson.",
+        "Naomi, take the armour off for a minute.",
+        "Naomi, you are loved on the difficult days too.",
+        "Naomi, you made it through a day that tried to take too much.",
+        "Naomi, you do not have to be okay immediately.",
+        "Naomi, hard days are allowed to end softly.",
+        "Naomi, you can start again tomorrow.",
+        "Naomi, you are still you, even after a rough day."
       ],
       [
         "That matters.",
@@ -366,16 +389,16 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const guitarPrompts = [
-    "Take one feeling from today and turn it into a four-chord loop.",
-    "Write a chorus using chords you already love.",
-    "Play something sad, then make the last chord hopeful.",
-    "Pick a real song and change the strumming pattern until it feels like yours.",
-    "Create a 20-second intro that feels warm, soft, and honest.",
-    "Play one progression softly, then louder, then softer again.",
-    "Write one lyric line and find chords that match it.",
-    "Turn a voice note idea into a melody.",
-    "Play a song you know, but slow it right down.",
-    "Take a happy chord progression and make it sound emotional."
+    "Naomi, take one feeling from today and turn it into a four-chord loop.",
+    "Naomi, write a chorus using chords you already love.",
+    "Naomi, play something sad, then make the last chord hopeful.",
+    "Naomi, pick a real song and change the strumming pattern until it feels like yours.",
+    "Naomi, create a 20-second intro that feels warm, soft, and honest.",
+    "Naomi, play one progression softly, then louder, then softer again.",
+    "Naomi, write one lyric line and find chords that match it.",
+    "Naomi, turn a voice note idea into a melody.",
+    "Naomi, play a song you know, but slow it right down.",
+    "Naomi, take a happy chord progression and make it sound emotional."
   ];
 
   const missions = [
@@ -392,82 +415,82 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   const vibes = [
-    "Little vibe check ✨ Soft acoustic guitar and a quiet little smile.",
-    "Little vibe check ✨ Cosy country music, warm lights, and no pressure.",
-    "Little vibe check ✨ Slow chords, soft feelings, and one song at a time.",
-    "Little vibe check ✨ Blanket, guitar, and something gentle in the background.",
-    "Little vibe check ✨ Calm heart, soft strings, and a little reminder you’re loved.",
-    "Little vibe check ✨ Country rose energy — warm, soft, and a tiny bit magic.",
-    "Little vibe check ✨ Quiet song, safe place, softer thoughts.",
-    "Little vibe check ✨ One chord, one breath, one tiny reset.",
-    "Little vibe check ✨ Slow country love song without needing to rush anything.",
-    "Little vibe check ✨ Gentle guitar and the world can wait five minutes.",
-    "Little vibe check ✨ Soft lamp light, quiet strings, and letting the day fall away.",
-    "Little vibe check ✨ No pressure, no performance, just music that feels kind.",
-    "Little vibe check ✨ Tiny smile, warm heart, one song you actually want to play.",
-    "Little vibe check ✨ Cosy chaos, soft guitar, and being loved through all of it.",
-    "Little vibe check ✨ A little country song and a safer place to land.",
-    "Little vibe check ✨ Slow hands, soft chords, gentle thoughts.",
-    "Little vibe check ✨ Play something honest, even if it’s messy.",
-    "Little vibe check ✨ Warm drink, soft song, and breathing properly for once.",
-    "Little vibe check ✨ Country music, comfy clothes, and absolutely no stress.",
-    "Little vibe check ✨ One peaceful minute that belongs only to you."
+    "Little vibe check ✨ Naomi, soft acoustic guitar and a quiet little smile.",
+    "Little vibe check ✨ Naomi, cosy country music, warm lights, and no pressure.",
+    "Little vibe check ✨ Naomi, slow chords, soft feelings, and one song at a time.",
+    "Little vibe check ✨ Naomi, blanket, guitar, and something gentle in the background.",
+    "Little vibe check ✨ Naomi, calm heart, soft strings, and a little reminder you’re loved.",
+    "Little vibe check ✨ Naomi, country rose energy — warm, soft, and a tiny bit magic.",
+    "Little vibe check ✨ Naomi, quiet song, safe place, softer thoughts.",
+    "Little vibe check ✨ Naomi, one chord, one breath, one tiny reset.",
+    "Little vibe check ✨ Naomi, slow country love song without needing to rush anything.",
+    "Little vibe check ✨ Naomi, gentle guitar and the world can wait five minutes.",
+    "Little vibe check ✨ Naomi, soft lamp light, quiet strings, and letting the day fall away.",
+    "Little vibe check ✨ Naomi, no pressure, no performance, just music that feels kind.",
+    "Little vibe check ✨ Naomi, tiny smile, warm heart, one song you actually want to play.",
+    "Little vibe check ✨ Naomi, cosy chaos, soft guitar, and being loved through all of it.",
+    "Little vibe check ✨ Naomi, a little country song and a safer place to land.",
+    "Little vibe check ✨ Naomi, slow hands, soft chords, gentle thoughts.",
+    "Little vibe check ✨ Naomi, play something honest, even if it’s messy.",
+    "Little vibe check ✨ Naomi, warm drink, soft song, and breathing properly for once.",
+    "Little vibe check ✨ Naomi, country music, comfy clothes, and absolutely no stress.",
+    "Little vibe check ✨ Naomi, one peaceful minute that belongs only to you."
   ];
 
   const moodData = {
     happy: {
-      note: "Good. I hope you let yourself enjoy it without waiting for the other shoe to drop.",
+      note: "Naomi, I love when you let yourself enjoy the good moments. You deserve the light ones too.",
       prompt: "Write something bright using your favourite open chords.",
       song: "A happy country chorus about smiling at the phone."
     },
     overwhelmed: {
-      note: "You don’t have to solve the whole world tonight. Shrink the day down to one breath.",
+      note: "Naomi, you don’t have to solve the whole world tonight. Shrink the day down to one breath.",
       prompt: "Play one chord slowly until your shoulders drop.",
       song: "A soft song about finding calm in the noise."
     },
     missing: {
-      note: "Missing someone just means your heart knows where home is.",
+      note: "Naomi, missing someone just means your heart knows where home is.",
       prompt: "Play a slow progression and leave space between the chords.",
       song: "A country song about missing someone’s voice."
     },
     cosy: {
-      note: "This is blanket weather, guitar nearby, no pressure, soft little smile energy.",
+      note: "Naomi, this is blanket weather, guitar nearby, no pressure, soft little smile energy.",
       prompt: "Write a warm chorus that sounds like a Sunday morning.",
       song: "A cosy country song about coffee and quiet love."
     },
     chaotic: {
-      note: "Beautiful chaos is still beautiful. Slightly dangerous, but beautiful.",
+      note: "Naomi, beautiful chaos is still beautiful. Slightly dangerous, but beautiful.",
       prompt: "Play something messy on purpose, then find the best bit.",
       song: "A funny chaotic love song about being a menace."
     },
     tired: {
-      note: "Rest counts. Soft days count. Doing less is not failing.",
+      note: "Naomi, rest counts. Soft days count. Doing less is not failing.",
       prompt: "Play the gentlest version of a song you already know.",
       song: "A sleepy country song about being looked after."
     }
   };
 
   const thereMessages = [
-    "Imagine I’m sat next to you. No pressure. Just you, the guitar, and one soft chord.",
-    "Play it messy. I’d still be sat there grinning like you’d just sold out Wembley.",
-    "Slow it down. The song doesn’t need to run away from you.",
-    "If you forget the next chord, laugh. That counts as musical expression.",
-    "Pretend I’m there saying, ‘go on, one more time,’ because I definitely would.",
-    "You don’t need perfect. I’d rather hear your version.",
-    "Take a breath before the chorus. That’s where the feeling lives.",
-    "Play it like nobody is judging you. Because I’m not.",
-    "One chord at a time, country rose.",
-    "Make it softer than you think it needs to be.",
-    "Let the ugly first version exist. That’s how songs are born.",
-    "I’d sit through every restart.",
-    "If you get stuck, hum it first.",
-    "Play the bit you like again. That’s allowed.",
-    "Don’t perform it. Feel it.",
-    "Let it sound like tonight.",
-    "You and a guitar is already enough.",
-    "Tiny mistakes make it human.",
-    "You don’t have to impress anyone here.",
-    "I’m proud of the attempt, not just the result."
+    "Naomi, imagine I’m sat next to you. No pressure. Just you, the guitar, and one soft chord.",
+    "Naomi, play it messy. I’d still be sat there grinning like you’d just sold out Wembley.",
+    "Naomi, slow it down. The song doesn’t need to run away from you.",
+    "Naomi, if you forget the next chord, laugh. That counts as musical expression.",
+    "Naomi, pretend I’m there saying, ‘go on, one more time,’ because I definitely would.",
+    "Naomi, you don’t need perfect. I’d rather hear your version.",
+    "Naomi, take a breath before the chorus. That’s where the feeling lives.",
+    "Naomi, play it like nobody is judging you. Because I’m not.",
+    "Naomi, one chord at a time, country rose.",
+    "Naomi, make it softer than you think it needs to be.",
+    "Naomi, let the ugly first version exist. That’s how songs are born.",
+    "Naomi, I’d sit through every restart.",
+    "Naomi, if you get stuck, hum it first.",
+    "Naomi, play the bit you like again. That’s allowed.",
+    "Naomi, don’t perform it. Feel it.",
+    "Naomi, let it sound like tonight.",
+    "Naomi, you and a guitar is already enough.",
+    "Naomi, tiny mistakes make it human.",
+    "Naomi, you don’t have to impress anyone here.",
+    "Naomi, I’m proud of the attempt, not just the result."
   ];
 
   const surpriseIdeas = [
@@ -543,121 +566,121 @@ document.addEventListener("DOMContentLoaded", function () {
   const creativeRoutes = {
     soft: {
       messages: [
-        "Soft mode. Something gentle, pretty, and easy to settle into.",
-        "This is the soft-guitar route. No pressure, no showing off, just something that feels warm.",
-        "Soft mode unlocked. Let’s find something gentle enough to make the room feel quieter.",
-        "This one is for calm fingers, warm chords, and a song that does not ask too much.",
-        "Soft means beautiful, not boring. Let’s find something that feels like a tiny exhale.",
-        "This route is for soft acoustic energy — gentle, warm, and easy to sit with.",
-        "Go gentle here. Find something that feels like a candle and a quiet room.",
-        "Soft mode is perfect when you want music to feel safe rather than impressive.",
-        "This is for the kind of song that makes your shoulders drop.",
-        "Let’s find something soft enough that the guitar feels like company."
+        "Naomi, soft mode. Something gentle, pretty, and easy to settle into.",
+        "Naomi, this is the soft-guitar route. No pressure, no showing off, just something that feels warm.",
+        "Naomi, soft mode unlocked. Let’s find something gentle enough to make the room feel quieter.",
+        "Naomi, this one is for calm fingers, warm chords, and a song that does not ask too much.",
+        "Naomi, soft means beautiful, not boring. Let’s find something that feels like a tiny exhale.",
+        "Naomi, this route is for soft acoustic energy — gentle, warm, and easy to sit with.",
+        "Naomi, go gentle here. Find something that feels like a candle and a quiet room.",
+        "Naomi, soft mode is perfect when you want music to feel safe rather than impressive.",
+        "Naomi, this is for the kind of song that makes your shoulders drop.",
+        "Naomi, let’s find something soft enough that the guitar feels like company."
       ],
       query: "soft acoustic country guitar tutorial easy"
     },
     happy: {
       messages: [
-        "Happy mode. Something warm, bright, and fun to play.",
-        "This route is for sunny chords and a song that makes you smile while playing.",
-        "Happy mode unlocked. Let’s find something light, cute, and actually fun.",
-        "This is for the good mood version of you — the one that deserves a soundtrack.",
-        "Let’s find something cheerful without being cheesy.",
-        "Happy guitar route. Warm chords, easy rhythm, good little vibe.",
-        "Pick something that makes the room feel brighter.",
-        "This is your little sunshine guitar route.",
-        "Let’s find a song that feels like smiling at your phone.",
-        "Happy mode says: play something that makes your heart feel lighter."
+        "Naomi, happy mode. Something warm, bright, and fun to play.",
+        "Naomi, this route is for sunny chords and a song that makes you smile while playing.",
+        "Naomi, happy mode unlocked. Let’s find something light, cute, and actually fun.",
+        "Naomi, this is for the good mood version of you — the one that deserves a soundtrack.",
+        "Naomi, let’s find something cheerful without being cheesy.",
+        "Naomi, happy guitar route. Warm chords, easy rhythm, good little vibe.",
+        "Naomi, pick something that makes the room feel brighter.",
+        "Naomi, this is your little sunshine guitar route.",
+        "Naomi, let’s find a song that feels like smiling at your phone.",
+        "Naomi, happy mode says: play something that makes your heart feel lighter."
       ],
       query: "happy country songs guitar tutorial acoustic"
     },
     sad: {
       messages: [
-        "Sad but okay mode. A softer song for when feelings are big but manageable.",
-        "This is not wallowing. This is letting the guitar carry a bit of the feeling.",
-        "Sad but okay means gentle, honest, and not too heavy.",
-        "Let’s find something emotional but still safe to play.",
-        "This route is for big feelings with soft edges.",
-        "A sad song can still be comforting. Let’s find one of those.",
-        "This is for when your heart needs a little acoustic honesty.",
-        "Not dramatic. Just real, soft, and human.",
-        "Let’s find a song that understands the feeling without making it worse.",
-        "Sad but okay mode: soft chords, honest lyrics, no emotional ambush."
+        "Naomi, sad but okay mode. A softer song for when feelings are big but manageable.",
+        "Naomi, this is not wallowing. This is letting the guitar carry a bit of the feeling.",
+        "Naomi, sad but okay means gentle, honest, and not too heavy.",
+        "Naomi, let’s find something emotional but still safe to play.",
+        "Naomi, this route is for big feelings with soft edges.",
+        "Naomi, a sad song can still be comforting. Let’s find one of those.",
+        "Naomi, this is for when your heart needs a little acoustic honesty.",
+        "Naomi, not dramatic. Just real, soft, and human.",
+        "Naomi, let’s find a song that understands the feeling without making it worse.",
+        "Naomi, sad but okay mode: soft chords, honest lyrics, no emotional ambush."
       ],
       query: "easy sad country songs guitar tutorial acoustic"
     },
     miss: {
       messages: [
-        "Missing-you mode. Songs that say the thing without needing to over-explain it.",
-        "This route is for when distance feels loud and music can say it softer.",
-        "Let’s find something that sounds like missing someone, but warmly.",
-        "This is the ‘wish you were here’ guitar route.",
-        "A missing-you song should feel tender, not miserable.",
-        "This route is for soft ache, warm chords, and a little honesty.",
-        "Let’s find something that feels close even when someone is not nearby.",
-        "Missing-you mode: gentle, romantic, and not too heavy.",
-        "This is for a song that says ‘I miss you’ without shouting it.",
-        "Let’s find a tutorial that feels like a voice note with chords."
+        "Naomi, missing-you mode. Songs that say the thing without needing to over-explain it.",
+        "Naomi, this route is for when distance feels loud and music can say it softer.",
+        "Naomi, let’s find something that sounds like missing someone, but warmly.",
+        "Naomi, this is the ‘wish you were here’ guitar route.",
+        "Naomi, a missing-you song should feel tender, not miserable.",
+        "Naomi, this route is for soft ache, warm chords, and a little honesty.",
+        "Naomi, let’s find something that feels close even when someone is not nearby.",
+        "Naomi, missing-you mode: gentle, romantic, and not too heavy.",
+        "Naomi, this is for a song that says ‘I miss you’ without shouting it.",
+        "Naomi, let’s find a tutorial that feels like a voice note with chords."
       ],
       query: "country songs about missing someone guitar tutorial"
     },
     romantic: {
       messages: [
-        "Romantic mode. Soft country love songs with proper heart in them.",
-        "This route is for warm love songs, not cringe ones.",
-        "Romantic mode unlocked. Let’s find something that feels personal and soft.",
-        "This is for country love songs that actually land.",
-        "Let’s find a song that feels like a hand squeeze.",
-        "Romantic does not need to be cheesy. It just needs to feel true.",
-        "This route is for soft lyrics, easy chords, and proper feeling.",
-        "Let’s find a love song that sounds like it means it.",
-        "This is for a song that feels like being chosen.",
-        "Romantic mode: warm chords, honest lyrics, country rose energy."
+        "Naomi, romantic mode. Soft country love songs with proper heart in them.",
+        "Naomi, this route is for warm love songs, not cringe ones.",
+        "Naomi, romantic mode unlocked. Let’s find something that feels personal and soft.",
+        "Naomi, this is for country love songs that actually land.",
+        "Naomi, let’s find a song that feels like a hand squeeze.",
+        "Naomi, romantic does not need to be cheesy. It just needs to feel true.",
+        "Naomi, this route is for soft lyrics, easy chords, and proper feeling.",
+        "Naomi, let’s find a love song that sounds like it means it.",
+        "Naomi, this is for a song that feels like being chosen.",
+        "Naomi, romantic mode: warm chords, honest lyrics, country rose energy."
       ],
       query: "romantic country love songs guitar tutorial easy"
     },
     session: {
       messages: [
-        "Proper guitar session mode. Chords, strumming, technique, and getting better.",
-        "This is the practice route. Not cute. Not fluffy. Actual progress.",
-        "Proper session mode means we are going after the bit that is annoying you.",
-        "This is for getting cleaner, tighter, and more confident.",
-        "Practice mode unlocked. Slow, focused, and useful.",
-        "This route is for when you want to actually improve, not just noodle around.",
-        "Let’s find something that teaches properly and does not waffle.",
-        "This is the ‘right, let’s nail this’ route.",
-        "Proper guitar session: clear lesson, useful technique, no chaos.",
-        "This is for building the skill, not just surviving the song."
+        "Naomi, proper guitar session mode. Chords, strumming, technique, and getting better.",
+        "Naomi, this is the practice route. Not cute. Not fluffy. Actual progress.",
+        "Naomi, proper session mode means we are going after the bit that is annoying you.",
+        "Naomi, this is for getting cleaner, tighter, and more confident.",
+        "Naomi, practice mode unlocked. Slow, focused, and useful.",
+        "Naomi, this route is for when you want to actually improve, not just noodle around.",
+        "Naomi, let’s find something that teaches properly and does not waffle.",
+        "Naomi, this is the ‘right, let’s nail this’ route.",
+        "Naomi, proper guitar session: clear lesson, useful technique, no chaos.",
+        "Naomi, this is for building the skill, not just surviving the song."
       ],
       query: "country guitar lesson intermediate strumming chords"
     },
     write: {
       messages: [
-        "Songwriter mode. Build something of your own from a feeling and a few chords.",
-        "This route is for turning a tiny feeling into an actual song idea.",
-        "Songwriter mode unlocked. You do not need perfect lyrics. You need a starting point.",
-        "Let’s find something that helps you write, not overthink.",
-        "This is for making your own little country song from scratch.",
-        "A song can start with one line. That is enough.",
-        "This route is for lyrics, chords, and a tiny bit of bravery.",
-        "Let’s find a lesson that turns feelings into structure.",
-        "Songwriting mode: messy first drafts are the whole point.",
-        "This is for making something that sounds like you."
+        "Naomi, songwriter mode. Build something of your own from a feeling and a few chords.",
+        "Naomi, this route is for turning a tiny feeling into an actual song idea.",
+        "Naomi, songwriter mode unlocked. You do not need perfect lyrics. You need a starting point.",
+        "Naomi, let’s find something that helps you write, not overthink.",
+        "Naomi, this is for making your own little country song from scratch.",
+        "Naomi, a song can start with one line. That is enough.",
+        "Naomi, this route is for lyrics, chords, and a tiny bit of bravery.",
+        "Naomi, let’s find a lesson that turns feelings into structure.",
+        "Naomi, songwriting mode: messy first drafts are the whole point.",
+        "Naomi, this is for making something that sounds like you."
       ],
       query: "how to write a country song on guitar chords lyrics"
     },
     calm: {
       messages: [
-        "Calm mode. Gentle guitar, softer thoughts, no pressure.",
-        "This route is for slowing everything down without needing to explain why.",
-        "Calm mode unlocked. Let’s find something peaceful and easy to sit with.",
-        "This is for when your nervous system needs a little acoustic blanket.",
-        "Let’s find something gentle enough to quiet the room.",
-        "Calm mode means no pressure, just soft strings and breathing room.",
-        "This is for music that helps the day stop shouting.",
-        "Let’s find a guitar route that feels like a reset.",
-        "Calm mode: gentle, slow, warm, and safe.",
-        "This is for when you need the guitar to help you land."
+        "Naomi, calm mode. Gentle guitar, softer thoughts, no pressure.",
+        "Naomi, this route is for slowing everything down without needing to explain why.",
+        "Naomi, calm mode unlocked. Let’s find something peaceful and easy to sit with.",
+        "Naomi, this is for when your nervous system needs a little acoustic blanket.",
+        "Naomi, let’s find something gentle enough to quiet the room.",
+        "Naomi, calm mode means no pressure, just soft strings and breathing room.",
+        "Naomi, this is for music that helps the day stop shouting.",
+        "Naomi, let’s find a guitar route that feels like a reset.",
+        "Naomi, calm mode: gentle, slow, warm, and safe.",
+        "Naomi, this is for when you need the guitar to help you land."
       ],
       query: "calming acoustic country guitar lesson"
     }
@@ -665,27 +688,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const strummingRoutes = {
     slow: {
-      message: "Slow strumming mode. Take the pattern right down until your hand stops panicking.",
+      message: "Naomi, slow strumming mode. Take the pattern right down until your hand stops panicking.",
       query: "slow country guitar strumming practice beginner"
     },
     timing: {
-      message: "Chord-change timing mode. Practise changing chords without losing the rhythm.",
+      message: "Naomi, chord-change timing mode. Practise changing chords without losing the rhythm.",
       query: "how to change chords while strumming guitar lesson"
     },
     downup: {
-      message: "Down-up pattern mode. Get the hand moving steady before worrying about fancy stuff.",
+      message: "Naomi, down-up pattern mode. Get the hand moving steady before worrying about fancy stuff.",
       query: "country guitar down up strumming patterns tutorial"
     },
     hammer: {
-      message: "Hammer-ons and pull-offs mode. Tiny country details that make simple chords sound prettier.",
+      message: "Naomi, hammer-ons and pull-offs mode. Tiny country details that make simple chords sound prettier.",
       query: "easy guitar hammer ons and pull offs country lesson"
     },
     pentatonic: {
-      message: "Pentatonic mode. This is where little country fills and lead bits start making sense.",
+      message: "Naomi, pentatonic mode. This is where little country fills and lead bits start making sense.",
       query: "beginner country guitar pentatonic scale patterns lesson"
     },
     slides: {
-      message: "Slides and country licks mode. Little flavour bits that make it sound less basic.",
+      message: "Naomi, slides and country licks mode. Little flavour bits that make it sound less basic.",
       query: "easy country guitar slides and licks lesson beginner"
     }
   };
@@ -999,7 +1022,7 @@ ${t.ch2}`
   };
 
   window.openWhen = function (type) {
-    const messages = openWhenMessages[type] || ["I’ve got you."];
+    const messages = openWhenMessages[type] || ["Naomi, I’ve got you."];
     openWhenResult.classList.remove("hidden");
     openWhenResult.innerText = randomFrom(messages);
   };
@@ -1172,11 +1195,11 @@ ${t.ch2}`
   }
 
   function setDailyContent() {
-    const today = new Date().getDate();
+    const today = dayOfYear();
     noteIndex = today % notes.length;
 
-    dailyRoseNote.innerText = notes[today % notes.length];
-    dailyNote.innerText = notes[today % notes.length];
+    dailyRoseNote.innerText = notes[noteIndex];
+    dailyNote.innerText = notes[(today + 17) % notes.length];
     dailyChallenge.innerText = guitarPrompts[today % guitarPrompts.length];
     dailyMission.innerText = missions[today % missions.length];
     dailyVibe.innerText = vibes[today % vibes.length];
