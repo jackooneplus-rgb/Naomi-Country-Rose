@@ -37,22 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentTrackIndex = -1;
   let noteIndex = 0;
 
-  function makeCombinations(openings, middles, endings, limit) {
-    const output = [];
-
-    openings.forEach(function (opening) {
-      middles.forEach(function (middle) {
-        endings.forEach(function (ending) {
-          if (output.length < limit) {
-            output.push(`${opening} ${middle} ${ending}`);
-          }
-        });
-      });
-    });
-
-    return output;
-  }
-
   function dayOfYear() {
     const now = new Date();
     const start = new Date(now.getFullYear(), 0, 0);
@@ -61,331 +45,346 @@ document.addEventListener("DOMContentLoaded", function () {
     return Math.floor(diff / oneDay);
   }
 
-  const notes = makeCombinations(
-    [
-      "Naomi, you are warm in a way people do not forget.",
-      "Naomi, you have this beautiful country rose heart.",
-      "Naomi, you are soft, funny, brave, and a little bit magic.",
-      "Naomi, you make ordinary little moments feel alive.",
-      "Naomi, you are the kind of woman people write songs about.",
-      "Naomi, you are not too much. You are full of life.",
-      "Naomi, you have a heart that still gives even when life has asked a lot from you.",
-      "Naomi, your softness is not weakness. It is one of the loveliest things about you.",
-      "Naomi, you have chaotic sunshine energy in the best possible way.",
-      "Naomi, you are a country rose with a flamethrower heart.",
-      "Naomi, you are brave in ways you probably do not even notice.",
-      "Naomi, you make people feel wanted just by being fully yourself.",
-      "Naomi, you are funny, affectionate, stubborn, soft, and ridiculously easy to care about.",
-      "Naomi, you have the kind of laugh that could make a hard day loosen its grip.",
-      "Naomi, you are not ordinary. You are a whole little world.",
-      "Naomi, your heart is bigger than you give yourself credit for.",
-      "Naomi, you are beautiful in the way you care, joke, love, and keep going.",
-      "Naomi, you have survived hard things and somehow stayed warm.",
-      "Naomi, you are the sort of person who turns coffee, music, and chaos into something lovely.",
-      "Naomi, you are rare as fuck, and yes, I said it.",
-      "Naomi, you do not just give attention. You give feeling.",
-      "Naomi, your weird little playful side is one of my favourite things.",
-      "Naomi, you have old-school love energy in a world full of half-hearted nonsense.",
-      "Naomi, you are stronger than you think and softer than you let on.",
-      "Naomi, you are deeply loved in all your chaos, kindness, and country rose madness."
-    ],
-    [
-      "You carry so much, but you still find room for humour, affection, and little moments that make people smile.",
-      "You have this way of making someone feel chosen, not just noticed.",
-      "You do not have to hide the fragile parts here. They are safe with me.",
-      "You are not hard to love. You are someone worth learning properly.",
-      "You make boring things feel special, and that is genuinely rare.",
-      "You are allowed to be soft without apologising for it.",
-      "You are allowed to be tired and still be wonderful.",
-      "You are allowed to need reassurance without feeling guilty for it.",
-      "You are allowed to have big feelings. They do not make you too much.",
-      "You have proper mum energy, romantic energy, funny menace energy, and soft guitar girl energy all at once.",
-      "You notice effort, and that says a lot about the kind of heart you have.",
-      "You are not cold or detached. You feel things deeply, and that is part of what makes you beautiful.",
-      "You make people want to show up better, not because you demand it, but because you deserve it.",
-      "You have a playful side that makes everything feel lighter.",
-      "You have a nurturing side that shows how much love lives in you.",
-      "You have a romantic side that still believes in real connection, and that is precious.",
-      "You have a creative brain that turns songs, pictures, little notes, and memories into something meaningful.",
-      "You are not just someone to text. You are someone to build little rituals with.",
-      "You are the kind of woman who makes someone want to protect the softness, not take advantage of it.",
-      "You have been through things, but you still have warmth in you. That is massive.",
-      "You are funny without trying too hard, which is annoyingly charming.",
-      "You are affectionate in a way that feels real, messy, human, and alive.",
-      "You do not need to perform today. You can just be Naomi.",
-      "You are not a burden. You are someone worth carrying things with.",
-      "You are allowed to be looked after, even if you are used to looking after everyone else."
-    ],
-    [
-      "I hope this makes you feel safe.",
-      "I hope this reminds you how special you are.",
-      "I hope you smile at this, even a tiny bit.",
-      "I hope you know I mean every word.",
-      "I hope this feels like a little hug through the screen.",
-      "I hope today is gentle with you.",
-      "I hope you never forget how much you matter.",
-      "I hope this little corner makes your heart feel lighter.",
-      "I hope you feel chosen, because you are.",
-      "I hope this reminds you that you are deeply cared for.",
-      "I hope you know your softness is safe here.",
-      "I hope you know your chaotic sunshine heart is loved here.",
-      "I hope you feel proud of yourself today.",
-      "I hope this gives you a tiny bit of peace.",
-      "I hope you know you do not have to be strong every second.",
-      "I hope you know you are enough before you do anything else.",
-      "I hope you feel seen in the good way, not the scary way.",
-      "I hope this makes the day feel a little less heavy.",
-      "I hope you know I would choose your weird little world again.",
-      "I hope you feel loved on the hard days too.",
-      "I hope this app feels like a soft place to land.",
-      "I hope you know there is nothing boring about you.",
-      "I hope your heart gets the kindness it gives everyone else.",
-      "I hope this makes you feel wanted, not pressured.",
-      "I hope you open this whenever you forget how amazing you are."
-    ],
-    220
-  );
+  function randomFrom(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  function randomNoRepeat(array, storageKey, recentLimit) {
+    if (!array || array.length === 0) return "";
+
+    const limit = Math.min(recentLimit || 30, Math.max(1, array.length - 1));
+    let recent = JSON.parse(localStorage.getItem(storageKey) || "[]");
+
+    let available = array.filter(function (item) {
+      return !recent.includes(item);
+    });
+
+    if (available.length === 0) {
+      recent = [];
+      available = array.slice();
+    }
+
+    const chosen = randomFrom(available);
+
+    recent.unshift(chosen);
+    recent = recent.slice(0, limit);
+
+    localStorage.setItem(storageKey, JSON.stringify(recent));
+
+    return chosen;
+  }
+
+  const sweetNotes = [
+    "Naomi, you make normal little moments feel special. That is one of my favourite things about you.",
+    "Naomi, you have this way of making coffee, music, chaos and a random message feel like a whole little memory.",
+    "Naomi, you are not just lovely. You are interesting lovely. The dangerous kind.",
+    "Naomi, you have country rose energy — soft, warm, beautiful, and somehow still capable of causing absolute chaos.",
+    "Naomi, you are the kind of woman who makes a quiet evening feel like it matters.",
+    "Naomi, I love that you can be soft and strong at the same time. It is honestly one of your best things.",
+    "Naomi, you make people feel wanted in a way that feels real, not forced.",
+    "Naomi, you are warm in the kind of way that stays with people.",
+    "Naomi, you have this soft romantic side that makes everything feel a bit more alive.",
+    "Naomi, you are the sort of person who turns a walk, a song, or a silly little moment into something memorable.",
+    "Naomi, there is nothing boring about you. Even your chaos has personality.",
+    "Naomi, you have a heart that still gives, even when life has asked a lot from it.",
+    "Naomi, I hope you know how rare it is to be funny, caring, affectionate and brave all at once.",
+    "Naomi, you make ordinary days feel softer just by being in them.",
+    "Naomi, you are my favourite little country rose, and yes, that is soppy. I am standing by it.",
+    "Naomi, you are beautiful in a way that is not just about looks. It is in how you care, joke, feel and keep going.",
+    "Naomi, you have this way of making someone feel chosen, not just noticed.",
+    "Naomi, your softness is one of the loveliest things about you. Do not hide it.",
+    "Naomi, you are one of those people who can make a small thing feel massive in the best way.",
+    "Naomi, you deserve love that notices the little things about you.",
+    "Naomi, you are not just someone to talk to. You are someone to build little rituals with.",
+    "Naomi, your heart is loud in the best way. Even when you joke, you still feel things deeply.",
+    "Naomi, you have the kind of warmth that makes people want to stay close.",
+    "Naomi, you are not too much. You are full of life, and that is different.",
+    "Naomi, you have this funny little magic where you can be soppy, cheeky and caring all in the same sentence.",
+    "Naomi, I hope this app feels like a soft place to land when the day has been a lot.",
+    "Naomi, you make country songs make more sense. That is very annoying and very cute.",
+    "Naomi, you are the kind of person who makes someone want to be consistent, not casual.",
+    "Naomi, you are beautiful because you care deeply and still find ways to laugh.",
+    "Naomi, I love that you notice effort. That says so much about your heart.",
+    "Naomi, you are romantic without being fake. It feels messy, human and real.",
+    "Naomi, you are soft in the places that matter and strong in the places life made you be.",
+    "Naomi, you make being affectionate feel easy, not awkward.",
+    "Naomi, there is something very lovely about how fully you feel things.",
+    "Naomi, you have a whole little world in you — music, humour, care, chaos, softness and stubbornness.",
+    "Naomi, you are the sort of woman someone remembers after one proper conversation.",
+    "Naomi, I hope you know how much your warmth means.",
+    "Naomi, your heart has survived things and still stayed open. That is huge.",
+    "Naomi, you deserve to feel safe, wanted and properly appreciated.",
+    "Naomi, you are not hard work. You are worth the work.",
+    "Naomi, your smile should have its own warning label.",
+    "Naomi, you have this way of being funny without losing the softness underneath.",
+    "Naomi, you are the kind of person who makes a house feel warmer.",
+    "Naomi, I hope you feel seen in the good way, not the scary way.",
+    "Naomi, you make small romantic things feel massive because you actually feel them.",
+    "Naomi, you are gentle without being boring and strong without being cold.",
+    "Naomi, your playful side is honestly elite. Chaotic, but elite.",
+    "Naomi, you are the kind of woman who deserves old-school effort and modern consistency.",
+    "Naomi, I love how your brain jumps between serious, silly, soppy and random. It is very you.",
+    "Naomi, you have this rare mix of mum energy, romantic energy and absolute menace energy.",
+    "Naomi, you do not just give attention. You give feeling.",
+    "Naomi, you make someone want to show up better.",
+    "Naomi, you deserve a love that feels like peace but still gives butterflies.",
+    "Naomi, I hope every time you open this, it reminds you that you matter.",
+    "Naomi, your weirdness is not something to tolerate. It is part of the charm.",
+    "Naomi, you make people feel like they belong in your little world.",
+    "Naomi, you are soft chaos with a good heart. Very dangerous. Very lovely.",
+    "Naomi, I love that you can turn the most random story into something I actually want to hear.",
+    "Naomi, you have the kind of personality that makes silence feel comfortable.",
+    "Naomi, you are not just cute. You are cute with depth. Nightmare combination.",
+    "Naomi, you have warmth, humour and heart all mixed together. That is rare.",
+    "Naomi, you are the kind of person who makes someone want to remember the details.",
+    "Naomi, I hope you never feel like you have to shrink yourself to be loved.",
+    "Naomi, your softness deserves protecting, not testing.",
+    "Naomi, you are the kind of woman who makes loyalty feel easy.",
+    "Naomi, you deserve to be treated like the rare little country rose you are.",
+    "Naomi, you can be chaotic and still be completely lovable. Both things are true.",
+    "Naomi, your caring side is beautiful, but so is the silly side that makes everything lighter.",
+    "Naomi, I hope this gives you one of those tiny smiles you try not to do.",
+    "Naomi, you are allowed to be looked after too.",
+    "Naomi, you give off ‘soft heart, strong soul, dangerous humour’ energy.",
+    "Naomi, you are one of those people who makes affection feel alive.",
+    "Naomi, I love that you are not robotic. You are expressive, funny, soppy and real.",
+    "Naomi, you are the kind of person who makes someone want to write songs badly and mean every word.",
+    "Naomi, you deserve someone who sees the mum, the woman, the romantic, the chaos and the soft heart.",
+    "Naomi, you are lovable on the easy days and the messy ones.",
+    "Naomi, your heart is not too much. It is just not made for half-hearted people.",
+    "Naomi, you make the world feel less grey.",
+    "Naomi, I hope you know how much light you carry, even when you feel tired.",
+    "Naomi, you have a kind of beauty that comes from being fully human.",
+    "Naomi, you make me want to build little things just to make you smile.",
+    "Naomi, this is your reminder that you are cared for in the details.",
+    "Naomi, you are funny, soft, resilient and wildly lovable. Annoying, really.",
+    "Naomi, you are the sort of person who deserves love notes hidden in ordinary days.",
+    "Naomi, you have this lovely way of making affection feel playful instead of heavy.",
+    "Naomi, your heart deserves consistency, not confusion.",
+    "Naomi, you are a little world of music, coffee, chaos, care and warmth.",
+    "Naomi, I hope you know someone can see your chaos and still think, yes, that one.",
+    "Naomi, you deserve to feel chosen without having to ask twice.",
+    "Naomi, your smile, your humour and your heart are a ridiculous combination.",
+    "Naomi, you are not just someone’s good morning message. You are the reason they want to send one.",
+    "Naomi, you make gentle things feel exciting.",
+    "Naomi, you are the kind of woman who makes small promises feel big.",
+    "Naomi, I hope you feel wrapped up by this little note.",
+    "Naomi, you have a heart that makes people want to be careful with it.",
+    "Naomi, you are proof that soft does not mean weak.",
+    "Naomi, you are allowed to be both the sunshine and the storm.",
+    "Naomi, I hope this reminds you that your weird little world is beautiful.",
+    "Naomi, you make ordinary words feel warmer.",
+    "Naomi, you deserve the kind of love that pays attention.",
+    "Naomi, you are the best kind of trouble.",
+    "Naomi, you are someone worth choosing properly.",
+    "Naomi, you are not background noise. You are the whole song.",
+    "Naomi, I hope today gives you something gentle back.",
+    "Naomi, you are the kind of person who makes effort feel worth it.",
+    "Naomi, you are soft enough to love deeply and strong enough to keep going.",
+    "Naomi, you are the country rose. No notes. Actually, many notes. This app is full of them.",
+    "Naomi, I hope you feel special because you are.",
+    "Naomi, your heart is one of your best features.",
+    "Naomi, you make someone want to slow down and actually enjoy the moment.",
+    "Naomi, you are not just lovely when you are happy. You are lovely when you are tired, messy and real too.",
+    "Naomi, you make affection feel like home.",
+    "Naomi, you deserve a love that feels steady enough to relax into.",
+    "Naomi, you are the kind of woman who can make a normal Tuesday feel romantic.",
+    "Naomi, I hope this catches you at the exact moment you need it.",
+    "Naomi, you are allowed to believe good things can stay.",
+    "Naomi, you are beautifully, dangerously, wonderfully you."
+  ];
+
+  const funnyNotes = [
+    "Naomi, you are cute, funny and slightly unhinged. Dangerous combo.",
+    "Naomi, you are basically country rose energy with a side quest problem.",
+    "Naomi, you being adorable and chaotic at the same time feels illegal.",
+    "Naomi, you have the emotional range of a love song and the random energy of a group chat at 2am.",
+    "Naomi, you are soft, sweet and probably one bad mood away from fighting a toaster.",
+    "Naomi, I do not know how you make chaos look cute, but frankly it is suspicious.",
+    "Naomi, you are a soppy little menace and I will not be taking questions.",
+    "Naomi, your vibe is ‘I need a hug’ and ‘I will absolutely cause problems’ at the same time.",
+    "Naomi, you are the human version of a country song, a coffee, and a minor disaster rolled into one.",
+    "Naomi, you have no business being this cute while being this random.",
+    "Naomi, you are the reason the phrase ‘adorable chaos’ had to be invented.",
+    "Naomi, if being lovely but slightly feral was a sport, you would be Olympic level.",
+    "Naomi, you are soft petals, strong roots, and probably a flamethrower in the shed.",
+    "Naomi, you could probably make burning toast sound like a romantic plot twist.",
+    "Naomi, your brain is a theme park and somehow I still want a season pass.",
+    "Naomi, you are cute enough to get away with nonsense. That is dangerous power.",
+    "Naomi, you give ‘old-school romance’ and ‘may accidentally start a small fire’ energy.",
+    "Naomi, you are a walking plot twist with pretty eyes and a guitar.",
+    "Naomi, you are chaos, but like premium chaos. Boutique chaos.",
+    "Naomi, you are basically a romantic comedy with country music and snacks.",
+    "Naomi, you are the kind of person who says one random thing and suddenly the day is better.",
+    "Naomi, you are adorable, but I do feel like you should come with instructions.",
+    "Naomi, you are lovely. Absolutely mad, but lovely.",
+    "Naomi, if your personality was a weather forecast, it would be sunshine with a chance of emotional damage.",
+    "Naomi, you are cute in a way that feels like a trap. Respectfully, I am walking into it.",
+    "Naomi, you make being a little bit weird look like a competitive advantage.",
+    "Naomi, you are sweet enough to melt someone and chaotic enough to confuse the health and safety team.",
+    "Naomi, you are soft country romance with gremlin settings hidden somewhere.",
+    "Naomi, you are a country rose, but one that might swear at the watering can.",
+    "Naomi, I like your weird. It is top-tier weird.",
+    "Naomi, you are proof that someone can be romantic and a menace in the same breath.",
+    "Naomi, you are not just a vibe. You are several vibes having a meeting with no agenda.",
+    "Naomi, your personality has tabs open. Many tabs. Music playing from one of them.",
+    "Naomi, you are the kind of chaos I would absolutely subscribe to.",
+    "Naomi, you are cute, funny, soppy and unpredictable. Honestly, terrible for my concentration.",
+    "Naomi, you make me want to be romantic and also ask if you have eaten properly.",
+    "Naomi, you are basically a love song with a sarcastic commentary track.",
+    "Naomi, you are a little bit sunshine and a little bit ‘where did that come from?’",
+    "Naomi, your randomness is not a flaw. It is part of the brand.",
+    "Naomi, you are charming enough that even your chaos has PR.",
+    "Naomi, you are the only person who can make emotional vulnerability and nonsense feel like the same conversation.",
+    "Naomi, you are sweet, stubborn and suspiciously good at being memorable.",
+    "Naomi, I feel like your brain has a playlist, a shopping list and a dramatic monologue all running at once.",
+    "Naomi, you are adorable enough to be a problem.",
+    "Naomi, your energy is ‘soft girl with admin issues and a guitar’. Iconic.",
+    "Naomi, you are the reason I need both a love note and a risk assessment.",
+    "Naomi, you are funny in the way that sneaks up and punches a smile out of someone.",
+    "Naomi, you are a small emotional tornado with nice hair and a good heart.",
+    "Naomi, you are a menace, but like, the kind people write songs for.",
+    "Naomi, you are very cute for someone who is clearly capable of causing chaos before breakfast."
+  ];
+
+  const deepNotes = [
+    "Naomi, you deserve love that feels safe, steady and still exciting.",
+    "Naomi, you have had to be strong for a long time, but you should not have to be strong every second.",
+    "Naomi, your softness deserves somewhere safe to land.",
+    "Naomi, you are allowed to be cared for without having to prove you deserve it.",
+    "Naomi, you deserve consistency that does not make you question where you stand.",
+    "Naomi, your heart is not too much. It just needs to be held properly.",
+    "Naomi, you can be scared and still be brave. Both things can live in you.",
+    "Naomi, I hope you know you do not have to perform happiness to be loved.",
+    "Naomi, you deserve someone who chooses you in actions, not just words.",
+    "Naomi, the parts of you that feel fragile are not flaws. They are places that deserve gentleness.",
+    "Naomi, you are allowed to need reassurance. That does not make you weak.",
+    "Naomi, you are not hard to love. You are someone worth understanding.",
+    "Naomi, you deserve a love that makes your nervous system breathe out.",
+    "Naomi, your past does not make you difficult. It makes your softness even more important.",
+    "Naomi, you can let yourself receive good things without waiting for them to disappear.",
+    "Naomi, you deserve to feel wanted without having to chase it.",
+    "Naomi, you are safe to be fully yourself here.",
+    "Naomi, you do not need to shrink the emotional parts of you to make someone stay.",
+    "Naomi, you deserve a connection that is warm, honest and steady enough to trust.",
+    "Naomi, you are not a burden on hard days. You are still loved on them.",
+    "Naomi, you can be a mum, a woman, a romantic, a mess, a fighter and a soft heart all at once.",
+    "Naomi, the fact that you still love deeply says a lot about your courage.",
+    "Naomi, you deserve love that sees your responsibilities and still sees you.",
+    "Naomi, your heart has carried a lot. It deserves kindness back.",
+    "Naomi, you are allowed to be held through the messy bits, not just admired in the easy ones.",
+    "Naomi, safety does not have to be boring. The right love can be calm and electric.",
+    "Naomi, you deserve to be someone’s first thought, not their afterthought.",
+    "Naomi, I hope you never mistake being sensitive for being weak.",
+    "Naomi, you are lovable before you fix, explain, manage or carry anything.",
+    "Naomi, you deserve someone who protects the soft parts, not someone who makes you hide them."
+  ];
+
+  const notes = sweetNotes.concat(funnyNotes, deepNotes);
 
   const openWhenMessages = {
-    miss: makeCombinations(
-      [
-        "Naomi, I’m still here.",
-        "Naomi, even when we’re not together, you are not forgotten.",
-        "Naomi, missing someone just means your heart knows where home is.",
-        "Naomi, if you miss me, breathe for a second.",
-        "Naomi, you are not alone just because I’m not next to you.",
-        "Naomi, I hope this feels like me squeezing your hand from wherever I am.",
-        "Naomi, being apart does not make you any less cared for.",
-        "Naomi, you are still in my day, even when you are not in the room.",
-        "Naomi, if you miss me, let this be a tiny bridge back to me.",
-        "Naomi, you are close to my heart, even from miles away."
-      ],
-      [
-        "You matter to me more than distance can touch.",
-        "I’m probably thinking about you too.",
-        "You are still chosen, still wanted, still cared for.",
-        "I hope this reminds you that I am still close.",
-        "Some people stay with you even when they are not beside you.",
-        "You are not out of sight or out of mind.",
-        "I carry little thoughts of you through the day.",
-        "You are one of my favourite places to come back to.",
-        "This is a little note from me to you.",
-        "You are allowed to miss me and still feel safe."
-      ],
-      [
-        "I’ve got you.",
-        "You are not forgotten.",
-        "I’m still here.",
-        "You are loved.",
-        "I hope this makes the distance feel smaller.",
-        "Come back to this whenever you need it.",
-        "You matter to me.",
-        "You are safe with me.",
-        "I’m not going anywhere.",
-        "I hope this feels like a tiny hug."
-      ],
-      120
-    ),
-
-    overwhelmed: makeCombinations(
-      [
-        "Naomi, you don’t need to solve everything tonight.",
-        "Naomi, you are allowed to pause.",
-        "Naomi, you don’t have to be brave every second.",
-        "Naomi, shrink the day down.",
-        "Naomi, you are not failing because you feel overwhelmed.",
-        "Naomi, you do not need to carry the whole day at once.",
-        "Naomi, let the next minute be smaller than the whole problem.",
-        "Naomi, you are allowed to put the heavy thing down for a bit.",
-        "Naomi, nothing about you is too much for me.",
-        "Naomi, take one soft breath."
-      ],
-      [
-        "Just breathe, unclench your jaw, and let one tiny thing be enough.",
-        "The world can wait while you put yourself back together gently.",
-        "You are human, and you are still doing your best.",
-        "One breath. One sip of water. One tiny next step.",
-        "You do not have to be okay all at once.",
-        "You do not have to carry every thought to the finish line.",
-        "Your nervous system is allowed to ask for softness.",
-        "You can slow this down without failing.",
-        "This moment does not need to be perfect.",
-        "The big thing can wait while you find your feet."
-      ],
-      [
-        "I’ve got you.",
-        "You are safe here.",
-        "One thing at a time.",
-        "That counts.",
-        "You are doing enough.",
-        "No brave face required.",
-        "You are not too much.",
-        "Let this be smaller.",
-        "I am proud of you.",
-        "You can rest for a minute."
-      ],
-      120
-    ),
-
-    smile: makeCombinations(
-      [
-        "Naomi, you are allowed to smile today.",
-        "Naomi, I hope this makes your face do that cute little smile thing.",
-        "Naomi, you are my favourite notification.",
-        "Naomi, if this makes you smile, I win.",
-        "Naomi, you deserve a little happy moment for no reason.",
-        "Naomi, I hope this gives your heart a tiny bit of sunshine.",
-        "Naomi, your smile is one of my favourite things.",
-        "Naomi, you make soft moments feel special.",
-        "Naomi, this is your permission slip to smile at your phone.",
-        "Naomi, I hope the day gets a little lighter after this."
-      ],
-      [
-        "Even if everything feels a bit messy.",
-        "Even if the day has been a lot.",
-        "Even if it is only a tiny smile.",
-        "Even if nobody else sees it.",
-        "Because tiny happy moments still count.",
-        "Because you deserve gentle things.",
-        "Because you are ridiculous amounts of lovely.",
-        "Because you make everything feel warmer.",
-        "Because this app exists to make you feel cared for.",
-        "Because you are my favourite little country rose."
-      ],
-      [
-        "Tiny smile. Tiny reset.",
-        "That still counts.",
-        "I hope you feel it.",
-        "I hope this helps.",
-        "You are loved.",
-        "You deserve this.",
-        "I am smiling too, probably.",
-        "This is me being soppy again.",
-        "You are worth every bit of effort.",
-        "Open this again whenever you need another one."
-      ],
-      120
-    ),
-
-    loved: makeCombinations(
-      [
-        "Naomi, you are loved exactly as you are.",
-        "Naomi, you do not need to earn love.",
-        "Naomi, you are wanted, chosen, and cared for.",
-        "Naomi, you deserve someone who shows up in the small moments too.",
-        "Naomi, if your brain tells you you’re hard to love, it is talking rubbish.",
-        "Naomi, you are loved on the easy days and the complicated days.",
-        "Naomi, there is no version of you that needs to perform to deserve care.",
-        "Naomi, you are not a burden.",
-        "Naomi, you are enough before you do anything else.",
-        "Naomi, you are loved in the quiet ways too."
-      ],
-      [
-        "Not when you are calmer. Not when you are stronger. Right now.",
-        "Not because you are useful. Not because you are easy. Because you are you.",
-        "Even when you are tired, messy, emotional, or unsure.",
-        "Even when you do not feel easy to be around.",
-        "Even when the day has made you doubt yourself.",
-        "Even when you need reassurance more than once.",
-        "Even when you feel like you should hide the softer bits.",
-        "Even when you are still working things out.",
-        "Even when your heart feels a little bruised.",
-        "Even when you forget it yourself."
-      ],
-      [
-        "I’ve got you.",
-        "You are not too much.",
-        "You are safe with me.",
-        "You are deeply cared for.",
-        "You are worth loving properly.",
-        "You do not have to prove anything.",
-        "You matter to me.",
-        "You are my favourite person.",
-        "I choose you.",
-        "Open this whenever you need reminding."
-      ],
-      120
-    ),
-
-    sleepy: makeCombinations(
-      [
-        "Naomi, you don’t have to carry tomorrow tonight.",
-        "Naomi, close your eyes and let the day be done.",
-        "Naomi, sleep softly.",
-        "Naomi, let your thoughts slow down.",
-        "Naomi, I hope you sleep like someone who knows they are loved.",
-        "Naomi, rest is not lazy.",
-        "Naomi, your mind can stop working now.",
-        "Naomi, put the heavy thoughts down.",
-        "Naomi, let this be your little goodnight hug.",
-        "Naomi, you are safe, loved, and allowed to sleep."
-      ],
-      [
-        "Your body is allowed to rest.",
-        "Nothing needs fixing right this second.",
-        "Tomorrow can wait outside the door.",
-        "The day is finished now.",
-        "You have done enough.",
-        "You do not need to rehearse every worry.",
-        "You can let your shoulders drop.",
-        "You can let the room be quiet.",
-        "You can stop trying to be strong for tonight.",
-        "You can come back to everything in the morning."
-      ],
-      [
-        "You are safe.",
-        "Sleep softly.",
-        "I’ve got you.",
-        "You are loved.",
-        "Goodnight, country rose.",
-        "Let your heart rest.",
-        "No brave face needed.",
-        "Tomorrow can wait.",
-        "You did enough today.",
-        "I hope you feel held."
-      ],
-      120
-    ),
-
-    hardday: makeCombinations(
-      [
-        "Naomi, today might have been hard, but you are still here.",
-        "Naomi, bad days do not make you weak.",
-        "Naomi, you don’t have to turn the day into a lesson.",
-        "Naomi, take the armour off for a minute.",
-        "Naomi, you are loved on the difficult days too.",
-        "Naomi, you made it through a day that tried to take too much.",
-        "Naomi, you do not have to be okay immediately.",
-        "Naomi, hard days are allowed to end softly.",
-        "Naomi, you can start again tomorrow.",
-        "Naomi, you are still you, even after a rough day."
-      ],
-      [
-        "That matters.",
-        "They make you human.",
-        "Sometimes surviving it is enough.",
-        "You do not need it here.",
-        "Especially then.",
-        "You got through more than people can see.",
-        "You can be tired and still be doing well.",
-        "You can feel bruised and still be beautiful.",
-        "You do not have to explain every feeling.",
-        "The day can be hard without you being wrong."
-      ],
-      [
-        "I am proud of you.",
-        "I’ve got you.",
-        "You are safe here.",
-        "You are loved.",
-        "No brave face required.",
-        "Let tonight be gentle.",
-        "You did enough.",
-        "I hope this gives you a little peace.",
-        "You can rest now.",
-        "Open this again if the day still feels heavy."
-      ],
-      120
-    )
+    miss: [
+      "Naomi, I’m still here. Even when we are not together, you are not forgotten.",
+      "Naomi, if you miss me, let this be a tiny bridge back to me.",
+      "Naomi, being apart does not make you any less cared for.",
+      "Naomi, I hope this feels like me squeezing your hand from wherever I am.",
+      "Naomi, you are still in my day, even when you are not in the room.",
+      "Naomi, you matter to me more than distance can touch.",
+      "Naomi, I hope this makes the space between us feel a little smaller.",
+      "Naomi, missing me does not mean you are alone. I am still here.",
+      "Naomi, I carry little thoughts of you through the day.",
+      "Naomi, you are one of my favourite places to come back to.",
+      "Naomi, if you miss me, breathe. I am probably thinking about you too.",
+      "Naomi, this is your tiny reminder that you are wanted.",
+      "Naomi, distance is annoying, but it does not get to win.",
+      "Naomi, I hope you feel close to me for a second while reading this.",
+      "Naomi, you are not out of sight or out of mind."
+    ],
+    overwhelmed: [
+      "Naomi, you do not need to solve everything tonight. One breath first.",
+      "Naomi, unclench your jaw. Drop your shoulders. One tiny step is enough.",
+      "Naomi, you are not failing because you feel overwhelmed. You are human.",
+      "Naomi, the whole day does not need to be carried at once.",
+      "Naomi, put the heavy thing down for a minute. You are allowed.",
+      "Naomi, your nervous system is allowed to ask for softness.",
+      "Naomi, you do not have to be brave every second.",
+      "Naomi, this moment does not need to be perfect. It just needs to pass.",
+      "Naomi, shrink the problem down to the next breath.",
+      "Naomi, you are not too much. The day is just loud.",
+      "Naomi, you can slow down without failing.",
+      "Naomi, one sip of water, one breath, one tiny reset. That counts.",
+      "Naomi, I’ve got you. No brave face required.",
+      "Naomi, you can rest for a minute. The world can wait.",
+      "Naomi, you are doing better than your brain is telling you."
+    ],
+    smile: [
+      "Naomi, you are allowed to smile today, even if everything is a bit messy.",
+      "Naomi, this is your permission slip to smile at your phone.",
+      "Naomi, I hope this makes your face do that cute little smile thing.",
+      "Naomi, if this makes you smile, I win. I love winning.",
+      "Naomi, your smile is frankly bad for my ability to act normal.",
+      "Naomi, you deserve a tiny happy moment for no reason.",
+      "Naomi, I hope this gives your heart a little bit of sunshine.",
+      "Naomi, you are ridiculous amounts of lovely. Sorry if this is inconvenient.",
+      "Naomi, smile please. Not because I said so. Because you deserve to.",
+      "Naomi, you are my favourite notification.",
+      "Naomi, I hope the day gets a little lighter after this.",
+      "Naomi, even a tiny smile counts. We are accepting small wins.",
+      "Naomi, your smile should come with a warning label.",
+      "Naomi, you make soft moments feel special.",
+      "Naomi, I am officially sending one small smile request."
+    ],
+    loved: [
+      "Naomi, you are loved exactly as you are. Not later. Now.",
+      "Naomi, you do not need to earn love by being easy all the time.",
+      "Naomi, you are wanted, chosen and cared for.",
+      "Naomi, you are not a burden. You are someone worth loving properly.",
+      "Naomi, if your brain tells you that you are hard to love, it is talking rubbish.",
+      "Naomi, you are loved on the easy days and the complicated ones.",
+      "Naomi, there is no version of you that needs to perform to deserve care.",
+      "Naomi, you are enough before you do anything else.",
+      "Naomi, you deserve love that feels safe and still exciting.",
+      "Naomi, you matter in the small moments too.",
+      "Naomi, you are deeply cared for, even when your brain gets noisy.",
+      "Naomi, you do not have to shrink yourself to be loved.",
+      "Naomi, your soft heart is safe here.",
+      "Naomi, you are worth consistency.",
+      "Naomi, open this whenever you need reminding that you are loved."
+    ],
+    sleepy: [
+      "Naomi, you do not have to carry tomorrow tonight.",
+      "Naomi, let the day be done now. You have done enough.",
+      "Naomi, sleep softly. Nothing needs fixing right this second.",
+      "Naomi, put the heavy thoughts down. You can pick them up tomorrow if you need to.",
+      "Naomi, your body is allowed to rest.",
+      "Naomi, your mind can stop working now.",
+      "Naomi, I hope you sleep like someone who knows they are loved.",
+      "Naomi, tomorrow can wait outside the door.",
+      "Naomi, let your shoulders drop. Let the room be quiet.",
+      "Naomi, no brave face needed tonight.",
+      "Naomi, this is your little goodnight hug.",
+      "Naomi, you are safe, loved and allowed to sleep.",
+      "Naomi, rest is repair. You deserve it.",
+      "Naomi, the day is finished. Let yourself land.",
+      "Naomi, goodnight, country rose."
+    ],
+    hardday: [
+      "Naomi, today might have been hard, but you are still here. That matters.",
+      "Naomi, bad days do not make you weak. They make you human.",
+      "Naomi, you do not have to turn today into a lesson. Surviving it is enough.",
+      "Naomi, take the armour off for a minute. You do not need it here.",
+      "Naomi, you are loved on difficult days too. Especially then.",
+      "Naomi, you got through more than people can see.",
+      "Naomi, you can be tired and still be doing well.",
+      "Naomi, hard days are allowed to end softly.",
+      "Naomi, you do not have to be okay immediately.",
+      "Naomi, the day can be hard without you being wrong.",
+      "Naomi, you are still you, even after a rough day.",
+      "Naomi, I am proud of you for making it through.",
+      "Naomi, let tonight be gentle with you.",
+      "Naomi, you did enough today.",
+      "Naomi, open this again if the day still feels heavy."
+    ]
   };
 
   const guitarPrompts = [
@@ -393,7 +392,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "Naomi, write a chorus using chords you already love.",
     "Naomi, play something sad, then make the last chord hopeful.",
     "Naomi, pick a real song and change the strumming pattern until it feels like yours.",
-    "Naomi, create a 20-second intro that feels warm, soft, and honest.",
+    "Naomi, create a 20-second intro that feels warm, soft and honest.",
     "Naomi, play one progression softly, then louder, then softer again.",
     "Naomi, write one lyric line and find chords that match it.",
     "Naomi, turn a voice note idea into a melody.",
@@ -416,24 +415,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const vibes = [
     "Little vibe check ✨ Naomi, soft acoustic guitar and a quiet little smile.",
-    "Little vibe check ✨ Naomi, cosy country music, warm lights, and no pressure.",
-    "Little vibe check ✨ Naomi, slow chords, soft feelings, and one song at a time.",
-    "Little vibe check ✨ Naomi, blanket, guitar, and something gentle in the background.",
-    "Little vibe check ✨ Naomi, calm heart, soft strings, and a little reminder you’re loved.",
-    "Little vibe check ✨ Naomi, country rose energy — warm, soft, and a tiny bit magic.",
+    "Little vibe check ✨ Naomi, cosy country music, warm lights and no pressure.",
+    "Little vibe check ✨ Naomi, slow chords, soft feelings and one song at a time.",
+    "Little vibe check ✨ Naomi, blanket, guitar and something gentle in the background.",
+    "Little vibe check ✨ Naomi, calm heart, soft strings and a little reminder you’re loved.",
+    "Little vibe check ✨ Naomi, country rose energy — warm, soft and a tiny bit magic.",
     "Little vibe check ✨ Naomi, quiet song, safe place, softer thoughts.",
     "Little vibe check ✨ Naomi, one chord, one breath, one tiny reset.",
     "Little vibe check ✨ Naomi, slow country love song without needing to rush anything.",
     "Little vibe check ✨ Naomi, gentle guitar and the world can wait five minutes.",
-    "Little vibe check ✨ Naomi, soft lamp light, quiet strings, and letting the day fall away.",
+    "Little vibe check ✨ Naomi, soft lamp light, quiet strings and letting the day fall away.",
     "Little vibe check ✨ Naomi, no pressure, no performance, just music that feels kind.",
     "Little vibe check ✨ Naomi, tiny smile, warm heart, one song you actually want to play.",
-    "Little vibe check ✨ Naomi, cosy chaos, soft guitar, and being loved through all of it.",
+    "Little vibe check ✨ Naomi, cosy chaos, soft guitar and being loved through all of it.",
     "Little vibe check ✨ Naomi, a little country song and a safer place to land.",
     "Little vibe check ✨ Naomi, slow hands, soft chords, gentle thoughts.",
     "Little vibe check ✨ Naomi, play something honest, even if it’s messy.",
-    "Little vibe check ✨ Naomi, warm drink, soft song, and breathing properly for once.",
-    "Little vibe check ✨ Naomi, country music, comfy clothes, and absolutely no stress.",
+    "Little vibe check ✨ Naomi, warm drink, soft song and breathing properly for once.",
+    "Little vibe check ✨ Naomi, country music, comfy clothes and absolutely no stress.",
     "Little vibe check ✨ Naomi, one peaceful minute that belongs only to you."
   ];
 
@@ -570,12 +569,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Naomi, this is the soft-guitar route. No pressure, no showing off, just something that feels warm.",
         "Naomi, soft mode unlocked. Let’s find something gentle enough to make the room feel quieter.",
         "Naomi, this one is for calm fingers, warm chords, and a song that does not ask too much.",
-        "Naomi, soft means beautiful, not boring. Let’s find something that feels like a tiny exhale.",
-        "Naomi, this route is for soft acoustic energy — gentle, warm, and easy to sit with.",
-        "Naomi, go gentle here. Find something that feels like a candle and a quiet room.",
-        "Naomi, soft mode is perfect when you want music to feel safe rather than impressive.",
-        "Naomi, this is for the kind of song that makes your shoulders drop.",
-        "Naomi, let’s find something soft enough that the guitar feels like company."
+        "Naomi, soft means beautiful, not boring. Let’s find something that feels like a tiny exhale."
       ],
       query: "soft acoustic country guitar tutorial easy"
     },
@@ -585,12 +579,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Naomi, this route is for sunny chords and a song that makes you smile while playing.",
         "Naomi, happy mode unlocked. Let’s find something light, cute, and actually fun.",
         "Naomi, this is for the good mood version of you — the one that deserves a soundtrack.",
-        "Naomi, let’s find something cheerful without being cheesy.",
-        "Naomi, happy guitar route. Warm chords, easy rhythm, good little vibe.",
-        "Naomi, pick something that makes the room feel brighter.",
-        "Naomi, this is your little sunshine guitar route.",
-        "Naomi, let’s find a song that feels like smiling at your phone.",
-        "Naomi, happy mode says: play something that makes your heart feel lighter."
+        "Naomi, let’s find something cheerful without being cheesy."
       ],
       query: "happy country songs guitar tutorial acoustic"
     },
@@ -600,12 +589,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Naomi, this is not wallowing. This is letting the guitar carry a bit of the feeling.",
         "Naomi, sad but okay means gentle, honest, and not too heavy.",
         "Naomi, let’s find something emotional but still safe to play.",
-        "Naomi, this route is for big feelings with soft edges.",
-        "Naomi, a sad song can still be comforting. Let’s find one of those.",
-        "Naomi, this is for when your heart needs a little acoustic honesty.",
-        "Naomi, not dramatic. Just real, soft, and human.",
-        "Naomi, let’s find a song that understands the feeling without making it worse.",
-        "Naomi, sad but okay mode: soft chords, honest lyrics, no emotional ambush."
+        "Naomi, this route is for big feelings with soft edges."
       ],
       query: "easy sad country songs guitar tutorial acoustic"
     },
@@ -615,12 +599,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Naomi, this route is for when distance feels loud and music can say it softer.",
         "Naomi, let’s find something that sounds like missing someone, but warmly.",
         "Naomi, this is the ‘wish you were here’ guitar route.",
-        "Naomi, a missing-you song should feel tender, not miserable.",
-        "Naomi, this route is for soft ache, warm chords, and a little honesty.",
-        "Naomi, let’s find something that feels close even when someone is not nearby.",
-        "Naomi, missing-you mode: gentle, romantic, and not too heavy.",
-        "Naomi, this is for a song that says ‘I miss you’ without shouting it.",
-        "Naomi, let’s find a tutorial that feels like a voice note with chords."
+        "Naomi, a missing-you song should feel tender, not miserable."
       ],
       query: "country songs about missing someone guitar tutorial"
     },
@@ -630,12 +609,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Naomi, this route is for warm love songs, not cringe ones.",
         "Naomi, romantic mode unlocked. Let’s find something that feels personal and soft.",
         "Naomi, this is for country love songs that actually land.",
-        "Naomi, let’s find a song that feels like a hand squeeze.",
-        "Naomi, romantic does not need to be cheesy. It just needs to feel true.",
-        "Naomi, this route is for soft lyrics, easy chords, and proper feeling.",
-        "Naomi, let’s find a love song that sounds like it means it.",
-        "Naomi, this is for a song that feels like being chosen.",
-        "Naomi, romantic mode: warm chords, honest lyrics, country rose energy."
+        "Naomi, let’s find a song that feels like a hand squeeze."
       ],
       query: "romantic country love songs guitar tutorial easy"
     },
@@ -645,12 +619,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Naomi, this is the practice route. Not cute. Not fluffy. Actual progress.",
         "Naomi, proper session mode means we are going after the bit that is annoying you.",
         "Naomi, this is for getting cleaner, tighter, and more confident.",
-        "Naomi, practice mode unlocked. Slow, focused, and useful.",
-        "Naomi, this route is for when you want to actually improve, not just noodle around.",
-        "Naomi, let’s find something that teaches properly and does not waffle.",
-        "Naomi, this is the ‘right, let’s nail this’ route.",
-        "Naomi, proper guitar session: clear lesson, useful technique, no chaos.",
-        "Naomi, this is for building the skill, not just surviving the song."
+        "Naomi, practice mode unlocked. Slow, focused, and useful."
       ],
       query: "country guitar lesson intermediate strumming chords"
     },
@@ -660,12 +629,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Naomi, this route is for turning a tiny feeling into an actual song idea.",
         "Naomi, songwriter mode unlocked. You do not need perfect lyrics. You need a starting point.",
         "Naomi, let’s find something that helps you write, not overthink.",
-        "Naomi, this is for making your own little country song from scratch.",
-        "Naomi, a song can start with one line. That is enough.",
-        "Naomi, this route is for lyrics, chords, and a tiny bit of bravery.",
-        "Naomi, let’s find a lesson that turns feelings into structure.",
-        "Naomi, songwriting mode: messy first drafts are the whole point.",
-        "Naomi, this is for making something that sounds like you."
+        "Naomi, this is for making your own little country song from scratch."
       ],
       query: "how to write a country song on guitar chords lyrics"
     },
@@ -675,12 +639,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Naomi, this route is for slowing everything down without needing to explain why.",
         "Naomi, calm mode unlocked. Let’s find something peaceful and easy to sit with.",
         "Naomi, this is for when your nervous system needs a little acoustic blanket.",
-        "Naomi, let’s find something gentle enough to quiet the room.",
-        "Naomi, calm mode means no pressure, just soft strings and breathing room.",
-        "Naomi, this is for music that helps the day stop shouting.",
-        "Naomi, let’s find a guitar route that feels like a reset.",
-        "Naomi, calm mode: gentle, slow, warm, and safe.",
-        "Naomi, this is for when you need the guitar to help you land."
+        "Naomi, let’s find something gentle enough to quiet the room."
       ],
       query: "calming acoustic country guitar lesson"
     }
@@ -912,10 +871,6 @@ ${t.ch2}`
     });
   }
 
-  function randomFrom(array) {
-    return array[Math.floor(Math.random() * array.length)];
-  }
-
   function pickRandomTrack() {
     if (!bgMusic || backgroundTracks.length === 0) return;
 
@@ -990,7 +945,7 @@ ${t.ch2}`
   };
 
   window.openNote = function () {
-    dailyNote.innerText = randomFrom(notes);
+    dailyNote.innerText = randomNoRepeat(notes, "naomiRecentModalNotes", 60);
     noteModal.classList.remove("hidden");
   };
 
@@ -1000,10 +955,10 @@ ${t.ch2}`
 
   window.refreshDailyRose = function () {
     noteIndex = (noteIndex + 1) % notes.length;
-    dailyRoseNote.innerText = randomFrom(notes);
-    dailyChallenge.innerText = randomFrom(guitarPrompts);
-    dailyMission.innerText = randomFrom(missions);
-    dailyVibe.innerText = randomFrom(vibes);
+    dailyRoseNote.innerText = randomNoRepeat(notes, "naomiRecentDailyRoseNotes", 60);
+    dailyChallenge.innerText = randomNoRepeat(guitarPrompts, "naomiRecentGuitarPrompts", 6);
+    dailyMission.innerText = randomNoRepeat(missions, "naomiRecentMissions", 6);
+    dailyVibe.innerText = randomNoRepeat(vibes, "naomiRecentVibes", 8);
   };
 
   window.pickMood = function (mood) {
@@ -1024,11 +979,11 @@ ${t.ch2}`
   window.openWhen = function (type) {
     const messages = openWhenMessages[type] || ["Naomi, I’ve got you."];
     openWhenResult.classList.remove("hidden");
-    openWhenResult.innerText = randomFrom(messages);
+    openWhenResult.innerText = randomNoRepeat(messages, `naomiRecentOpenWhen_${type}`, 10);
   };
 
   window.randomLoveNote = function () {
-    randomNoteText.innerText = randomFrom(notes);
+    randomNoteText.innerText = randomNoRepeat(notes, "naomiRecentRandomLoveNotes", 60);
   };
 
   window.quickSong = function (song) {
@@ -1052,7 +1007,7 @@ ${t.ch2}`
     creativeResult.classList.remove("hidden");
 
     creativeResult.innerHTML = `
-      <p>${randomFrom(route.messages)}</p>
+      <p>${randomNoRepeat(route.messages, `naomiRecentCreative_${routeName}`, 4)}</p>
       <button class="primary-btn creative-go-btn" onclick="goToCreativeRoute('${routeName}')">
         Let’s go find something for this 🎸
       </button>
@@ -1112,7 +1067,7 @@ ${t.ch2}`
   };
 
   window.togglePracticeMessage = function () {
-    practiceMessage.innerText = randomFrom(thereMessages);
+    practiceMessage.innerText = randomNoRepeat(thereMessages, "naomiRecentThereMessages", 10);
     practiceMessage.classList.toggle("hidden");
   };
 
